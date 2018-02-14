@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+
+    # -------------------------
+    # Facade : reverse proxy 
+    # -------------------------
+
+    facade:
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - partgen-network
+        #restart: always
+
+
+    # -------------------------
+    # Microservice : cnb2lp
+    # -------------------------
+
+    cnb2lp-web:
+        image: nginx:latest
+        depends_on:
+            - facade
+        expose:
+            - "80"
+        volumes:
+            - ../api/cnb2lp/api:/api
+            - ../api/cnb2lp/nginx.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - partgen-network
+
+    cnb2lp-php:
+        image: php:fpm
+        depends_on:
+            - facade
+        volumes:
+            - ../api/cnb2lp/api:/api
+            - ../api/cnb2lp/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+        networks:
+            - partgen-network
+
+
+    # -------------------------
+    # Microservice : lilypond
+    # -------------------------
+
+    # -------------------------
+    # Microservice : midi2mp3
+    # -------------------------
+
+networks:
+    partgen-network:
+        driver: bridge
