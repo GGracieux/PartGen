@@ -16,7 +16,7 @@ services:
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - partgen-network
+            - api-network
         #restart: always
 
 
@@ -31,18 +31,18 @@ services:
         depends_on:
             - cnb2lp-php
         volumes:
-            - ../api/cnb2lp/api:/api
-            - ../api/cnb2lp/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ../services/cnb2lp/api:/api
+            - ../services/cnb2lp/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - partgen-network
+            - api-network
 
     cnb2lp-php:
         image: php:fpm
         volumes:
-            - ../api/cnb2lp/api:/api
-            - ../api/cnb2lp/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ../services/cnb2lp/api:/api
+            - ../services/cnb2lp/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
         networks:
-            - partgen-network
+            - api-network
 
 
     # -------------------------
@@ -56,18 +56,18 @@ services:
         depends_on:
             - lilypond-php
         volumes:
-            - ../api/lilypond/api:/api
-            - ../api/lilypond/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ../services/lilypond/api:/api
+            - ../services/lilypond/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - partgen-network
+            - api-network
 
     lilypond-php:
         image: php:fpm
         volumes:
-            - ../api/lilypond/api:/api
-            - ../api/lilypond/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ../services/lilypond/api:/api
+            - ../services/lilypond/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
         networks:
-            - partgen-network
+            - api-network
 
     # -------------------------
     # Microservice : midi2mp3
@@ -80,19 +80,19 @@ services:
         depends_on:
             - midi2mp3-php
         volumes:
-            - ../api/midi2mp3/api:/api
-            - ../api/midi2mp3/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ../services/midi2mp3/api:/api
+            - ../services/midi2mp3/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - partgen-network
+            - api-network
 
     midi2mp3-php:
         image: php:fpm
         volumes:
-            - ../api/midi2mp3/api:/api
-            - ../api/midi2mp3/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ../services/midi2mp3/api:/api
+            - ../services/midi2mp3/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
         networks:
-            - partgen-network
+            - api-network
 
 networks:
-    partgen-network:
+    api-network:
         driver: bridge
