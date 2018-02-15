@@ -1,16 +1,16 @@
 version: '2'
 
 services:
-    web:
+    midi2mp3-web:
         image: nginx:latest
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
             - ./api:/api
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - api-network
-    php:
+    midi2mp3-php:
         image: php:fpm
         volumes:
             - ./api:/api

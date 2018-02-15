@@ -4,7 +4,7 @@ services:
     cnb2lp-web:
         image: nginx:latest
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
             - ./api:/api
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
