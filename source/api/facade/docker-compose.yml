@@ -57,7 +57,6 @@ services:
         volumes:
             - ../services/lilypond/apache.conf:/etc/apache2/sites-available/000-default.conf
             - ../services/lilypond/api:/var/www
-            - ../services/lilypond/data:/data
         environment:
             - DOCUMENT_ROOT=public
         networks:
@@ -68,22 +67,14 @@ services:
     # -------------------------
 
     midi2mp3-web:
-        image: nginx:latest
+        image: teuki/midi2mp3:latest
         expose:
             - "80"
-        depends_on:
-            - midi2mp3-php
         volumes:
-            - ../services/midi2mp3/api:/api
-            - ../services/midi2mp3/nginx.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - api-network
-
-    midi2mp3-php:
-        image: php:fpm
-        volumes:
-            - ../services/midi2mp3/api:/api
-            - ../services/midi2mp3/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ../services/midi2mp3/apache.conf:/etc/apache2/sites-available/000-default.conf
+            - ../services/midi2mp3/api:/var/www
+        environment:
+            - DOCUMENT_ROOT=public
         networks:
             - api-network
 
