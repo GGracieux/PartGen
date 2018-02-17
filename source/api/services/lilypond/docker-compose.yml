@@ -8,6 +8,5 @@ services:
         volumes:
             - ./apache.conf:/etc/apache2/sites-available/000-default.conf
             - ./api:/var/www
-            - ./data:/data
         environment:
             - DOCUMENT_ROOT=public
