@@ -1,23 +1,12 @@
 version: '2'
 
 services:
-    lilypond-web:
-        image: nginx:latest
+    web:
+        image: teuki/lilypond:latest
         ports:
-            - "80:80"
+            - "80:8080"
         volumes:
-            - ./api:/api
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - api-network
-    lilypond-php:
-        image: php:fpm
-        volumes:
-            - ./api:/api
-            - ./php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
-        networks:
-            - api-network
-
-networks:
-    api-network:
-        driver: bridge
+            - ./apache.config:/etc/apache2/sites-available/000-default.conf
+            - ./api/public:/var/www/html
+            - ./api/vendor:/var/www/vendor
+            - ./data:/data
