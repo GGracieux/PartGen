@@ -37,7 +37,7 @@ $app->get('/info/binaries', function ($request, $response, $args) {
 
     // Compose le message retour
     $infos = array(
-        // 'lame' => $lame->getVersionInfo(),
+        //'lame' => $lame->getVersionInfo(),
         'fluidsynth' => $fs->getVersionInfo()
     );
 

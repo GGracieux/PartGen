@@ -14,7 +14,7 @@ class Lame {
     public function getVersionInfo() {
         $cmd = 'lame -v';
         $res = $this->execute($cmd);
-        return $res;
+        return $res['output'][0];
     }
 
 }
