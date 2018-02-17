@@ -51,22 +51,15 @@ services:
     # -------------------------
 
     lilypond-web:
-        image: nginx:latest
+        image: teuki/lilypond:latest
         expose:
             - "80"
-        depends_on:
-            - lilypond-php
         volumes:
-            - ../services/lilypond/api:/api
-            - ../services/lilypond/nginx.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - api-network
-
-    lilypond-php:
-        image: php:fpm
-        volumes:
-            - ../services/lilypond/api:/api
-            - ../services/lilypond/php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ../services/lilypond/apache.conf:/etc/apache2/sites-available/000-default.conf
+            - ../services/lilypond/api:/var/www
+            - ../services/lilypond/data:/data
+        environment:
+            - DOCUMENT_ROOT=public
         networks:
             - api-network
 
