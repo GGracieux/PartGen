@@ -1,23 +1,12 @@
 version: '2'
 
 services:
-    midi2mp3-web:
-        image: nginx:latest
+    web:
+        image: teuki/midi2mp3:latest
         ports:
             - "80:80"
         volumes:
-            - ./api:/api
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - api-network
-    midi2mp3-php:
-        image: php:fpm
-        volumes:
-            - ./api:/api
-            - ./php-log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
-        networks:
-            - api-network
-
-networks:
-    api-network:
-        driver: bridge
+            - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+            - ./api:/var/www
+        environment:
+            - DOCUMENT_ROOT=public
