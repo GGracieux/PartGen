@@ -7,7 +7,7 @@ services:
             - "80:8080"
         volumes:
             - ./apache.conf:/etc/apache2/sites-available/000-default.conf
-            - ./api/public:/var/www/html
-            - ./api/vendor:/var/www/vendor
-            - ./api/lib:/var/www/lib
+            - ./api:/var/www
             - ./data:/data
+        environment:
+            - DOCUMENT_ROOT=public
