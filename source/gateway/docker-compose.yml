@@ -105,6 +105,7 @@ services:
             - ../api/services/midi2mp3/api:/var/www
         environment:
             - DOCUMENT_ROOT=public
+            - UID=33
         networks:
             - api-network
 
