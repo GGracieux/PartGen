@@ -22,21 +22,6 @@ class LilyPond {
 
 
     //-----------------------------------------
-    // INFO
-    //-----------------------------------------
-
-    /**
-     * Retourne la version de lilypond
-     * @return mixed
-     */
-    public function getVersionInfo() {
-        $cmd = 'lilypond -v';
-        exec($cmd, $op);
-        return $op[0];
-    }
-
-
-    //-----------------------------------------
     // CONVERTION
     //-----------------------------------------
 
@@ -100,7 +85,7 @@ class LilyPond {
         foreach (self::RESULT_EXT as $ext) {
             $file = "$this->dir/$this->id.$ext";
             if (is_file($file)) {
-                $result[$ext] = $this->fileGetBase64($file);
+                $result[$ext] = base64_encode(file_get_contents($file));
             }
         }
         return $result;
@@ -112,20 +97,6 @@ class LilyPond {
      */
     private function getLogFile() {
         return is_file($this->logFile) ? file_get_contents($this->logFile) : '';
-    }
-
-
-    //-----------------------------------------
-    // HELPERS
-    //-----------------------------------------
-
-    /**
-     * Charge un fichier et le converti en base64
-     * @param $file
-     * @return string
-     */
-    private function fileGetBase64($file) {
-        return base64_encode(file_get_contents($file));
     }
 
 }

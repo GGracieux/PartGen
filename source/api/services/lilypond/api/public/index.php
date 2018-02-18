@@ -8,6 +8,7 @@ require APP_ROOT . '/lib/lilypond.php';
 // Instanciation de l'application
 $app = new \Slim\App();
 
+
 // ------------------------
 // ROUTE INFO
 // ------------------------
@@ -25,23 +26,6 @@ $app->get('/info', function ($request, $response, $args) {
 
 });
 
-// ------------------------
-// ROUTE INFO/BINARIES
-// ------------------------
-$app->get('/info/binaries', function ($request, $response, $args) {
-
-    // Récupère l'info de version
-    $lp = new lilyPond();
-
-    // Compose le message retour
-    $infos = array(
-        'lilypond' => $lp->getVersionInfo()
-    );
-
-    // retourne le message
-    return $response->withJson($infos,200);
-
-});
 
 // ------------------------
 // ROUTE CONVERT
