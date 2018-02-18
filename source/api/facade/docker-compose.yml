@@ -59,6 +59,7 @@ services:
             - ../services/lilypond/api:/var/www
         environment:
             - DOCUMENT_ROOT=public
+            - UID = 33
         networks:
             - api-network
 

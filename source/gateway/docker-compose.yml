@@ -86,9 +86,9 @@ services:
         volumes:
             - ../api/services/lilypond/apache.conf:/etc/apache2/sites-available/000-default.conf
             - ../api/services/lilypond/api:/var/www
-            - ../api/services/lilypond/data:/data
         environment:
             - DOCUMENT_ROOT=public
+            - UID = 33
         networks:
             - api-network
 
