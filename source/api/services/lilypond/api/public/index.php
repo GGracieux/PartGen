@@ -48,23 +48,14 @@ $app->get('/info/binaries', function ($request, $response, $args) {
 // ------------------------
 $app->post('/convert', function ($request, $response, $args) {
 
-    // Recup cnbData via la request
+    // Recup lpData via la request
     $lpData = $request->getParsedBody()['lpData'];
 
-    // Compose le resultat
-    $result = array(
-    	'status' => 'OK ou ERROR', 
-    	'message' => 'Message si erreur',
-    	'source' => $lpData,
-    	'result' => array(
-    		'midi' => 'fichier midi en base 64',
-    		'pdf' => 'fichier pdf en base 64'
-    		),
-    	'logs' => 'logs lilypond au format texte'
-    	);
+    // Convertion
+    $lp = new LilyPond();
+    $result = $lp->convert($lpData);
 
-	// retour resultat
-	
+	// retour resultat	
 	return $response->withJson($result,200);
 
 });
