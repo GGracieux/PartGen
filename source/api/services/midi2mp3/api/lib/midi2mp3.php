@@ -89,7 +89,7 @@ class Midi2Mp3 {
      */
     private function getResultFile() {
         $file = "$this->dir/$this->id.mp3";
-        return is_file($file) ? base64_encode(file_get_contents($file)) : '';
+        return is_file($file) ? array('mp3' => base64_encode(file_get_contents($file))) : '';
     }
 
     /**
