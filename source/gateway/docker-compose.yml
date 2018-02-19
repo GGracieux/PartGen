@@ -15,7 +15,8 @@ services:
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - facade-network
+            - apifacade-network
+            - front-network
 
     # -------------------------
     # Frontend
@@ -28,7 +29,7 @@ services:
             - ../front/public:/public
             - ../front/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - facade-network
+            - front-network
 
     # -------------------------
     # API - Facade 
@@ -45,9 +46,8 @@ services:
         volumes:
             - ../api/facade/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
-            - facade-network
+            - apifacade-network
             - api-network            
-        #restart: always
 
 
     # -------------------------
@@ -110,7 +110,9 @@ services:
             - api-network
 
 networks:
+    apifacade-network:
+        driver: bridge
     api-network:
         driver: bridge
-    facade-network:
+    front-network:
         driver: bridge
