@@ -26,7 +26,7 @@ services:
         expose:
             - "80"
         volumes:
-            - ../front/public:/public
+            - ../front/dist:/public
             - ../front/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - front-network
