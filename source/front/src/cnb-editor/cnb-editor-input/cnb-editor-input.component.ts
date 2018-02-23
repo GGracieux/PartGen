@@ -1,5 +1,5 @@
 // Imports core
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'cnb-editor-input',
@@ -7,10 +7,8 @@ import {Component, OnInit} from '@angular/core';
     templateUrl: './cnb-editor-input.component.html'
 })
 
-export class CnbEditorInputComponent implements OnInit {
+export class CnbEditorInputComponent {
 
-    constructor() {}
-
-    public ngOnInit() {}
+	text:string = "YOUHOUUUU";
 	
 }
