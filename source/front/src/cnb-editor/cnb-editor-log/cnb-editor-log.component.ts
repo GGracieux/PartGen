@@ -1,5 +1,5 @@
 // Imports core
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'cnb-editor-log',
@@ -7,12 +7,9 @@ import {Component, OnInit} from '@angular/core';
     templateUrl: './cnb-editor-log.component.html'
 })
 
-export class CnbEditorLogComponent implements OnInit {
+export class CnbEditorLogComponent {
 
-	logContent = "LOGS";
-
-    constructor() {}
-
-    public ngOnInit() {}
+	// Contenu des logs
+	@Input() content;
 	
 }
