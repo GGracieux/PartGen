@@ -10,6 +10,9 @@ import {MatIconModule} from '@angular/material/icon';
 // Imports ace mirror
 import { AceEditorModule } from 'ng2-ace-editor';
 
+// Imports Pdf Viewer
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 // Imports du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
 import {CnbEditorInputComponent} 	from './cnb-editor-input/cnb-editor-input.component';
@@ -25,7 +28,8 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	MatGridListModule,
 	MatToolbarModule, 	
 	MatIconModule,
-	AceEditorModule	
+	AceEditorModule	,
+	PdfViewerModule
 	],
   declarations: [
 	CnbEditorComponent,

@@ -9,6 +9,6 @@ import {Component} from '@angular/core';
 
 export class CnbEditorInputComponent {
 
-	text:string = "YOUHOUUUU";
+	text:string = "(LA,mi,re) mi4 - mi8 fa16 sol16";
 	
 }

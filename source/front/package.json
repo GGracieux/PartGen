@@ -25,12 +25,12 @@
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
     "ng2-ace-editor": "^0.3.4",
-    "ng4-codemirror": "^0.0.1",
+    "ng2-pdf-viewer": "^4.1.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.0",
+    "@angular/cli": "^1.7.1",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
