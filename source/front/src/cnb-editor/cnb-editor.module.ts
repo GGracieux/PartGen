@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 // Imports ace mirror
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -28,6 +29,7 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	MatGridListModule,
 	MatToolbarModule, 	
 	MatIconModule,
+	MatMenuModule,
 	AceEditorModule	,
 	PdfViewerModule
 	],

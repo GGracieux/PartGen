@@ -1,5 +1,14 @@
 <mat-toolbar class="md-primary">
+
 	<span>CNB Editor</span>
 	<span class="example-spacer"></span>
+
+	<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+	<mat-menu #menu="matMenu">
+	  <button mat-menu-item>Item 1</button>
+	  <button mat-menu-item>Item 2</button>
+	</mat-menu>
+
 	<mat-icon class="example-icon">queue_music</mat-icon>  
+	
 </mat-toolbar>

@@ -13,15 +13,15 @@ section {
 }
 
 .section-pdf {
-	height: 50%;
+	height: calc(100% - (40px + 200px));
 }
 
 .section-mp3 {
-	height: 25%;
+	height: 40px;
 }
 
 .section-log {
-	height: 25%;
+	height: 300px;
 }
 
 /* Clear floats after the columns */
