@@ -9,6 +9,8 @@ import {Component, OnInit} from '@angular/core';
 
 export class CnbEditorLogComponent implements OnInit {
 
+	logContent = "LOGS";
+
     constructor() {}
 
     public ngOnInit() {}
