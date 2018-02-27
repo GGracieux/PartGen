@@ -35,10 +35,9 @@ $app->post('/convert', function ($request, $response, $args) {
 
 	// Convertion cnb -> lp
 	$converter = new Cnb2lp();
-	$lpData = $converter->convert($cnbData);
+	$result = $converter->convert($cnbData);
 
 	// retour resultat
-	$result = array('lpData' => $lpData);
 	return $response->withJson($result,200);
 
 });

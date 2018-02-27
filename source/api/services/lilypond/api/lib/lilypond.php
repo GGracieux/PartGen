@@ -72,7 +72,7 @@ class LilyPond {
             'status' => $success ? 'OK' : 'ERROR',
             'message' => $message,
             'result' => $this->getResultFiles(),
-            'logs' => $this->getLogFile()
+            'logs' => $this->getLogData()
         );
     }
 
@@ -85,7 +85,10 @@ class LilyPond {
         foreach (self::RESULT_EXT as $ext) {
             $file = "$this->dir/$this->id.$ext";
             if (is_file($file)) {
-                $result[$ext] = base64_encode(file_get_contents($file));
+                $result[] = array(
+                    'format' => $ext,
+                    'base64Content' => base64_encode(file_get_contents($file))
+                );
             }
         }
         return $result;
@@ -93,10 +96,17 @@ class LilyPond {
 
     /**
      * Charge les données du fichier de log
-     * @return bool|string
+     * @return array
      */
-    private function getLogFile() {
-        return is_file($this->logFile) ? file_get_contents($this->logFile) : '';
+    private function getLogData() {
+        $log = array();
+        if (is_file($this->logFile)) {
+            $log[] = array(
+                'section' => 'lilypond',
+                'content' => file_get_contents($this->logFile)
+            );
+        }
+        return $log;
     }
 
 }

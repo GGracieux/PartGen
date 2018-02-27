@@ -85,24 +85,37 @@ class Midi2Mp3 {
 
     /**
      * Charge les données du fichier resultat
-     * @return string
+     * @return array
      */
     private function getResultFile() {
+        $result = array();
         $file = "$this->dir/$this->id.mp3";
-        return is_file($file) ? array('mp3' => base64_encode(file_get_contents($file))) : '';
+        if (is_file($file)) {
+            $result[] = array (
+                'format' => 'mp3',
+                'base64Content' => base64_encode(file_get_contents($file))
+            );
+        }
+        return $result;
     }
 
     /**
      * Charge les données du fichier de log
-     * @return bool|string
+     * @return array
      */
     private function getLogFiles() {
-        $logs = '';
+        $logs = array();
         if (is_file($this->logFileFS)) {
-            $logs .= 'FLUIDSYNTH' . chr(10) . file_get_contents($this->logFileFS) . chr(10) . chr(10);
+            $logs[] = array(
+                'section' => 'FluidSynth',
+                'content' => file_get_contents($this->logFileFS)
+            );
         }
         if (is_file($this->logFileLame)) {
-            $logs .= 'LAME' . chr(10) . file_get_contents($this->logFileFS);
+            $logs[] = array(
+                'section' => 'Lame',
+                'content' => file_get_contents($this->logFileLame)
+            );
         }
         return $logs;
     }

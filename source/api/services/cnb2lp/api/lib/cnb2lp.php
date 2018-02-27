@@ -86,16 +86,58 @@ class Cnb2lp {
 	// TRAITEMENT
 	//--------------------------------
 
-	// Converti un texte cnb en lp
+	// Lance la convertion
 	public function convert($content) 
 	{
-		$tokens = $this->getTokens($content);
-		$LPTokens = array();
-		foreach ($tokens as $token) {
-			$LPTokens[] = $this->convertToken($token);
-		}
-		return implode(' ',$LPTokens);
+	    try {
+            $lpData = $this->convertData($content);
+            $result = $this->getConvertResponse(true,'',$lpData,'Convertion terminée');
+        } catch (Exception $ex) {
+            $result = $this->getConvertResponse(false, 'Erreur lors de la convertion', null, $ex->getMessage());
+        }
+        return $result;
 	}
+
+    // Converti un texte cnb en lp
+    public function convertData($content)
+    {
+        $tokens = $this->getTokens($content);
+        $LPTokens = array();
+        foreach ($tokens as $token) {
+            $LPTokens[] = $this->convertToken($token);
+        }
+        return implode(' ',$LPTokens);
+    }
+
+
+    // Prepare la réponse du convert
+    private function getConvertResponse($success, $message, $lpData = null, $logData = '') {
+
+	    // formatage resultat
+	    $result = array();
+	    if (! is_null($lpData)) {
+	        $result[] = array(
+	            'format' => 'lp',
+                'base64Content' => base64_encode($lpData)
+            );
+        }
+
+        // formatage logs
+        $logs = array(
+            array (
+                'section' => 'cnb2lp',
+                'content' => $logData
+            )
+        );
+
+	    // retourne la réponse formatté
+        return array(
+            'status' => $success ? 'OK' : 'ERROR',
+            'message' => $message,
+            'result' => $result,
+            'logs' => $logs
+        );
+    }
 
     // Récupération de la liste des tokens non convertis
 	private function getTokens($content)
