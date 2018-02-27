@@ -33,7 +33,7 @@ $app->get('/info', function ($request, $response, $args) {
 $app->post('/convert', function ($request, $response, $args) {
 
     // Recup cnbData via la request
-    $midiData = $request->getParsedBody()['midiData'];
+    $midiData = $request->getParsedBody()['data'];
     $soundfont = $request->getParsedBody()['soundfont'];
 
     // Convertion

@@ -31,7 +31,7 @@ $app->get('/info', function ($request, $response, $args) {
 $app->post('/convert', function ($request, $response, $args) {
 
     // Recup cnbData via la request
-    $cnbData = $request->getParsedBody()['cnbData'];
+    $cnbData = $request->getParsedBody()['data'];
 
 	// Convertion cnb -> lp
 	$converter = new Cnb2lp();
