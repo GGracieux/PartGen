@@ -10,7 +10,7 @@ import {Component, Input} from '@angular/core';
 export class CnbEditorPdfComponent {
 
 	// Conteny binaire du PDF
-	private binaryContent;
+	public binaryContent;
 
 	// Contenu base64 du PDF
 	private _content;

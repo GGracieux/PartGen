@@ -12,12 +12,12 @@ import {PartGenAPI} from '../../partgen-api/partgen-api.service';
 
 export class CnbEditorComponent implements OnInit {
 
-	private dataCnb;
-	private dataLp;
-	private dataPdf;
-	private dataMidi;
-	private dataLog;
-	private dataMp3;
+	public dataCnb;
+    public dataLp;
+    public dataPdf;
+    public dataMidi;
+    public dataLog;
+    public dataMp3;
 
     constructor(private api: PartGenAPI) {}
 
@@ -25,7 +25,7 @@ export class CnbEditorComponent implements OnInit {
     	this.initDefaultValues();
     }
 
-    private menuAction(action:string) {
+    public menuAction(action:string) {
         switch(action) {
             case 'genererPdf':
                 this.genererPdf();
