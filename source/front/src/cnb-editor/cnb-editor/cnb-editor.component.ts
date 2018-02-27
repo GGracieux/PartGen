@@ -41,23 +41,23 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private genererMp3() {
-        this.api.convert('cnb2lp',this.dataCnb).subscribe(
-            res => console.log(res.json()),
+        this.api.cnb2lp(this.dataCnb).subscribe(
+            res => console.log(res),
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );
     }
 
     private launchCnb2Lp() {
-        this.api.info('cnb2lp').subscribe(
-            res => console.log(res.json()),
+        this.api.cnb2lpInfo().subscribe(
+            res => console.log(res),
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );
-        this.api.info('lilypond').subscribe(
-            res => console.log(res.json()),
+        this.api.lilypondInfo().subscribe(
+            res => console.log(res),
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );
-        this.api.info('midi2mp3').subscribe(
-            res => console.log(res.json()),
+        this.api.midi2mp3Info().subscribe(
+            res => console.log(res),
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );
     }
