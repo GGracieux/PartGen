@@ -24,8 +24,8 @@ export class PartGenAPI {
     }
 
     public convert(service, data) {
-        let url = this.getAPIEP('service', 'convert');
-        return this.http.post(url,{data:data});
+        let url = this.getAPIEP(service, 'convert');
+        return this.http.post(url, {data:data});
     }
 
 }
