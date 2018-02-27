@@ -1,6 +1,7 @@
 // Imports Core
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HttpModule, Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
 
 // Imports Material
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -8,7 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 
-// Imports pour compatibilité anomations material
+// Imports pour compatibilité animations material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Imports ace mirror
@@ -17,7 +18,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 // Imports Pdf Viewer
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
-// Imports du module
+// Imports des composants du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
 import {CnbEditorInputComponent} 	from './cnb-editor-input/cnb-editor-input.component';
 import {CnbEditorPdfComponent} 		from './cnb-editor-pdf/cnb-editor-pdf.component';
@@ -29,12 +30,13 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 @NgModule({
   imports: [
 	CommonModule, 
+	HttpModule,
 	MatGridListModule,
 	MatToolbarModule, 	
 	MatIconModule,
 	MatMenuModule,
 	BrowserAnimationsModule,
-	AceEditorModule	,
+	AceEditorModule,
 	PdfViewerModule
 	],
   declarations: [

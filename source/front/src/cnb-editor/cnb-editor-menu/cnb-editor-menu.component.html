@@ -6,8 +6,8 @@
 
 	<button mat-button [matMenuTriggerFor]="menu"><mat-icon class="example-icon">queue_music</mat-icon></button>
 	<mat-menu #menu="matMenu">
-	  <button mat-menu-item>Generer PDF</button>
-	  <button mat-menu-item>Generer MP3</button>
+	  <button mat-menu-item (click)="menuClick('genererPdf')" >Generer PDF</button>
+	  <button mat-menu-item (click)="menuClick('genererMp3')" >Generer MP3</button>
 	</mat-menu>
 
 </mat-toolbar>

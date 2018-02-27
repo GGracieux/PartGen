@@ -1,5 +1,5 @@
 // Imports core
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'cnb-editor-menu',
@@ -7,10 +7,14 @@ import {Component, OnInit} from '@angular/core';
     templateUrl: './cnb-editor-menu.component.html'
 })
 
-export class CnbEditorMenuComponent implements OnInit {
+export class CnbEditorMenuComponent {
 
-    constructor() {}
+	// Evenement pour signaler un click menu
+	@Output() menuClicked = new EventEmitter<string>();
 
-    public ngOnInit() {}
+	// Gestion du click menu
+    public menuClick(action:string) {
+    	this.menuClicked.emit(action);
+    } 
 	
 }

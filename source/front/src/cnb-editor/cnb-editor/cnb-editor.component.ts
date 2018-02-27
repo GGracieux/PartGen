@@ -1,5 +1,6 @@
 // Imports core
 import {Component, OnInit} from '@angular/core';
+import {Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
 
 @Component({
     selector: 'cnb-editor',
@@ -16,8 +17,57 @@ export class CnbEditorComponent implements OnInit {
 	private dataLog;
 	private dataMp3;
 
+    constructor(private http: Http) {}
+
     public ngOnInit() {
     	this.initDefaultValues();
+    }
+
+    private menuAction(action:string) {
+        switch(action) {
+            case 'genererPdf':
+                this.genererPdf();
+                break;
+            case 'genererMp3':
+                this.genererMp3();
+                break;
+        }
+    }
+
+    private genererPdf() {
+        console.log('generation PDF');
+        this.launchCnb2Lp();
+    }
+
+    private genererMp3() {
+        console.log('generation MP3');
+    }
+
+    private launchCnb2Lp() {
+        this.http.get('http://192.168.99.100/api/v1/cnb2lp/info').subscribe(
+            res => console.log(res.json()),
+            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
+        );
+    }
+
+    private launchLilyPond() {
+
+    }
+
+    private launchMidi2Mp3() {
+
+    }
+
+    private callbackCnb2Lp(response) {
+        console.log(response.data);
+    }
+
+    private callbackLilyPond() {
+
+    }
+
+    private callbackMidi2Mp3() {
+
     }
 
     private initDefaultValues() {
