@@ -13,10 +13,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Imports ace mirror
-import { AceEditorModule } from 'ng2-ace-editor';
+import {AceEditorModule} from 'ng2-ace-editor';
 
 // Imports Pdf Viewer
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+
+// Import de l'API PartGen
+import {PartGenAPI} from '../partgen-api/partgen-api.service';
 
 // Imports des composants du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
@@ -39,6 +42,7 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	AceEditorModule,
 	PdfViewerModule
 	],
+  providers: [PartGenAPI],
   declarations: [
 	CnbEditorComponent,
 	CnbEditorMenuComponent,

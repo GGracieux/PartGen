@@ -3,16 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CnbEditorModule } from '../cnb-editor/cnb-editor.module';
+import { PartGenAPI } from '../partgen-api/partgen-api.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
 	CnbEditorModule
   ],
-  providers: [],
+  providers: [PartGenAPI],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

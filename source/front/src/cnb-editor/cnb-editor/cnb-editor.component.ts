@@ -1,6 +1,8 @@
 // Imports core
 import {Component, OnInit} from '@angular/core';
-import {Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
+
+// Import API
+import {PartGenAPI} from '../../partgen-api/partgen-api.service';
 
 @Component({
     selector: 'cnb-editor',
@@ -17,7 +19,7 @@ export class CnbEditorComponent implements OnInit {
 	private dataLog;
 	private dataMp3;
 
-    constructor(private http: Http) {}
+    constructor(private api: PartGenAPI) {}
 
     public ngOnInit() {
     	this.initDefaultValues();
@@ -35,16 +37,26 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private genererPdf() {
-        console.log('generation PDF');
         this.launchCnb2Lp();
     }
 
     private genererMp3() {
-        console.log('generation MP3');
+        this.api.convert('cnb2lp',this.dataCnb).subscribe(
+            res => console.log(res.json()),
+            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
+        );
     }
 
     private launchCnb2Lp() {
-        this.http.get('http://192.168.99.100/api/v1/cnb2lp/info').subscribe(
+        this.api.info('cnb2lp').subscribe(
+            res => console.log(res.json()),
+            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
+        );
+        this.api.info('lilypond').subscribe(
+            res => console.log(res.json()),
+            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
+        );
+        this.api.info('midi2mp3').subscribe(
             res => console.log(res.json()),
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );
