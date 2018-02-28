@@ -1,9 +1,8 @@
 // Imports core
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs/Observable";
-import 'rxjs/add/operator/map';
-import {PGInfo, PGConvert} from './partgen-api.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import './partgen-api.interface';
 
 
 @Injectable()
@@ -27,16 +26,9 @@ export class PartGenAPI {
 
     // ---- Infos des services
 
-    private serviceInfoa(service) {
-        let url = this.getAPIEP(service, 'info');
-        return this.http.get(url);
-    }
-
     private serviceInfo(service): Observable<PGInfo> {
-        let url = this.getAPIEP(service, 'info');
-        return this.http
-            .get(url)
-            .map(res => (res.json() as PGInfo));
+        const url = this.getAPIEP(service, 'info');
+        return this.http.get<PGInfo>(url);
     }
 
     public cnb2lpInfo(): Observable<PGInfo> {
@@ -54,25 +46,26 @@ export class PartGenAPI {
 
     // ---- Appel des services
 
-    public cnb2lp(data): Observable<PGConvert> {
-        let url = this.getAPIEP('cnb2lp', 'convert');
-        return this.http
-            .post(url, {data:data})
-            .map(res => (res.json() as PGConvert));
+    private getPostHeaders() {
+        return new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
     }
 
-    public lilypond(data): Observable<PGConvert> {
-        let url = this.getAPIEP('lilypond', 'convert');
-        return this.http
-            .post(url, {data:data})
-            .map(res => (res.json() as PGConvert));
+    public cnb2lp(cnbData): Observable<PGCnb2Lp> {
+        const url = this.getAPIEP('cnb2lp', 'convert');
+        const headers = this.getPostHeaders();
+        return this.http.post<PGCnb2Lp>(url, {cnbData: cnbData}, {headers});
     }
 
-    public midi2mp3(data, soundfont='bagpipes'): Observable<PGConvert> {
-        let url = this.getAPIEP('lilypond', 'convert');
-        return this.http
-            .post(url, {data:data, soundfont:soundfont})
-            .map(res => (res.json() as PGConvert));
+    public lilypond(lpData): Observable<PGLilyPond> {
+        const url = this.getAPIEP('lilypond', 'convert');
+        const headers = this.getPostHeaders();
+        return this.http.post<PGLilyPond>(url, {lpData: lpData}, {headers});
+    }
+
+    public midi2mp3(base64MidiData, soundfont= 'bagpipes'): Observable<PGMidi2Mp3> {
+        const url = this.getAPIEP('midi2mp3', 'convert');
+        const headers = this.getPostHeaders();
+        return this.http.post<PGMidi2Mp3>(url, {base64MidiData: base64MidiData, soundfont: soundfont}, {headers});
     }
 
 }

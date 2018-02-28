@@ -1,22 +1,34 @@
-export class PGInfo {
-    public apiName: string;
-    public version: string;
-    public description: string;
+interface PGInfo {
+    apiName: string;
+    version: string;
+    description: string;
 }
 
-export class PGConvert {
-    public status: string;
-    public message: string;
-    public output: PGOutut[];
-    public logs: PGLog[];
+interface PGCnb2Lp {
+    status: PGStatus;
+    lpData: string;
+    logs: PGLog[];
 }
 
-export class PGOutut {
-    public format: string;
-    public base64Content: string;
+interface PGLilyPond {
+    status: PGStatus;
+    base64PdfData: string;
+    base64MidiData: string;
+    logs: PGLog[];
 }
 
-export class PGLog {
-    public section: string;
-    public content: string;
+interface PGMidi2Mp3 {
+    status: PGStatus;
+    base64Mp3Data: string;
+    logs: PGLog[];
+}
+
+interface PGStatus {
+    code: string;
+    message: string;
+}
+
+interface PGLog {
+    title: string;
+    content: string;
 }
