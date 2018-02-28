@@ -1,34 +1,39 @@
-interface PGInfo {
+export interface PGInfo {
     apiName: string;
     version: string;
     description: string;
 }
 
-interface PGCnb2Lp {
+export interface PGCnb2Lp {
     status: PGStatus;
     lpData: string;
     logs: PGLog[];
 }
 
-interface PGLilyPond {
+export interface PGLilyPond {
     status: PGStatus;
     base64PdfData: string;
     base64MidiData: string;
     logs: PGLog[];
 }
 
-interface PGMidi2Mp3 {
+export interface PGMidi2Mp3 {
     status: PGStatus;
     base64Mp3Data: string;
     logs: PGLog[];
 }
 
-interface PGStatus {
-    code: string;
+export interface PGStatus {
+    code: statusCode;
     message: string;
 }
 
-interface PGLog {
+export interface PGLog {
     title: string;
     content: string;
+}
+
+export enum statusCode {
+    OK = 'OK',
+    ERROR = 'ERROR'
 }

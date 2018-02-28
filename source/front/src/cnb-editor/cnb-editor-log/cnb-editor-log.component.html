@@ -1,3 +1,6 @@
 <div class="logs">
-	{{content}}
+	<div class="logEntry {{ log.level }}" *ngFor="let log of content">
+		<h4>{{ log.title }}</h4>
+		<span>{{ log.content }}</span>
+	</div>
 </div>

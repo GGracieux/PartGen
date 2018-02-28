@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import './partgen-api.interface';
+import {PGInfo, PGCnb2Lp, PGLilyPond, PGMidi2Mp3} from './partgen-api.interfaces';
 
 
 @Injectable()
