@@ -1,10 +1,10 @@
 // Imports core
 import {Injectable} from '@angular/core';
-import {Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
-import "rxjs/Rx";
 import {PGInfo, PGConvert} from './partgen-api.model';
+
 
 @Injectable()
 export class PartGenAPI {
@@ -12,7 +12,7 @@ export class PartGenAPI {
     private apiDomain = '192.168.99.100';
     private apiVersion = 1;
 
-    constructor(private http: Http) {}
+    constructor(private http: HttpClient) {}
 
     // ---- Construction de l'URL du End Point
 

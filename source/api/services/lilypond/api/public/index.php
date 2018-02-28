@@ -33,7 +33,7 @@ $app->get('/info', function ($request, $response, $args) {
 $app->post('/convert', function ($request, $response, $args) {
 
     // Recup lpData via la request
-    $lpData = $request->getParsedBody()['data'];
+    $lpData = $request->getParsedBody()['lpData'];
 
     // Convertion
     $lp = new LilyPond();

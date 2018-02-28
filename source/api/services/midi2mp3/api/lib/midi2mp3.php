@@ -76,25 +76,24 @@ class Midi2Mp3 {
      */
     private function getConvertResponse($success, $message) {
         return array(
-            'status' => $success ? 'OK' : 'ERROR',
-            'message' => $message,
-            'result' => $this->getResultFile(),
+            'status' => array(
+                'code' => $success ? 'OK' : 'ERROR',
+                'message' => $message
+            ),
+            'base64Mp3Data' => $this->getResultFile(),
             'logs' => $this->getLogFiles()
         );
     }
 
     /**
      * Charge les données du fichier resultat
-     * @return array
+     * @return string
      */
     private function getResultFile() {
-        $result = array();
+        $result = '';
         $file = "$this->dir/$this->id.mp3";
         if (is_file($file)) {
-            $result[] = array (
-                'format' => 'mp3',
-                'base64Content' => base64_encode(file_get_contents($file))
-            );
+            $result = base64_encode(file_get_contents($file));
         }
         return $result;
     }
@@ -107,13 +106,13 @@ class Midi2Mp3 {
         $logs = array();
         if (is_file($this->logFileFS)) {
             $logs[] = array(
-                'section' => 'FluidSynth',
+                'titre' => 'FluidSynth',
                 'content' => file_get_contents($this->logFileFS)
             );
         }
         if (is_file($this->logFileLame)) {
             $logs[] = array(
-                'section' => 'Lame',
+                'titre' => 'Lame',
                 'content' => file_get_contents($this->logFileLame)
             );
         }

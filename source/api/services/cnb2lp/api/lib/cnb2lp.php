@@ -106,36 +106,25 @@ class Cnb2lp {
         foreach ($tokens as $token) {
             $LPTokens[] = $this->convertToken($token);
         }
-        return implode(' ',$LPTokens);
+        $result = '\score{ { ' . implode(' ',$LPTokens) . '} \layout{} \midi{} }';
+        return $result;
     }
 
 
     // Prepare la réponse du convert
     private function getConvertResponse($success, $message, $lpData = null, $logData = '') {
 
-	    // formatage resultat
-	    $result = array();
-	    if (! is_null($lpData)) {
-	        $result[] = array(
-	            'format' => 'lp',
-                'base64Content' => base64_encode($lpData)
-            );
-        }
-
-        // formatage logs
-        $logs = array(
-            array (
-                'section' => 'cnb2lp',
-                'content' => $logData
-            )
-        );
-
 	    // retourne la réponse formatté
         return array(
-            'status' => $success ? 'OK' : 'ERROR',
-            'message' => $message,
-            'result' => $result,
-            'logs' => $logs
+            'status' => array(
+                'code' => $success ? 'OK' : 'ERROR',
+                'message' => $message
+            ),
+            'lpData' => $lpData,
+            'logs' => array (
+                'titre' => 'cnb2lp',
+                'content' => $logData
+            )
         );
     }
 

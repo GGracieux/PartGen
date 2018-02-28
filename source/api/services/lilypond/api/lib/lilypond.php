@@ -5,9 +5,6 @@ class LilyPond {
     // dossier temporaire pour le traitement lilypond
     const TMP_DIR = '/tmp/lilypond';
 
-    // extentions produites par lilypond
-    const RESULT_EXT = array('pdf','midi','ps','svg','eps','png');
-
     // Id de session unique
     private $id;
 
@@ -69,27 +66,26 @@ class LilyPond {
      */
     private function getConvertResponse($success, $message) {
         return array(
-            'status' => $success ? 'OK' : 'ERROR',
-            'message' => $message,
-            'result' => $this->getResultFiles(),
+            'status' => array(
+                'code' => $success ? 'OK' : 'ERROR',
+                'message' => $message
+            ),
+            'base64PdfData' => $this->getResultFile('pdf'),
+            'base64MidiData' => $this->getResultFile('midi'),
             'logs' => $this->getLogData()
         );
     }
 
     /**
-     * Charge les données de tous les fichiers résultat
-     * @return array
+     * Charge les données d'un fichier résultat
+     * @param $ext
+     * @return string
      */
-    private function getResultFiles() {
-        $result = array();
-        foreach (self::RESULT_EXT as $ext) {
-            $file = "$this->dir/$this->id.$ext";
-            if (is_file($file)) {
-                $result[] = array(
-                    'format' => $ext,
-                    'base64Content' => base64_encode(file_get_contents($file))
-                );
-            }
+    private function getResultFile($ext) {
+        $result = '';
+        $file = "$this->dir/$this->id.$ext";
+        if (is_file($file)) {
+            $result = base64_encode(file_get_contents($file));
         }
         return $result;
     }
@@ -102,7 +98,7 @@ class LilyPond {
         $log = array();
         if (is_file($this->logFile)) {
             $log[] = array(
-                'section' => 'lilypond',
+                'titre' => 'lilypond',
                 'content' => file_get_contents($this->logFile)
             );
         }
