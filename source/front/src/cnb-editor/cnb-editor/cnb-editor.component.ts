@@ -166,8 +166,9 @@ export class CnbEditorComponent implements OnInit {
 
     // ----- Gestion des logs
 
-    private log(titre: string, contenu: string, level: logLevel) {
-        let logEntry = {title: titre, content: contenu, level: level }
+    private log(title: string, content: string, level: logLevel) {
+        let contentHTML = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        let logEntry = {title: title, content: contentHTML, level: level }
         this.dataLog.push(logEntry);
     }
 

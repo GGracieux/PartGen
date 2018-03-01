@@ -1,9 +1,9 @@
 export enum logLevel {
-    success = 1,
-    info = 2,
-    detail = 3,
-    warning = 4,
-    error = 5
+    success = 'success',
+    info = 'info',
+    detail = 'detail',
+    warning = 'warning',
+    error = 'error'
 }
 
 export interface LogEntry {

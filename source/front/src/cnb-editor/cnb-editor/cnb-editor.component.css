@@ -13,7 +13,8 @@ section {
 }
 
 .section-pdf {
-	height: calc(100% - (40px + 200px));
+	height: calc(100% - (40px + 300px));
+    overflow-y: scroll;
 }
 
 .section-mp3 {
@@ -22,9 +23,10 @@ section {
 
 .section-log {
 	height: 300px;
+    overflow-y: scroll;
+    background-color: ghostwhite;
 }
 
-/* Clear floats after the columns */
 section:after {
     content: "";
     display: table;
