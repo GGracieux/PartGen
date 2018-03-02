@@ -103,13 +103,13 @@ export class CnbEditorComponent implements OnInit {
             cnb => {
                 if (cnb.status.code == statusCode.OK) {
                     this.dataLp = cnb.lpData;
-                    this.PGlog(cnb.logs, logLevel.info);
+                    this.PGlog(cnb.logs, logLevel.success);
                     this.api.lilypond(this.dataLp).subscribe(
                         lp => {
                             if (lp.status.code == statusCode.OK) {
                                 this.dataBase64Pdf = lp.base64PdfData;
                                 this.dataBase64Midi = lp.base64MidiData;
-                                this.PGlog(lp.logs, logLevel.info);
+                                this.PGlog(lp.logs, logLevel.success);
                             } else {
                                 this.PGlog(lp.logs, logLevel.warning);
                             }
@@ -134,7 +134,7 @@ export class CnbEditorComponent implements OnInit {
             midi => {
                 if (midi.status.code == statusCode.OK) {
                     this.dataBase64Mp3 = midi.base64Mp3Data;
-                    this.PGlog(midi.logs, logLevel.info);
+                    this.PGlog(midi.logs, logLevel.success);
                 } else {
                     this.PGlog(midi.logs, logLevel.warning);
                 }
