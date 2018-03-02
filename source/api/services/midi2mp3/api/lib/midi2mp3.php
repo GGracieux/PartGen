@@ -106,13 +106,13 @@ class Midi2Mp3 {
         $logs = array();
         if (is_file($this->logFileFS)) {
             $logs[] = array(
-                'titre' => 'FluidSynth',
+                'title' => 'FluidSynth : Convertion midi -> wav',
                 'content' => file_get_contents($this->logFileFS)
             );
         }
         if (is_file($this->logFileLame)) {
             $logs[] = array(
-                'titre' => 'Lame',
+                'title' => 'Lame : Convertion wav -> mp3',
                 'content' => file_get_contents($this->logFileLame)
             );
         }

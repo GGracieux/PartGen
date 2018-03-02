@@ -121,9 +121,11 @@ class Cnb2lp {
                 'message' => $message
             ),
             'lpData' => $lpData,
-            'logs' => array (
-                'titre' => 'cnb2lp',
-                'content' => $logData
+            'logs' => array(
+            	array (
+                	'title' => 'CNB2LP : Convertion au format Lilypond',
+                	'content' => $logData
+                )
             )
         );
     }

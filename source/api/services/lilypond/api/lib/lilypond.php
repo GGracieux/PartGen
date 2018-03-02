@@ -98,7 +98,7 @@ class LilyPond {
         $log = array();
         if (is_file($this->logFile)) {
             $log[] = array(
-                'titre' => 'lilypond',
+                'title' => 'Lilypond : Generation PDF et Midi',
                 'content' => file_get_contents($this->logFile)
             );
         }
