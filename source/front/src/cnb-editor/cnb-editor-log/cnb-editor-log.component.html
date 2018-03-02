@@ -1,7 +1,7 @@
 <div class="mainTitle">Journal</div>
 <div class="logContainer">
 	<div class="logEntry {{ log.level }}" *ngFor="let log of content">
-		<span class="title">{{ log.title }}</span>
-		<span class="content" [innerHTML]=log.content></span>
+		<div class="title">{{ log.title }}</div>
+		<div class="content" [innerHTML]=log.content></div>
 	</div>
 </div>

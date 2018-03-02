@@ -30,24 +30,23 @@
 
 .content {
     font-size: 12px;
+    color: grey;
+    margin-top: 4px;
+    margin-left: 10px;
 }
 
-.error {
+.error .title{
 	color: red;
 }
 
-.warning {
+.warning .title {
 	color: darkorange;
 }
 
-.success {
+.success .title{
     color: green;
 }
 
-.info {
-    color:black;
-}
-
-.detail {
-    color:grey;
+.info .title{
+    color: black;
 }
