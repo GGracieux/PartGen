@@ -101,11 +101,7 @@ export class CnbEditorComponent implements OnInit {
         this.reinitStep1();
         this.api.cnb2lp(this.dataCnb).subscribe(
             cnb => {
-                console.log ('status');
-                console.log (cnb.status.code);
-                console.log (statusCode.OK);
                 if (cnb.status.code == statusCode.OK) {
-                    console.log ('A');
                     this.dataLp = cnb.lpData;
                     this.PGlog(cnb.logs, logLevel.info);
                     this.api.lilypond(this.dataLp).subscribe(
@@ -123,7 +119,6 @@ export class CnbEditorComponent implements OnInit {
                         }
                     );
                 } else {
-                    console.log ('B');
                     this.PGlog(cnb.logs, logLevel.warning);
                 }
             },
@@ -174,11 +169,9 @@ export class CnbEditorComponent implements OnInit {
 
     private PGlog(pgLogs: PGLog[], level: logLevel)
     {
-        console.log ('here');
         for (let pgLog of pgLogs) {
             this.log(pgLog.title, pgLog.content, level)
         }
-        console.log('there');
     }
 
 }
