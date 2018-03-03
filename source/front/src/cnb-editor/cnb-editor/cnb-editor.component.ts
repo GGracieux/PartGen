@@ -8,6 +8,9 @@ import {PartGenAPI} from '../../partgen-api/partgen-api.service';
 import {PGLog, statusCode} from '../../partgen-api/partgen-api.interfaces';
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
+// Import File Saver
+import {saveAs} from 'file-saver/FileSaver';
+
 
 @Component({
     selector: 'cnb-editor',
@@ -68,7 +71,7 @@ export class CnbEditorComponent implements OnInit {
 
     // ----- Gestion des actions
 
-    public menuAction(action:string) {
+    public menuAction(action: string) {
         switch(action) {
             case 'genererPdf':
                 this.genererPdf();
@@ -76,9 +79,56 @@ export class CnbEditorComponent implements OnInit {
             case 'genererMp3':
                 this.genererMp3();
                 break;
+            case 'download':
+                this.download();
+                break;
         }
     }
 
+    private b64toBlob(b64Data, contentType, sliceSize=512) {
+      contentType = contentType || '';
+      sliceSize = sliceSize || 512;
+
+      var byteCharacters = atob(b64Data);
+      var byteArrays = [];
+
+      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+      }
+        
+      var blob = new Blob(byteArrays, {type: contentType});
+      return blob;
+    }    
+
+    public download() {
+
+        const filename = 'img.png';
+        var contentType = 'application/pdf';
+        var blob = this.b64toBlob(this.dataBase64Pdf, contentType);
+saveAs(blob, filename);
+/*
+        var blobUrl = URL.createObjectURL(blob);
+
+        var img = document.createElement('img');
+        img.src = blobUrl;
+        document.body.appendChild(img);
+
+        //const contentDispositionHeader: string = response.headers.get('Content-Disposition');
+        //const parts: string[] = contentDispositionHeader.split(';');
+        const filename = 'test.pdf';
+        let blob = new Blob([atob(this.dataBase64Pdf)], {type :"application/pdf"});
+        saveAs(blob, filename);
+  */
+    }
 
     // ----- Generation Pdf et Mp3
 
