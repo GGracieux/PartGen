@@ -2,10 +2,12 @@
 import {Component, OnInit} from '@angular/core';
 
 // Import API
-import {PartGenAPI} from '../../partgen-api/partgen-api.service';
+import {LilyPondAPI} from '../../services/lilypond-api/lilypond-api.service';
+import {Midi2mp3API} from '../../services/midi2mp3-api/midi2mp3-api.service';
 
 // Import interfaces et enum de gestion des logs (API et composant)
-import {PGLog, statusCode} from '../../partgen-api/partgen-api.interfaces';
+import {LPLog, LPStatusCode} from '../../services/lilypond-api/lilypond-api.interfaces';
+import {MMLog, MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces';
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
 // Import File Saver
@@ -31,7 +33,7 @@ export class CnbEditorComponent implements OnInit {
 
     // ----- Initialisation
 
-    constructor(private api: PartGenAPI) {}
+    constructor(private lilypond: LilyPondAPI, private midi2mp3: Midi2mp3API) {}
 
     public ngOnInit() {
     	this.initDefaultValues();
@@ -114,8 +116,8 @@ export class CnbEditorComponent implements OnInit {
         const filename = 'img.png';
         var contentType = 'application/pdf';
         var blob = this.b64toBlob(this.dataBase64Pdf, contentType);
-saveAs(blob, filename);
-/*
+        saveAs(blob, filename);
+        /*
         var blobUrl = URL.createObjectURL(blob);
 
         var img = document.createElement('img');
@@ -127,7 +129,7 @@ saveAs(blob, filename);
         const filename = 'test.pdf';
         let blob = new Blob([atob(this.dataBase64Pdf)], {type :"application/pdf"});
         saveAs(blob, filename);
-  */
+        */
     }
 
     // ----- Generation Pdf et Mp3
@@ -139,9 +141,9 @@ saveAs(blob, filename);
     private genererPdf() {
         this.reinitStep1();
         this.dataLp = this.convertCnb2Lp(this.dataCnb);
-        this.api.lilypond(this.dataLp).subscribe(
+        this.lilypond.convert(this.dataLp).subscribe(
             lp => {
-                if (lp.status.code == statusCode.OK) {
+                if (lp.statusCode == LPStatusCode.OK) {
                     this.dataBase64Pdf = lp.base64PdfData;
                     this.dataBase64Midi = lp.base64MidiData;
                     this.PGlog(lp.logs, logLevel.success);
@@ -157,17 +159,17 @@ saveAs(blob, filename);
 
     private genererMp3() {
         this.reinitStep2();
-        this.api.midi2mp3(this.dataBase64Midi).subscribe(
-            midi => {
-                if (midi.status.code == statusCode.OK) {
-                    this.dataBase64Mp3 = midi.base64Mp3Data;
-                    this.PGlog(midi.logs, logLevel.success);
+        this.midi2mp3.convert(this.dataBase64Midi, 'bagpipes').subscribe(
+            mp3 => {
+                if (mp3.statusCode == MMStatusCode.OK) {
+                    this.dataBase64Mp3 = mp3.base64Mp3Data;
+                    this.PGlog(mp3.logs, logLevel.success);
                 } else {
-                    this.PGlog(midi.logs, logLevel.warning);
+                    this.PGlog(mp3.logs, logLevel.warning);
                 }
             },
             msg => {
-                this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.log('midi2mp3', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
             }
         );
     }
@@ -194,10 +196,10 @@ saveAs(blob, filename);
         this.dataLog.push(logEntry);
     }
 
-    private PGlog(pgLogs: PGLog[], level: logLevel)
+    private PGlog(logs, level: logLevel)
     {
-        for (let pgLog of pgLogs) {
-            this.log(pgLog.title, pgLog.content, level)
+        for (let log of logs) {
+            this.log(log.title, log.content, level)
         }
     }
 

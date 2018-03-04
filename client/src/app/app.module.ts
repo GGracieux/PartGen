@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CnbEditorModule } from '../cnb-editor/cnb-editor.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PartGenAPI } from '../partgen-api/partgen-api.service';
+import { LilyPondAPI } from '../services/lilypond-api/lilypond-api.service';
+import { Midi2mp3API } from '../services/midi2mp3-api/midi2mp3-api.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,7 +14,10 @@ import { PartGenAPI } from '../partgen-api/partgen-api.service';
     CnbEditorModule,
     HttpClientModule
   ],
-  providers: [PartGenAPI],
+  providers: [
+  	LilyPondAPI,
+  	Midi2mp3API
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

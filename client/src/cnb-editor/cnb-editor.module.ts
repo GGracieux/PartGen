@@ -18,8 +18,9 @@ import {AceEditorModule} from 'ng2-ace-editor';
 // Imports Pdf Viewer
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 
-// Import de l'API PartGen
-import {PartGenAPI} from '../partgen-api/partgen-api.service';
+// Import des API
+import {LilyPondAPI} from '../services/lilypond-api/lilypond-api.service';
+import {Midi2mp3API} from '../services/midi2mp3-api/midi2mp3-api.service';
 
 // Imports des composants du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
@@ -42,7 +43,10 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	AceEditorModule,
 	PdfViewerModule
 	],
-  providers: [PartGenAPI],
+  providers: [
+  	LilyPondAPI,
+  	Midi2mp3API
+  ],
   declarations: [
 	CnbEditorComponent,
 	CnbEditorMenuComponent,
