@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {PGInfo, PGCnb2Lp, PGLilyPond, PGMidi2Mp3} from './partgen-api.interfaces';
+import {PGInfo, PGLilyPond, PGMidi2Mp3} from './partgen-api.interfaces';
 
 
 @Injectable()
@@ -31,10 +31,6 @@ export class PartGenAPI {
         return this.http.get<PGInfo>(url);
     }
 
-    public cnb2lpInfo(): Observable<PGInfo> {
-        return this.serviceInfo('cnb2lp');
-    }
-
     public lilypondInfo(): Observable<PGInfo> {
         return this.serviceInfo('lilypond');
     }
@@ -48,12 +44,6 @@ export class PartGenAPI {
 
     private getPostHeaders() {
         return new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
-    }
-
-    public cnb2lp(cnbData): Observable<PGCnb2Lp> {
-        const url = this.getAPIEP('cnb2lp', 'convert');
-        const headers = this.getPostHeaders();
-        return this.http.post<PGCnb2Lp>(url, {cnbData: cnbData}, {headers});
     }
 
     public lilypond(lpData): Observable<PGLilyPond> {

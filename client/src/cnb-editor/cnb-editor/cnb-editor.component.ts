@@ -132,48 +132,25 @@ saveAs(blob, filename);
 
     // ----- Generation Pdf et Mp3
 
-    private getAPIInfo() {
-        this.api.cnb2lpInfo().subscribe(
-            res => console.log(res),
-            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
-        );
-        this.api.lilypondInfo().subscribe(
-            res => console.log(res),
-            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
-        );
-        this.api.midi2mp3Info().subscribe(
-            res => console.log(res),
-            msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
-        );
+    private convertCnb2Lp(cnbData) {
+        return "\\score{ { c' d' e' f' } \\layout{} \\midi{} }";
     }
 
     private genererPdf() {
         this.reinitStep1();
-        this.api.cnb2lp(this.dataCnb).subscribe(
-            cnb => {
-                if (cnb.status.code == statusCode.OK) {
-                    this.dataLp = cnb.lpData;
-                    this.PGlog(cnb.logs, logLevel.success);
-                    this.api.lilypond(this.dataLp).subscribe(
-                        lp => {
-                            if (lp.status.code == statusCode.OK) {
-                                this.dataBase64Pdf = lp.base64PdfData;
-                                this.dataBase64Midi = lp.base64MidiData;
-                                this.PGlog(lp.logs, logLevel.success);
-                            } else {
-                                this.PGlog(lp.logs, logLevel.warning);
-                            }
-                        },
-                        msg => {
-                            this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                        }
-                    );
+        this.dataLp = this.convertCnb2Lp(this.dataCnb);
+        this.api.lilypond(this.dataLp).subscribe(
+            lp => {
+                if (lp.status.code == statusCode.OK) {
+                    this.dataBase64Pdf = lp.base64PdfData;
+                    this.dataBase64Midi = lp.base64MidiData;
+                    this.PGlog(lp.logs, logLevel.success);
                 } else {
-                    this.PGlog(cnb.logs, logLevel.warning);
+                    this.PGlog(lp.logs, logLevel.warning);
                 }
             },
             msg => {
-                this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
             }
         );
     }

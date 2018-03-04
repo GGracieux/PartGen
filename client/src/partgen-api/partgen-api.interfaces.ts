@@ -4,12 +4,6 @@ export interface PGInfo {
     description: string;
 }
 
-export interface PGCnb2Lp {
-    status: PGStatus;
-    lpData: string;
-    logs: PGLog[];
-}
-
 export interface PGLilyPond {
     status: PGStatus;
     base64PdfData: string;

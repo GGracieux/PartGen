@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "autobuild": "ng build --prod --watch",
+    "predocker-build": "npm run build",
+    "docker-build": "docker image build -t partgen ../",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

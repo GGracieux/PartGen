@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+    # -------------------------
+    # Gateway & Front
+    # -------------------------
+    gateway-web:
+        image: partgen:latest
+        ports:
+            - "80:80"
+        depends_on:
+            - lilypond-web
+            - midi2mp3-web
+        networks:
+            - api-network
+
+    # -------------------------
+    # API - lilypond
+    # -------------------------
+    lilypond-web:
+        image: lilypond:latest
+        expose:
+            - "80"
+        networks:
+            - api-network
+
+    # -------------------------
+    # API - midi2mp3
+    # -------------------------
+    midi2mp3-web:
+        image: midi2mp3:latest
+        expose:
+            - "80"
+        networks:
+            - api-network
+
+networks:
+    api-network:
+        driver: bridge

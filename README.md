@@ -1,11 +1,11 @@
 # PartGen
-Convertion de fichier CNB (Cornemuse notation bretonne) en PDF et MP3.
+Génération de partitions pour Cornemuse au format PDF et MP3.
 
-- 1 gateway (NGINX en R.P.) qui expose 
+Gateway (NGINX en reverse proxy) qui expose
 
-	- 1 api-facade qui echange avec 3 API 
-		- cnb2lp : convertion CNB en LP (Lilypond) : NGINX + PHP + SLIM
-		- lilypond : convertion LP en MIDI & PDF (Lilypond) : NGINX + PHP + SLIM + LILYPOND
-		- midi2mp3 : conversion MIDI en MP3 : NGINX + PHP + SLIM + FLUIDSYNTH + LAME
+	- lilypond-api : Convertion du format lilypond au format MIDI & PDF : NGINX + PHP + SLIM + LILYPOND
+
+	- midi2mp3-api : Conversion MIDI en MP3 : NGINX + PHP + SLIM + FLUIDSYNTH + LAME
+
+	- frontend : Convertion notation simplifiée au format lilypond et utilisation des 2 API : ANGULAR 5 + MATERIAL
 		
-	- 1 serveur qui expose le front (NGINX)

@@ -1,5 +1,0 @@
-# Image source
-FROM 1and1internet/ubuntu-16-apache-php-7.0
-
-# Installation de lilypond
-RUN apt-get update && apt-get install -y lilypond
