@@ -18,6 +18,9 @@ import {AceEditorModule} from 'ng2-ace-editor';
 // Imports Pdf Viewer
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 
+// Import service de convertion CNB -> LP
+import {Cnb2lpService} from '../services/cnb2lp/cnb2lp.service';
+
 // Import des API
 import {LilyPondAPI} from '../services/lilypond-api/lilypond-api.service';
 import {Midi2mp3API} from '../services/midi2mp3-api/midi2mp3-api.service';
@@ -44,6 +47,7 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	PdfViewerModule
 	],
   providers: [
+  	Cnb2lpService,
   	LilyPondAPI,
   	Midi2mp3API
   ],

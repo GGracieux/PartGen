@@ -1,13 +1,16 @@
 // Imports core
 import {Component, OnInit} from '@angular/core';
 
+// Import service de convertion CNB -> LP
+import {Cnb2lpService} from '../../services/cnb2lp/cnb2lp.service';
+import {CNBStatusCode} from '../../services/cnb2lp/cnb2lp.interfaces';
 // Import API
 import {LilyPondAPI} from '../../services/lilypond-api/lilypond-api.service';
 import {Midi2mp3API} from '../../services/midi2mp3-api/midi2mp3-api.service';
 
 // Import interfaces et enum de gestion des logs (API et composant)
-import {LPLog, LPStatusCode} from '../../services/lilypond-api/lilypond-api.interfaces';
-import {MMLog, MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces';
+import {LPStatusCode} from '../../services/lilypond-api/lilypond-api.interfaces';
+import {MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces';
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
 // Import File Saver
@@ -33,7 +36,11 @@ export class CnbEditorComponent implements OnInit {
 
     // ----- Initialisation
 
-    constructor(private lilypond: LilyPondAPI, private midi2mp3: Midi2mp3API) {}
+    constructor(
+        private cnb2lp: Cnb2lpService,
+        private lilypond: LilyPondAPI,
+        private midi2mp3: Midi2mp3API
+    ) {}
 
     public ngOnInit() {
     	this.initDefaultValues();
@@ -87,74 +94,42 @@ export class CnbEditorComponent implements OnInit {
         }
     }
 
-    private b64toBlob(b64Data, contentType, sliceSize=512) {
-      contentType = contentType || '';
-      sliceSize = sliceSize || 512;
-
-      var byteCharacters = atob(b64Data);
-      var byteArrays = [];
-
-      for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-        var byteNumbers = new Array(slice.length);
-        for (var i = 0; i < slice.length; i++) {
-          byteNumbers[i] = slice.charCodeAt(i);
-        }
-
-        var byteArray = new Uint8Array(byteNumbers);
-
-        byteArrays.push(byteArray);
-      }
-        
-      var blob = new Blob(byteArrays, {type: contentType});
-      return blob;
-    }    
-
     public download() {
-
-        const filename = 'img.png';
-        var contentType = 'application/pdf';
-        var blob = this.b64toBlob(this.dataBase64Pdf, contentType);
-        saveAs(blob, filename);
-        /*
-        var blobUrl = URL.createObjectURL(blob);
-
-        var img = document.createElement('img');
-        img.src = blobUrl;
-        document.body.appendChild(img);
-
-        //const contentDispositionHeader: string = response.headers.get('Content-Disposition');
-        //const parts: string[] = contentDispositionHeader.split(';');
-        const filename = 'test.pdf';
-        let blob = new Blob([atob(this.dataBase64Pdf)], {type :"application/pdf"});
-        saveAs(blob, filename);
-        */
     }
 
     // ----- Generation Pdf et Mp3
 
-    private convertCnb2Lp(cnbData) {
-        return "\\score{ { c' d' e' f' } \\layout{} \\midi{} }";
-    }
-
     private genererPdf() {
         this.reinitStep1();
-        this.dataLp = this.convertCnb2Lp(this.dataCnb);
-        this.lilypond.convert(this.dataLp).subscribe(
-            lp => {
-                if (lp.statusCode == LPStatusCode.OK) {
-                    this.dataBase64Pdf = lp.base64PdfData;
-                    this.dataBase64Midi = lp.base64MidiData;
-                    this.PGlog(lp.logs, logLevel.success);
+
+        this.cnb2lp.convert(this.dataCnb).subscribe(
+            cnb => {
+                let title = 'Cnb2lp : Convertion CNB -> Lilypond';
+                if (cnb.statusCode == CNBStatusCode.OK) {
+                    this.dataLp = cnb.lpData;
+                    this.log (title, cnb.log, logLevel.success);
+                    this.lilypond.convert(this.dataLp).subscribe(
+                        lp => {
+                            if (lp.statusCode == LPStatusCode.OK) {
+                                this.dataBase64Pdf = lp.base64PdfData;
+                                this.dataBase64Midi = lp.base64MidiData;
+                                this.PGlog(lp.logs, logLevel.success);
+                            } else {
+                                this.PGlog(lp.logs, logLevel.warning);
+                            }
+                        },
+                        msg => {
+                            this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                        }
+                    );
                 } else {
-                    this.PGlog(lp.logs, logLevel.warning);
+                    this.log (title, cnb.log, logLevel.warning);
                 }
             },
             msg => {
-                this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
             }
-        );
+        )
     }
 
     private genererMp3() {
