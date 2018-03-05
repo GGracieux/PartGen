@@ -33,6 +33,8 @@ npm run docker-build
 ```bash
 docker-compose up
 ```
-- Le serveur apache est exposé sur le port 80 : http://[docker-machine]/
-- Les API externes ne sont pas disponibles.
+- Le serveur apache est exposé sur le port 80
+- L'application est exposé a la racine : http://[docker-machine]/
+- Les EndPoints de 'API lilypond sont exposé sur : http://[docker-machine]/api/v1/lilypond/*
+- Les EndPoints de 'API lilypond sont exposé sur : http://[docker-machine]/api/v1/midi2mp3/*
 
