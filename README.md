@@ -1,9 +1,9 @@
 # CornPart
-Editeur de partitions pour cornemuse au format PDF et génération du MP3 associé.
-Application conteneurisée (Docker, Nginx, Angular5 + Material + AceEditor + PDFjs) faisant appel aux api [lilypond](https://github.com/GGracieux/lilypond-api) et [midi2mp3](https://github.com/GGracieux/midi2mp3-api)
+PDF Score editor for bagpipe and MP3 generation.
+Containerized application (Docker, Nginx, Angular5 + Material + AceEditor + PDFjs) using [lilypond](https://github.com/GGracieux/lilypond-api) and [midi2mp3](https://github.com/GGracieux/midi2mp3-api) APIs
 
 
-## Mise en route
+## Start
 
 #### Installation
 ```bash
@@ -16,9 +16,9 @@ npm install
 cd client
 npm start
 ```
-- Compile, sert l'application sur http://localhost:4200 et l'ouvre dans le navigateur.
-- Recompile et rafraichi le navigateur en cas de modification.
-- Les API externes ne sont pas disponibles.
+- Compile, serve application at http://localhost:4200 and opens it in browser.
+- Recompile and refresh browser on modification.
+- External API are not available.
 
 
 #### Build (docker)
@@ -26,15 +26,15 @@ npm start
 cd client
 npm run docker-build
 ```
-- Compile dans dist.
-- Crée l'image docker cornpart
+- Compile into dist.
+- Create cornpart docker image
 
 #### Run (docker)
 ```bash
 docker-compose up
 ```
-- Le serveur apache est exposé sur le port 80
-- L'application est exposé a la racine : http://[docker-machine]/
-- Les EndPoints de 'API lilypond sont exposé sur : http://[docker-machine]/api/v1/lilypond/*
-- Les EndPoints de 'API lilypond sont exposé sur : http://[docker-machine]/api/v1/midi2mp3/*
+- Apache server is listening on port 80
+- Application is accessible at webroot : http://[docker-machine]/
+- lilypond API endpoints are exposed at : http://[docker-machine]/api/v1/lilypond/*
+- midi2mp3 API endpoints are exposed at : http://[docker-machine]/api/v1/midi2mp3/*
 
