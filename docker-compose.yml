@@ -6,7 +6,7 @@ services:
     # Gateway & Front
     # -------------------------
     gateway-web:
-        image: partgen:latest
+        image: cornpart:latest
         ports:
             - "80:80"
         depends_on:

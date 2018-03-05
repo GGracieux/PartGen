@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "predocker-build": "npm run build",
-    "docker-build": "docker image build -t partgen ../",
+    "docker-build": "docker image build -t cornpart ../",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
