@@ -13,19 +13,21 @@ npm install
 cd client
 npm start
 ```
-- Compile, serve application at http://localhost:4200 and opens it in browser.
-- Recompile and refresh browser on modification.
+- Compiles, serves application at http://localhost:4200 and opens it in browser.
+- Recompiles and refresh browser on modification.
 - External API are not available.
 
 
-### Build and Run (docker)
+### Build (docker)
 ```bash
 cd client
 npm run docker-build
 ```
-- Compile into dist.
-- Create cornpart docker image
+- Compiles into dist.
+- Creates cornpart docker image
 
+
+### Run (docker)
 ```bash
 cd ..
 docker-compose up
