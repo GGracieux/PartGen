@@ -2,16 +2,13 @@
 PDF Score editor for bagpipe and MP3 generation.
 Containerized application (Docker, Nginx, Angular5 + Material + AceEditor + PDFjs) using [lilypond](https://github.com/GGracieux/lilypond-api) and [midi2mp3](https://github.com/GGracieux/midi2mp3-api) APIs
 
-
-## Start
-
-#### Installation
+### Installation
 ```bash
 cd client
 npm install
 ```
 	
-#### Run (client)
+### Run (client)
 ```bash
 cd client
 npm start
@@ -21,7 +18,7 @@ npm start
 - External API are not available.
 
 
-#### Build (docker)
+### Build (docker)
 ```bash
 cd client
 npm run docker-build
@@ -29,7 +26,7 @@ npm run docker-build
 - Compile into dist.
 - Create cornpart docker image
 
-#### Run (docker)
+### Run (docker)
 ```bash
 docker-compose up
 ```
