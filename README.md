@@ -29,7 +29,6 @@ npm run docker-build
 
 ### Run (docker)
 ```bash
-cd ..
 docker-compose up
 ```
 - Apache server is listening on port 80
