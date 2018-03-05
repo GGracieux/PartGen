@@ -18,7 +18,7 @@ npm start
 - External API are not available.
 
 
-### Build (docker)
+### Build and Run (docker)
 ```bash
 cd client
 npm run docker-build
@@ -26,8 +26,8 @@ npm run docker-build
 - Compile into dist.
 - Create cornpart docker image
 
-### Run (docker)
 ```bash
+cd ..
 docker-compose up
 ```
 - Apache server is listening on port 80
