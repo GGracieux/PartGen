@@ -20,7 +20,7 @@ export class Midi2mp3API {
     public convert(base64MidiData, soundfont): Observable<MMConvert> {
         const url = this.endPoint + '/convert';
         const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
-        return this.http.post<MMConvert>(url, {base64MidiData: base64MidiData, soundfont: soundfont}, {headers});
+        return this.http.post<MMConvert>(url, {base64MidiData: base64MidiData}, {headers});
     }
 
 }
