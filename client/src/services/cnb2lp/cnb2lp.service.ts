@@ -126,7 +126,7 @@ export class Cnb2lpService {
         for (let token of tokens) {
             LPTokens.push(this.convertToken(token));
         }
-        return "\\score{ { " + LPTokens.join(' ') + " } \\layout{} \\midi{} }";
+        return "\\score{ \\new Staff \\with {midiInstrument = #\"bagpipe\"} { " + LPTokens.join(' ') + " } \\layout{} \\midi{} }";
     }
 
     // Prepare la réponse du convert
