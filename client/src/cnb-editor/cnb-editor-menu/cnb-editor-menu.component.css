@@ -1,7 +1,12 @@
-.example-icon {
-  padding: 0 14px;
+.spacer {
+  flex: 1 1 auto;
+  width: calc(100% - (150px + 200px + 200px));
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.headerMenu {
+	width: 200px;
+}
+
+.title {
+	width: 150px;
 }

@@ -78,28 +78,16 @@ export class CnbEditorComponent implements OnInit {
     }
 
 
-    // ----- Gestion des actions
+    // ----- Menu calls
 
-    public menuAction(action: string) {
-        switch(action) {
-            case 'genererPdf':
-                this.genererPdf();
-                break;
-            case 'genererMp3':
-                this.genererMp3();
-                break;
-            case 'download':
-                this.download();
-                break;
-        }
+    public menuAction(methodName: string) {
+		this[methodName]();
     }
 
-    public download() {
-    }
 
-    // ----- Generation Pdf et Mp3
+    // ----- PDF and MP3 Generation
 
-    private genererPdf() {
+    private generatePdf() {
         this.reinitStep1();
 
         this.cnb2lp.convert(this.dataCnb).subscribe(
@@ -132,7 +120,7 @@ export class CnbEditorComponent implements OnInit {
         )
     }
 
-    private genererMp3() {
+    private generateMp3() {
         this.reinitStep2();
         this.midi2mp3.convert(this.dataBase64Midi, 'bagpipes').subscribe(
             mp3 => {
@@ -148,6 +136,28 @@ export class CnbEditorComponent implements OnInit {
             }
         );
     }
+	
+	// ----- Downloads
+	
+	private downloadCNB() {
+		console.log("CNB Download");
+	}
+	
+	private downloadLP() {
+		console.log("LP Download");
+	}
+	
+	private downloadPDF() {
+		console.log("PDF Download");
+	}
+	
+	private downloadMIDI() {
+		console.log("MIDI Download");
+	}
+	
+	private downloadMP3() {
+		console.log("MP3 Download");
+	}
 
     // ----- Gestion de la réinit des données
 

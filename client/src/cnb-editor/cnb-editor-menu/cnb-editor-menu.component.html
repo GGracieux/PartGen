@@ -1,14 +1,53 @@
 <mat-toolbar class="md-primary">
 
-	<span>CNB Editor</span>
+	<!-- TITLE -->
+	<span class="title">CNB Editor</span>
 
-	<span class="example-spacer"></span>
-
-	<button mat-button [matMenuTriggerFor]="menu"><mat-icon class="example-icon">queue_music</mat-icon></button>
-	<mat-menu #menu="matMenu">
-	  <button mat-menu-item (click)="menuClick('genererPdf')" >Generer PDF</button>
-	  <button mat-menu-item (click)="menuClick('genererMp3')" >Generer MP3</button>
-	  <button mat-menu-item (click)="menuClick('download')" >Telecharger PDF</button>
+	<!-- SPACER -->
+	<span class="spacer"></span>
+	
+	<!-- GENERATE MENU -->
+	<button class="headerMenu" mat-menu-item [matMenuTriggerFor]="menuGenerate" >
+	  <mat-icon class="example-icon">refresh</mat-icon>
+	  Generate
+	</button>
+	<mat-menu #menuGenerate="matMenu">
+	  <button mat-menu-item (click)="menuClick('generatePdf')" >
+	    <mat-icon class="example-icon">picture_as_pdf</mat-icon>
+		PDF
+	  </button>
+	  <button mat-menu-item (click)="menuClick('generateMp3')" >
+	    <mat-icon class="example-icon">audiotrack</mat-icon>
+	    PDF & MP3
+	  </button>
 	</mat-menu>
+	
+	<!-- DOWNLOAD MENU -->
+	<button class="headerMenu" mat-menu-item [matMenuTriggerFor]="menuDownload" >
+	  <mat-icon class="example-icon">file_download</mat-icon>
+	  Download
+	</button>
+	<mat-menu #menuDownload="matMenu">
+	  <button mat-menu-item (click)="menuClick('downloadCNB')" >
+		<mat-icon class="example-icon">text_format</mat-icon>
+		Text - CNB
+	  </button>
+	  <button mat-menu-item (click)="menuClick('downloadLP')" >
+		<mat-icon class="example-icon">text_format</mat-icon>
+		Text - Lilypond
+	  </button>
+	  <button mat-menu-item (click)="menuClick('downloadPDF')" >
+		<mat-icon class="example-icon">reorder</mat-icon>
+		Score - PDF
+	  </button>
+	  <button mat-menu-item (click)="menuClick('downloadMIDI')" >
+		<mat-icon class="example-icon">audiotrack</mat-icon>
+		Audio - MIDI
+	  </button>
+	  <button mat-menu-item (click)="menuClick('downloadMP3')" >
+		<mat-icon class="example-icon">audiotrack</mat-icon>
+		Audio - MP3
+	  </button>
+	</mat-menu>	
 
 </mat-toolbar>
