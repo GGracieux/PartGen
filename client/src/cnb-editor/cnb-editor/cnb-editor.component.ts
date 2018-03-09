@@ -14,10 +14,10 @@ import {MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces'
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
 // Import enum du workflow de generation des données
-import {WorkFlowState} from './cnb-editor.workflow';
+import {WorkFlowState, GenerationState} from './cnb-editor.workflow';
 
 // Import File Saver
-import {saveAs} from 'file-saver/FileSaver';
+import * as filesaver from 'file-saver';
 
 
 @Component({
@@ -36,11 +36,17 @@ export class CnbEditorComponent implements OnInit {
     public dataBase64Mp3: string = '';
     public dataLog: LogEntry[] = [];
 
-	//-- Workflow state
+	//-- Workflow & Generation state
 	public wfState = WorkFlowState.INIT;
+	public generating = GenerationState.SLEEPING;
 
-	
-    // ----- Initialisation
+	//-- Current song name
+    public scoreName = 'score';
+
+
+    // ------------------------------------
+    // INIT
+    // ------------------------------------
 
     constructor(
         private cnb2lp: Cnb2lpService,
@@ -84,53 +90,80 @@ export class CnbEditorComponent implements OnInit {
     }
 
 
-    // ----- Menu calls
+    // ------------------------------------
+    // MENU
+    // ------------------------------------
 
     public menuAction(methodName: string) {
 		this[methodName]();
     }
 
 
-    // ----- PDF and MP3 Generation
+    // ------------------------------------
+    // GENERATION
+    // ------------------------------------
 
-    private generatePdf() {
-        this.reinitStep1();
+    private generate() {
 
+        // Reinit workflow and data
+        this.wfState = WorkFlowState.INIT;
+        this.dataLp = '';
+        this.dataBase64Pdf = '';
+        this.dataBase64Midi = '';
+        this.dataBase64Mp3 = '';
+        this.dataLog = [];
+
+        // Launches generation chain
+        this.launchCnb2Lp();
+    }
+
+    private launchCnb2Lp() {
+        this.generating = GenerationState.WORKING;
         this.cnb2lp.convert(this.dataCnb).subscribe(
             cnb => {
                 let title = 'Cnb2lp : Convertion CNB -> Lilypond';
                 if (cnb.statusCode == CNBStatusCode.OK) {
                     this.dataLp = cnb.lpData;
                     this.log (title, cnb.log, logLevel.success);
-					this.wfState = WorkFlowState.CNB2LP_OK;
-                    this.lilypond.convert(this.dataLp).subscribe(
-                        lp => {
-                            if (lp.statusCode == LPStatusCode.OK) {
-                                this.dataBase64Pdf = lp.base64PdfData;
-                                this.dataBase64Midi = lp.base64MidiData;								
-                                this.PGlog(lp.logs, logLevel.success);
-								this.wfState = WorkFlowState.LILYPOND_OK;
-                            } else {
-                                this.PGlog(lp.logs, logLevel.warning);
-                            }
-                        },
-                        msg => {
-                            this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                        }
-                    );
+                    this.wfState = WorkFlowState.CNB2LP_OK;
+                    this.launchLilypond();
                 } else {
                     this.log (title, cnb.log, logLevel.warning);
                 }
+                this.generating = GenerationState.SLEEPING;
             },
             msg => {
                 this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.generating = GenerationState.SLEEPING;
             }
         )
     }
 
-    private generateMp3() {
-        this.reinitStep2();
-        this.midi2mp3.convert(this.dataBase64Midi, 'bagpipes').subscribe(
+    private launchLilypond() {
+        this.generating = GenerationState.WORKING;
+        this.lilypond.convert(this.dataLp).subscribe(
+            lp => {
+                if (lp.statusCode == LPStatusCode.OK) {
+                    this.dataBase64Pdf = lp.base64PdfData;
+                    this.dataBase64Midi = lp.base64MidiData;
+                    this.PGlog(lp.logs, logLevel.success);
+                    this.wfState = WorkFlowState.LILYPOND_OK;
+                    this.launchMidi2Mp3();
+                } else {
+                    this.PGlog(lp.logs, logLevel.warning);
+                }
+                this.generating = GenerationState.SLEEPING;
+            },
+            msg => {
+                this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.generating = GenerationState.SLEEPING;
+            }
+        );
+    }
+
+    private launchMidi2Mp3() {
+        this.generating = GenerationState.WORKING;
+        this.midi2mp3.convert(this.dataBase64Midi).subscribe(
             mp3 => {
                 if (mp3.statusCode == MMStatusCode.OK) {
                     this.dataBase64Mp3 = mp3.base64Mp3Data;
@@ -139,52 +172,74 @@ export class CnbEditorComponent implements OnInit {
                 } else {
                     this.PGlog(mp3.logs, logLevel.warning);
                 }
+                this.generating = GenerationState.SLEEPING;
             },
             msg => {
                 this.log('midi2mp3', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
+                this.generating = GenerationState.SLEEPING;
             }
         );
     }
-	
-	// ----- Downloads
+
+    // ------------------------------------
+	// DOWNLOADS
+    // ------------------------------------
 	
 	private downloadCNB() {
-		console.log("CNB Download");
-	}
+        this.saveData('txt','text/plain;charset=utf-8', this.dataCnb, false);
+    }
 	
 	private downloadLP() {
-		console.log("LP Download");
+        this.saveData('ly','text/plain;charset=utf-8', this.dataLp, false);
 	}
 	
 	private downloadPDF() {
-		console.log("PDF Download");
+        this.saveData('pdf','application/pdf', this.dataBase64Pdf, true);
 	}
 	
 	private downloadMIDI() {
-		console.log("MIDI Download");
+        this.saveData('midi','audio/midi', this.dataBase64Midi, true);
 	}
 	
 	private downloadMP3() {
-		console.log("MP3 Download");
+        this.saveData('mp3','audio/mpeg', this.dataBase64Mp3, true);
 	}
 
-    // ----- Gestion de la réinit des données
-
-    private reinitStep1() {
-		this.wfState = WorkFlowState.INIT;
-        this.dataLp = '';
-        this.dataBase64Pdf = '';
-        this.dataBase64Midi = '';
-        this.dataBase64Mp3 = '';
-        this.dataLog = [];
+	private saveData(ext: string, contentType: string, data: string, b64Decode: boolean) {
+        const filename = this.scoreName + '.' + ext;
+        let blob;
+        if (b64Decode) {
+            blob = this.b64toBlob(data, contentType);
+        } else {
+            blob = new Blob([data], { type: contentType });
+        }
+        filesaver.saveAs(blob, filename);
     }
 
-    private reinitStep2() {
-		this.wfState = WorkFlowState.LILYPOND_OK;
-        this.dataBase64Mp3 = '';
-    }
+    private b64toBlob(b64Data: string, contentType: string = '') {
 
-    // ----- Gestion des logs
+        let sliceSize = 512;
+        let byteCharacters = atob(b64Data);
+        let byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            let slice = byteCharacters.slice(offset, offset + sliceSize);
+            let byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            let byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+
+        let blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+    };
+
+
+    // ------------------------------------
+    // LOGS
+    // ------------------------------------
 
     private log(title: string, content: string, level: logLevel) {
         let contentHTML = content.replace(/(?:\r\n|\r|\n)/g, '<br />');

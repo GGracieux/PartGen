@@ -3,24 +3,17 @@
 	<!-- TITLE -->
 	<span class="title">CNB Editor</span>
 
-	<!-- SPACER -->
-	<span class="spacer"></span>
+	<!-- SPACER LEFT -->
+	<span class="spacer_left"></span>
 	
 	<!-- GENERATE MENU -->
-	<button class="headerMenu" mat-menu-item [matMenuTriggerFor]="menuGenerate" >
+	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="isGenerable()">
 	  <mat-icon class="example-icon">refresh</mat-icon>
 	  Generate
 	</button>
-	<mat-menu #menuGenerate="matMenu">
-	  <button mat-menu-item (click)="menuClick('generatePdf')" >
-	    <mat-icon class="example-icon">picture_as_pdf</mat-icon>
-		PDF
-	  </button>
-	  <button mat-menu-item (click)="menuClick('generateMp3')" >
-	    <mat-icon class="example-icon">audiotrack</mat-icon>
-	    PDF & MP3
-	  </button>
-	</mat-menu>
+
+	<!-- SPACER MENU -->
+	<span class="spacer_menu"></span>	
 	
 	<!-- DOWNLOAD MENU -->
 	<button class="headerMenu" mat-menu-item [matMenuTriggerFor]="menuDownload" >
@@ -28,26 +21,29 @@
 	  Download
 	</button>
 	<mat-menu #menuDownload="matMenu">
-	  <button mat-menu-item (click)="menuClick('downloadCNB')" [disabled]="isDisabled(1)">
+	  <button mat-menu-item (click)="menuClick('downloadCNB')" [disabled]="isDownloadable(1)">
 		<mat-icon class="example-icon">text_format</mat-icon>
 		Text - CNB
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadLP')" [disabled]="isDisabled(2)">
+	  <button mat-menu-item (click)="menuClick('downloadLP')" [disabled]="isDownloadable(2)">
 		<mat-icon class="example-icon">text_format</mat-icon>
 		Text - Lilypond
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadPDF')" [disabled]="isDisabled(3)">
-		<mat-icon class="example-icon">reorder</mat-icon>
+	  <button mat-menu-item (click)="menuClick('downloadPDF')" [disabled]="isDownloadable(3)">
+		<mat-icon class="example-icon">picture_as_pdf</mat-icon>
 		Score - PDF
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMIDI')" [disabled]="isDisabled(3)">
+	  <button mat-menu-item (click)="menuClick('downloadMIDI')" [disabled]="isDownloadable(3)">
 		<mat-icon class="example-icon">audiotrack</mat-icon>
 		Audio - MIDI
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMP3')" [disabled]="isDisabled(4)">
+	  <button mat-menu-item (click)="menuClick('downloadMP3')" [disabled]="isDownloadable(4)">
 		<mat-icon class="example-icon">audiotrack</mat-icon>
 		Audio - MP3
 	  </button>
-	</mat-menu>	
+	</mat-menu>
+
+	<!-- SPACER RIGHT -->
+	<span class="spacer_right"></span>	
 
 </mat-toolbar>

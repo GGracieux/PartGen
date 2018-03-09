@@ -2,7 +2,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 // Imports data generation workflow
-import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';
+import {WorkFlowState, GenerationState} from '../cnb-editor/cnb-editor.workflow';
 
 @Component({
     selector: 'cnb-editor-menu',
@@ -16,10 +16,15 @@ export class CnbEditorMenuComponent {
 	//----- Workflow state handling (menu activation)
 
 	@Input() wfState: WorkFlowState;
+    @Input() processState: GenerationState;
 
-	public isDisabled(wfMinState: number) {
+	public isDownloadable(wfMinState: number) {
 		return wfMinState > this.wfState;
-	}	
+	}
+
+	public isGenerable() {
+		return this.processState != GenerationState.SLEEPING;
+	}
 	
 	
 	//----- Menu click events
