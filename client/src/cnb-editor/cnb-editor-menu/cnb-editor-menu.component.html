@@ -28,23 +28,23 @@
 	  Download
 	</button>
 	<mat-menu #menuDownload="matMenu">
-	  <button mat-menu-item (click)="menuClick('downloadCNB')" >
+	  <button mat-menu-item (click)="menuClick('downloadCNB')" [disabled]="isDisabled(1)">
 		<mat-icon class="example-icon">text_format</mat-icon>
 		Text - CNB
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadLP')" >
+	  <button mat-menu-item (click)="menuClick('downloadLP')" [disabled]="isDisabled(2)">
 		<mat-icon class="example-icon">text_format</mat-icon>
 		Text - Lilypond
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadPDF')" >
+	  <button mat-menu-item (click)="menuClick('downloadPDF')" [disabled]="isDisabled(3)">
 		<mat-icon class="example-icon">reorder</mat-icon>
 		Score - PDF
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMIDI')" >
+	  <button mat-menu-item (click)="menuClick('downloadMIDI')" [disabled]="isDisabled(3)">
 		<mat-icon class="example-icon">audiotrack</mat-icon>
 		Audio - MIDI
 	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMP3')" >
+	  <button mat-menu-item (click)="menuClick('downloadMP3')" [disabled]="isDisabled(4)">
 		<mat-icon class="example-icon">audiotrack</mat-icon>
 		Audio - MP3
 	  </button>

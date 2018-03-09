@@ -1,5 +1,8 @@
-// Imports core
-import {Component, EventEmitter, Output} from '@angular/core';
+// Imports Core
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+
+// Imports data generation workflow
+import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';
 
 @Component({
     selector: 'cnb-editor-menu',
@@ -9,12 +12,22 @@ import {Component, EventEmitter, Output} from '@angular/core';
 
 export class CnbEditorMenuComponent {
 
-	// Evenement pour signaler un click menu
+
+	//----- Workflow state handling (menu activation)
+
+	@Input() wfState: WorkFlowState;
+
+	public isDisabled(wfMinState: number) {
+		return wfMinState > this.wfState;
+	}	
+	
+	
+	//----- Menu click events
+
 	@Output() menuClicked = new EventEmitter<string>();
 
-	// Gestion du click menu
     public menuClick(action:string) {
     	this.menuClicked.emit(action);
     } 
-	
+
 }

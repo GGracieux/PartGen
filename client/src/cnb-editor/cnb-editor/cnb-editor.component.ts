@@ -13,6 +13,9 @@ import {LPStatusCode} from '../../services/lilypond-api/lilypond-api.interfaces'
 import {MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces';
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
+// Import enum du workflow de generation des données
+import {WorkFlowState} from './cnb-editor.workflow';
+
 // Import File Saver
 import {saveAs} from 'file-saver/FileSaver';
 
@@ -25,7 +28,7 @@ import {saveAs} from 'file-saver/FileSaver';
 
 export class CnbEditorComponent implements OnInit {
 
-    //-- Données de l'editeur
+    //-- Component data
 	public dataCnb: string = '';
     public dataLp: string = '';
     public dataBase64Pdf: string = '';
@@ -33,7 +36,10 @@ export class CnbEditorComponent implements OnInit {
     public dataBase64Mp3: string = '';
     public dataLog: LogEntry[] = [];
 
+	//-- Workflow state
+	public wfState = WorkFlowState.INIT;
 
+	
     // ----- Initialisation
 
     constructor(
@@ -96,12 +102,14 @@ export class CnbEditorComponent implements OnInit {
                 if (cnb.statusCode == CNBStatusCode.OK) {
                     this.dataLp = cnb.lpData;
                     this.log (title, cnb.log, logLevel.success);
+					this.wfState = WorkFlowState.CNB2LP_OK;
                     this.lilypond.convert(this.dataLp).subscribe(
                         lp => {
                             if (lp.statusCode == LPStatusCode.OK) {
                                 this.dataBase64Pdf = lp.base64PdfData;
-                                this.dataBase64Midi = lp.base64MidiData;
+                                this.dataBase64Midi = lp.base64MidiData;								
                                 this.PGlog(lp.logs, logLevel.success);
+								this.wfState = WorkFlowState.LILYPOND_OK;
                             } else {
                                 this.PGlog(lp.logs, logLevel.warning);
                             }
@@ -127,6 +135,7 @@ export class CnbEditorComponent implements OnInit {
                 if (mp3.statusCode == MMStatusCode.OK) {
                     this.dataBase64Mp3 = mp3.base64Mp3Data;
                     this.PGlog(mp3.logs, logLevel.success);
+					this.wfState = WorkFlowState.MIDI2MP3_OK;
                 } else {
                     this.PGlog(mp3.logs, logLevel.warning);
                 }
@@ -162,6 +171,7 @@ export class CnbEditorComponent implements OnInit {
     // ----- Gestion de la réinit des données
 
     private reinitStep1() {
+		this.wfState = WorkFlowState.INIT;
         this.dataLp = '';
         this.dataBase64Pdf = '';
         this.dataBase64Midi = '';
@@ -170,6 +180,7 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private reinitStep2() {
+		this.wfState = WorkFlowState.LILYPOND_OK;
         this.dataBase64Mp3 = '';
     }
 
