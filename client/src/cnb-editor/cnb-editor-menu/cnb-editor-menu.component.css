@@ -1,6 +1,11 @@
 .spacer_left {
   flex: 1 1 auto;
-  width: calc(100% - (150px + 150px + 20px + 150px + 20px));
+  width: calc(100% - (62px + 15px + 150px + 150px + 20px + 150px + 20px));
+}
+
+.spacer_logo {
+  flex: 1 1 auto;
+  width: 15px;
 }
 
 .spacer_menu {
@@ -19,4 +24,7 @@
 
 .title {
 	width: 150px;
+	font-size: 35px;
+	color: #6880b9;
+	text-shadow: 1px 1px 1px #000000;
 }

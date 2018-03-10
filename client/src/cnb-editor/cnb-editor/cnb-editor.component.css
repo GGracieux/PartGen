@@ -6,6 +6,10 @@ section {
     height: calc(100% - (64px + 25px)); 
 }
 
+logo {
+    height: 58px;
+}
+
 .col {
     float: left;
     width: 50%;
