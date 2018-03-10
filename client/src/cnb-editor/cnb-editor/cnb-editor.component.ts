@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 // Import service de convertion CNB -> LP
 import {Cnb2lpService} from '../../services/cnb2lp/cnb2lp.service';
 import {CNBStatusCode} from '../../services/cnb2lp/cnb2lp.interfaces';
+
 // Import API
 import {LilyPondAPI} from '../../services/lilypond-api/lilypond-api.service';
 import {Midi2mp3API} from '../../services/midi2mp3-api/midi2mp3-api.service';
@@ -14,10 +15,12 @@ import {MMStatusCode} from '../../services/midi2mp3-api/midi2mp3-api.interfaces'
 import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 
 // Import enum du workflow de generation des données
-import {WorkFlowState, GenerationState} from './cnb-editor.workflow';
+import {WorkFlowState} from './cnb-editor.workflow';
 
-// Import File Saver
+// Import for zipping and saving
 import * as filesaver from 'file-saver';
+import * as JSZip from 'jszip';
+
 
 
 @Component({
@@ -37,8 +40,8 @@ export class CnbEditorComponent implements OnInit {
     public dataLog: LogEntry[] = [];
 
 	//-- Workflow & Generation state
-	public wfState = WorkFlowState.INIT;
-	public generating = GenerationState.SLEEPING;
+	public wfState: WorkFlowState = WorkFlowState.INIT;
+	public working: boolean = false;
 
 	//-- Current song name
     public scoreName = 'score';
@@ -107,6 +110,7 @@ export class CnbEditorComponent implements OnInit {
 
         // Reinit workflow and data
         this.wfState = WorkFlowState.INIT;
+        this.working = true;
         this.dataLp = '';
         this.dataBase64Pdf = '';
         this.dataBase64Midi = '';
@@ -118,7 +122,6 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchCnb2Lp() {
-        this.generating = GenerationState.WORKING;
         this.cnb2lp.convert(this.dataCnb).subscribe(
             cnb => {
                 let title = 'Cnb2lp : Convertion CNB -> Lilypond';
@@ -129,18 +132,17 @@ export class CnbEditorComponent implements OnInit {
                     this.launchLilypond();
                 } else {
                     this.log (title, cnb.log, logLevel.warning);
+                    this.working = false;
                 }
-                this.generating = GenerationState.SLEEPING;
             },
             msg => {
                 this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.generating = GenerationState.SLEEPING;
+                this.working = false;
             }
         )
     }
 
     private launchLilypond() {
-        this.generating = GenerationState.WORKING;
         this.lilypond.convert(this.dataLp).subscribe(
             lp => {
                 if (lp.statusCode == LPStatusCode.OK) {
@@ -151,18 +153,17 @@ export class CnbEditorComponent implements OnInit {
                     this.launchMidi2Mp3();
                 } else {
                     this.PGlog(lp.logs, logLevel.warning);
+                    this.working = false;
                 }
-                this.generating = GenerationState.SLEEPING;
             },
             msg => {
                 this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.generating = GenerationState.SLEEPING;
+                this.working = false;
             }
         );
     }
 
     private launchMidi2Mp3() {
-        this.generating = GenerationState.WORKING;
         this.midi2mp3.convert(this.dataBase64Midi).subscribe(
             mp3 => {
                 if (mp3.statusCode == MMStatusCode.OK) {
@@ -172,11 +173,11 @@ export class CnbEditorComponent implements OnInit {
                 } else {
                     this.PGlog(mp3.logs, logLevel.warning);
                 }
-                this.generating = GenerationState.SLEEPING;
+                this.working = false;
             },
             msg => {
                 this.log('midi2mp3', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.generating = GenerationState.SLEEPING;
+                this.working = false;
             }
         );
     }
@@ -185,56 +186,24 @@ export class CnbEditorComponent implements OnInit {
 	// DOWNLOADS
     // ------------------------------------
 	
-	private downloadCNB() {
-        this.saveData('txt','text/plain;charset=utf-8', this.dataCnb, false);
-    }
-	
-	private downloadLP() {
-        this.saveData('ly','text/plain;charset=utf-8', this.dataLp, false);
-	}
-	
-	private downloadPDF() {
-        this.saveData('pdf','application/pdf', this.dataBase64Pdf, true);
-	}
-	
-	private downloadMIDI() {
-        this.saveData('midi','audio/midi', this.dataBase64Midi, true);
-	}
-	
-	private downloadMP3() {
-        this.saveData('mp3','audio/mpeg', this.dataBase64Mp3, true);
-	}
+	private download() {
 
-	private saveData(ext: string, contentType: string, data: string, b64Decode: boolean) {
-        const filename = this.scoreName + '.' + ext;
-        let blob;
-        if (b64Decode) {
-            blob = this.b64toBlob(data, contentType);
-        } else {
-            blob = new Blob([data], { type: contentType });
+	    let zip = new JSZip();
+        zip.file(this.scoreName + '.txt', this.dataCnb);
+        if (this.wfState >= WorkFlowState.CNB2LP_OK) {
+            zip.file(this.scoreName + '.ly', this.dataLp);
         }
-        filesaver.saveAs(blob, filename);
-    }
-
-    private b64toBlob(b64Data: string, contentType: string = '') {
-
-        let sliceSize = 512;
-        let byteCharacters = atob(b64Data);
-        let byteArrays = [];
-
-        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            let slice = byteCharacters.slice(offset, offset + sliceSize);
-            let byteNumbers = new Array(slice.length);
-            for (let i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-            let byteArray = new Uint8Array(byteNumbers);
-            byteArrays.push(byteArray);
+        if (this.wfState >= WorkFlowState.LILYPOND_OK) {
+            zip.file(this.scoreName + '.pdf', this.dataBase64Pdf, {base64: true});
+            zip.file(this.scoreName + '.midi', this.dataBase64Midi, {base64: true});
         }
-
-        let blob = new Blob(byteArrays, {type: contentType});
-        return blob;
-    };
+        if (this.wfState >= WorkFlowState.MIDI2MP3_OK) {
+            zip.file(this.scoreName + '.mp3', this.dataBase64Mp3, {base64: true});
+        }
+        zip.generateAsync({type:"blob"}).then(function(content) {
+            filesaver.saveAs(content, 'score.zip');
+        });
+    }
 
 
     // ------------------------------------

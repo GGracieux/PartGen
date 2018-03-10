@@ -7,7 +7,7 @@
 	<span class="spacer_left"></span>
 	
 	<!-- GENERATE MENU -->
-	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="isGenerable()">
+	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="disable">
 	  <mat-icon class="example-icon">refresh</mat-icon>
 	  Generate
 	</button>
@@ -16,32 +16,11 @@
 	<span class="spacer_menu"></span>	
 	
 	<!-- DOWNLOAD MENU -->
-	<button class="headerMenu" mat-menu-item [matMenuTriggerFor]="menuDownload" >
+	<button class="headerMenu" mat-menu-item (click)="menuClick('download')" [disabled]="disable">
 	  <mat-icon class="example-icon">file_download</mat-icon>
 	  Download
 	</button>
-	<mat-menu #menuDownload="matMenu">
-	  <button mat-menu-item (click)="menuClick('downloadCNB')" [disabled]="isDownloadable(1)">
-		<mat-icon class="example-icon">text_format</mat-icon>
-		Text - CNB
-	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadLP')" [disabled]="isDownloadable(2)">
-		<mat-icon class="example-icon">text_format</mat-icon>
-		Text - Lilypond
-	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadPDF')" [disabled]="isDownloadable(3)">
-		<mat-icon class="example-icon">picture_as_pdf</mat-icon>
-		Score - PDF
-	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMIDI')" [disabled]="isDownloadable(3)">
-		<mat-icon class="example-icon">audiotrack</mat-icon>
-		Audio - MIDI
-	  </button>
-	  <button mat-menu-item (click)="menuClick('downloadMP3')" [disabled]="isDownloadable(4)">
-		<mat-icon class="example-icon">audiotrack</mat-icon>
-		Audio - MP3
-	  </button>
-	</mat-menu>
+	<mat-menu #menuDownload="matMenu"></mat-menu>
 
 	<!-- SPACER RIGHT -->
 	<span class="spacer_right"></span>	

@@ -4,8 +4,3 @@ export enum WorkFlowState {
 	LILYPOND_OK = 3,
 	MIDI2MP3_OK = 4
 }
-
-export enum GenerationState {
-    WORKING = 1,
-    SLEEPING = 2
-}
