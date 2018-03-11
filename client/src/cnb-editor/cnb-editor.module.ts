@@ -3,15 +3,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpModule, Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
 
-// Imports Material
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-
-// Imports pour compatibilité animations material
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 // Imports ace mirror
 import {AceEditorModule} from 'ng2-ace-editor';
 
@@ -24,6 +15,9 @@ import {Cnb2lpService} from '../services/cnb2lp/cnb2lp.service';
 // Import des API
 import {LilyPondAPI} from '../services/lilypond-api/lilypond-api.service';
 import {Midi2mp3API} from '../services/midi2mp3-api/midi2mp3-api.service';
+
+// Import Angular Material Boostrap
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Imports des composants du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
@@ -38,13 +32,9 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
   imports: [
 	CommonModule, 
 	HttpModule,
-	MatGridListModule,
-	MatToolbarModule, 	
-	MatIconModule,
-	MatMenuModule,
-	BrowserAnimationsModule,
 	AceEditorModule,
-	PdfViewerModule
+	PdfViewerModule,
+	MDBBootstrapModule.forRoot()
 	],
   providers: [
   	Cnb2lpService,

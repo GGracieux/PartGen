@@ -1,33 +1,35 @@
-<mat-toolbar class="md-primary mat-elevation-z6 headbar">
-
-	<!-- TITLE -->
-	<img src="assets/bpipe-logo.png">
-
-	<!-- SPACER LOGO -->
-	<span class="spacer_logo"></span>
-
-	<span class="title">Bagpipe Score</span>
-
-	<!-- SPACER LEFT -->
-	<span class="spacer_left"></span>
-	
-	<!-- GENERATE MENU -->
-	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="disable" >
-	  <mat-icon class="example-icon">refresh</mat-icon>
-	  Generate
-	</button>
-
-	<!-- SPACER MENU -->
-	<span class="spacer_menu"></span>	
-	
-	<!-- DOWNLOAD MENU -->
-	<button class="headerMenu" mat-menu-item (click)="menuClick('download')" [disabled]="disable">
-	  <mat-icon class="example-icon">file_download</mat-icon>
-	  Download
-	</button>
-	<mat-menu #menuDownload="matMenu"></mat-menu>
-
-	<!-- SPACER RIGHT -->
-	<span class="spacer_right"></span>	
-
-</mat-toolbar>
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo scrolling-navbar ie-nav" [containerInside]="false">
+    <logo>
+        <a class="navbar-brand" href="#"><img src="assets/bpipe-logo.png"></a>
+        <a class="logo navbar-brand" href="#"><strong>BAGPIPE SCORE</strong></a>
+    </logo>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">Notation</a>
+            </li>
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
+                Examples<span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbRippleRadius href="#">Highland Cathedral</a>
+                    <a class="dropdown-item waves-light" mdbRippleRadius href="#">Amazing Grace</a>
+                    <a class="dropdown-item waves-light" mdbRippleRadius href="#">Kas a Barh</a>
+                    <div class="divider dropdown-divider"></div>
+                    <a class="dropdown-item waves-light" mdbRippleRadius href="#">Scales</a>
+                </div>
+            </li>
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link" (click)="menuClick('generate')" >Generate</a>
+            </li>
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link" (click)="menuClick('download')" >Download</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link"><i class="fa fa-github"></i></a>
+            </li>
+        </ul>
+    </links>
+</mdb-navbar>
