@@ -17,18 +17,12 @@ logo {
 }
 
 .section-pdf {
-	height: calc(100% - (40px + 300px));
+	height: calc(100% - 40px);
     overflow-y: scroll;
 }
 
 .section-mp3 {
 	height: 40px;
-}
-
-.section-log {
-	height: 300px;
-    overflow-y: scroll;
-    background-color: ghostwhite;
 }
 
 section:after {
@@ -40,4 +34,8 @@ section:after {
 footer {
     height: 25px;
     background-color: lightgrey;
+}
+
+.gridContainer {
+    height: calc(100% - 64px);
 }

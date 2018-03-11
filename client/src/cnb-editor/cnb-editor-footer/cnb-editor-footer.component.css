@@ -1,7 +1,11 @@
-.example-icon {
-  padding: 0 14px;
-}
-
-.example-spacer {
-  flex: 1 1 auto;
+.footer
+{
+  height: 20px;
+  color: white;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  text-align: center;
+  font-size: 12px;
+  background-color: #3f51b5;
+  padding-top: 6px;
+  padding-left: 6px;
 }

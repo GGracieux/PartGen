@@ -1,18 +1,18 @@
-<mat-toolbar class="md-primary">
+<mat-toolbar class="md-primary mat-elevation-z6 headbar">
 
 	<!-- TITLE -->
-	<img src="assets/bpipe.png" height="45" width="62">
+	<img src="assets/bpipe-logo.png">
 
 	<!-- SPACER LOGO -->
 	<span class="spacer_logo"></span>
 
-	<span class="title">CNB Editor</span>
+	<span class="title">Bagpipe Score</span>
 
 	<!-- SPACER LEFT -->
 	<span class="spacer_left"></span>
 	
 	<!-- GENERATE MENU -->
-	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="disable">
+	<button class="headerMenu" mat-menu-item (click)="menuClick('generate')" [disabled]="disable" >
 	  <mat-icon class="example-icon">refresh</mat-icon>
 	  Generate
 	</button>

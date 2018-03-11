@@ -1,6 +1,4 @@
-<header>
-	<cnb-editor-menu [disable]="working" (menuClicked)="menuAction($event)"></cnb-editor-menu>
-</header>
+<cnb-editor-menu [disable]="working" (menuClicked)="menuAction($event)"></cnb-editor-menu>
 <section>
 	<div class="col">
 		<cnb-editor-input [(content)]="dataCnb" ></cnb-editor-input>
@@ -12,11 +10,9 @@
 		<div class="section-mp3">
 			<cnb-editor-mp3 [content]="dataBase64Mp3" ></cnb-editor-mp3>
 		</div>
-		<div class="section-log">
-			<cnb-editor-log [content]="dataLog" ></cnb-editor-log>	
-		</div>
 	</div>
 </section>
 <footer>
 	<cnb-editor-footer></cnb-editor-footer>
 </footer>
+<cnb-editor-log [content]="dataLog" ></cnb-editor-log>

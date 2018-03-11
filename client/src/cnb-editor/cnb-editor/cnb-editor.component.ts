@@ -21,8 +21,6 @@ import {WorkFlowState} from './cnb-editor.workflow';
 import * as filesaver from 'file-saver';
 import * as JSZip from 'jszip';
 
-
-
 @Component({
     selector: 'cnb-editor',
     styleUrls: ['./cnb-editor.component.css'],

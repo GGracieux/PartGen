@@ -1,23 +1,40 @@
+.Log {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:500px;
+    margin-top: -150px;
+    margin-left: -250px;
+    border: 1px solid #ccc;
+    background-color: #3f51b5;
+    height: 300px;
+    z-index: 99999;
+}
+
 .mainTitle {
-    font-family: Courier;
-    font-size: 18px;
-    font-weight: bold;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
     margin-top: 8px;
     margin-left: 8px;
     height: 25px;
+    width: 100%;
+    boder:1px;
+    color:white;
 }
 
 .logContainer {
-    width: calc(100% - 14px);
-    height : calc( 100% - 40px);
+    height : calc( 100% - 33px);
     margin: auto;
     overflow-y: scroll;
+    background-color: #f3f3f3;
     border: 1px;
+    width:100%;
 }
 
 .logEntry {
 	width : 100%;
-    font-family: Courier;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
     margin-top: 14px;
     margin-left: 16px;
 }
@@ -26,6 +43,7 @@
     display: block;
     font-size: 14px;
     font-weight: bold;
+    width: 100%;
 }
 
 .content {
@@ -33,6 +51,7 @@
     color: grey;
     margin-top: 4px;
     margin-left: 10px;
+    width: 100%;
 }
 
 .error .title{

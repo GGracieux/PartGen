@@ -12,5 +12,5 @@ export class CnbEditorFooterComponent implements OnInit {
     constructor() {}
 
     public ngOnInit() {}
-	
+
 }
