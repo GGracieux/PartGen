@@ -1,41 +1,5 @@
-header {
-    height: 64px;
-}
-
-section {
-    height: calc(100% - (64px + 25px)); 
-}
-
-logo {
-    height: 58px;
-}
-
-.col {
-    float: left;
-    width: 50%;
-	height: 100%;
-}
-
-.section-pdf {
-	height: calc(100% - 40px);
-    overflow-y: scroll;
-}
-
-.section-mp3 {
-	height: 40px;
-}
-
-section:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-footer {
-    height: 25px;
-    background-color: lightgrey;
-}
-
-.gridContainer {
-    height: calc(100% - 64px);
+.row {
+    height: calc(100% - (61px + 50px));
+    width: calc(100% + 15px);
+    overflow-y: hidden;
 }

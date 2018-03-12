@@ -41,9 +41,16 @@ export class CnbEditorComponent implements OnInit {
 	public wfState: WorkFlowState = WorkFlowState.INIT;
 	public working: boolean = false;
 
+	//- Log visibility
+    public showLog: boolean = true;
+
 	//-- Current song name
     public scoreName = 'score';
 
+
+    public showLogs() {
+        this.showLog = !this.showLog;
+    }
 
     // ------------------------------------
     // INIT

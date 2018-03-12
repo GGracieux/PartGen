@@ -1,26 +1,15 @@
-
 <cnb-editor-menu [disable]="working" (menuClicked)="menuAction($event)"></cnb-editor-menu>
-<div class="row" style="height:80%">
-    <div class="col-5">.col-5</div>
-    <div class="col-7">.col-7</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <cnb-editor-input [(content)]="dataCnb" ></cnb-editor-input>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <cnb-editor-mp3 [content]="dataBase64Mp3" ></cnb-editor-mp3>
+        <cnb-editor-pdf [content]="dataBase64Pdf" ></cnb-editor-pdf>
+    </div>
 </div>
 <cnb-editor-footer></cnb-editor-footer>
+<cnb-editor-log [content]="dataLog" [show]="showLog"></cnb-editor-log>
 <!--
-<section>
-	<div class="col">
-		<cnb-editor-input [(content)]="dataCnb" ></cnb-editor-input>
-	</div>
-	<div class="col">
-		<div class="section-pdf">
-			<cnb-editor-pdf [content]="dataBase64Pdf" ></cnb-editor-pdf>
-		</div>
-		<div class="section-mp3">
-			<cnb-editor-mp3 [content]="dataBase64Mp3" ></cnb-editor-mp3>
-		</div>
-	</div>
-</section>
-<footer>
-	<cnb-editor-footer></cnb-editor-footer>
-</footer>
-<cnb-editor-log [content]="dataLog" ></cnb-editor-log>
+<button type="button" class="btn btn-primary waves-light" (click)="showLogs()" mdbRippleRadius>Show Logs</button>
 -->
