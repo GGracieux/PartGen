@@ -1,8 +1,8 @@
 // Imports core
-import {Component, ViewChild, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 // Imports du composant
-import {LogEntry} from './cnb-editor-log.interface';
+import {LogEntry, logLevel} from './cnb-editor-log.interface';
 
 @Component({
     selector: 'cnb-editor-log',
@@ -13,29 +13,46 @@ import {LogEntry} from './cnb-editor-log.interface';
 export class CnbEditorLogComponent {
 
     // Log content
-    @Input() content: LogEntry[];
+    private _content: LogEntry[] = [];
 
-
-    // Visible switch
-    private _show;
-    get show(): boolean {
-        return this._show;
-    }
-    @Input() set show(show: boolean) {
-        this._show = show;
-        this.setVisibility(show);
+    // Log content : Getter
+    get content(): LogEntry[] {
+        return this._content;
     }
 
-    // Show / Hide Modal
-    @ViewChild('demoBasic') public contentModal;
-    private setVisibility(visible: boolean) {
-        if (visible) {
-        //
-            //    this.contentModal.show();
-        } else {
-            //this.contentModal.hide();
+    // Log content : Setter
+    @Input()
+    set content(content: LogEntry[]) {
+        this._content = content;
+        this.errorLevel = this.getMaxErrorLevel();
+    }
+
+    // Modal error level
+    private errorLevel: number = -1;
+
+    // Gets max error level from all log level
+    getMaxErrorLevel(): number {
+        let currLevel = -1;
+        let len = this._content.length;
+        for (let i = 0; i < len; i++) {
+            currLevel = Math.max(currLevel, this.getErrLevelValue(this._content[i].level));
         }
+        return currLevel;
     }
 
+    // Return an int for each level for comparison
+    getErrLevelValue(level: logLevel): number {
+        switch (level) {
+            case logLevel.success:
+                return -1;
+            case logLevel.info:
+                return 0;
+            case logLevel.warning:
+                return 1;
+            case logLevel.error:
+                return 2;
+        }
+        return 0;
+    }
 
 }

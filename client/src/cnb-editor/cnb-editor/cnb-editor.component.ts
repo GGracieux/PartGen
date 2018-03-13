@@ -41,16 +41,9 @@ export class CnbEditorComponent implements OnInit {
 	public wfState: WorkFlowState = WorkFlowState.INIT;
 	public working: boolean = false;
 
-	//- Log visibility
-    public showLog: boolean = true;
-
 	//-- Current song name
     public scoreName = 'score';
 
-
-    public showLogs() {
-        this.showLog = !this.showLog;
-    }
 
     // ------------------------------------
     // INIT
@@ -64,6 +57,11 @@ export class CnbEditorComponent implements OnInit {
 
     public ngOnInit() {
     	this.initDefaultValues();
+    	this.dataLog = [
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.success},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.warning},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error}
+        ];
     }
 
     private initDefaultValues()
