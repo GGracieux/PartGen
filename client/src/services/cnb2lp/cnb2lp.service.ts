@@ -14,8 +14,14 @@ export class Cnb2lpService {
     // tableau de correspondance des notes
     private notesConv;
 
-
-
+	// Header variables
+	private title: string = "";
+	private subtitle: string = " ";
+	private titleLeft: string = "";
+	private titleRight: string = "";		
+	private footer: string = "";
+	
+	
     // ----- Initialisation tableau de correspondance des notes
 
     public constructor() {
@@ -125,9 +131,12 @@ export class Cnb2lpService {
         let tokens = this.getTokens(content);
         let LPTokens = [];
         for (let token of tokens) {
-            LPTokens.push(this.convertToken(token));
+			let convToken = this.convertToken(token);
+			if (convToken.length > 0) {
+				LPTokens.push(convToken);
+			}            
         }
-        return "\\score{ \\new Staff \\with {midiInstrument = #\"bagpipe\"} { " + LPTokens.join(' ') + " } \\layout{} \\midi{} }";
+        return this.composeHeader() + "\\score{ \\new Staff \\with {midiInstrument = #\"bagpipe\"} { " + LPTokens.join(' ') + " } \\layout{} \\midi{} }";
     }
 
     // Prepare la réponse du convert
@@ -206,7 +215,16 @@ export class Cnb2lpService {
                 case 'tonalite':
                     this.currKey = userVar[1];
                     return '\\key ' + userVar[1].substr(0,userVar[1].length-1) + ' \\major';
-                default :
+					
+				case 'titre':
+				case 'titre2':
+				case 'titreGauche':
+				case 'titreDroite':
+				case 'piedPage':
+					this.setHeaderVariable(userVar[0], userVar[1]);	
+					return '';					
+					
+                default : 
                     return '\\' + userVar[0] + ' ' + userVar[1];
             }
         } else if (this.isTokenTime(token)) {
@@ -217,6 +235,38 @@ export class Cnb2lpService {
             throw "Token incorrect : " + token;
         }
     }
+	
+	private setHeaderVariable(name, value) {
+		switch (name) {
+			case "titre":
+				this.title = value;
+				break;
+			case "titre2":
+				this.subtitle = value;
+				break;
+			case "titreGauche":
+				this.titleLeft = value;
+				break;
+			case "titreDroite":
+				this.titleRight = value;
+				break;
+			case "piedPage":
+				this.footer = value;
+				break;		
+		}
+	}
+	
+	private composeHeader()
+	{
+		let header = "\\header {\n";
+		header += "title = \"" + this.title + "\"\n";
+		header += "subtitle = \"" + this.subtitle + "\"\n";
+		header += "tagline = \"" + this.footer + "\"\n";
+		header += "meter = \"" + this.titleLeft + "\"\n";
+		header += "arranger = \"" + this.titleRight + "\"\n";
+		header += "}\n";
+		return header;
+	}
 
     private convertAnacrouse(token)
     {
