@@ -108,6 +108,7 @@ export class Cnb2lpService {
         try
         {
             let lpData = this.convertData(content);
+			console.log(lpData);
             result = this.getConvertResponse(true, '', lpData, 'Convertion termiée');
         }
         catch (e)
@@ -257,7 +258,7 @@ export class Cnb2lpService {
         let result = "\\grace{\\stemDown \\teeny " +  this.getConvertedNote(notes[0]) + '32';
         if (notes.length>1) {
             result += ' [';
-            for (let i = 0; i < notes.length; i++) {
+            for (let i = 1; i < notes.length; i++) {
                 result += this.getConvertedNote(notes[i]) + '32 ';
             }
             result += ' ]';
