@@ -22,7 +22,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 // Imports des composants du module
 import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
 import {CnbEditorInputComponent} 	from './cnb-editor-input/cnb-editor-input.component';
-import {CnbEditorPdfComponent} 		from './cnb-editor-pdf/cnb-editor-pdf.component';
+import {CnbEditorViewerComponent} 	from './cnb-editor-viewer/cnb-editor-viewer.component';
 import {CnbEditorMp3Component} 		from './cnb-editor-mp3/cnb-editor-mp3.component';
 import {CnbEditorLogComponent} 		from './cnb-editor-log/cnb-editor-log.component';
 import {CnbEditorFooterComponent} 	from './cnb-editor-footer/cnb-editor-footer.component';
@@ -45,7 +45,7 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	CnbEditorComponent,
 	CnbEditorMenuComponent,
 	CnbEditorInputComponent,
-	CnbEditorPdfComponent,
+	CnbEditorViewerComponent,
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
 	CnbEditorFooterComponent

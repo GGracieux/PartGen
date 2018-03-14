@@ -1,6 +1,4 @@
-
-<button type="button" class="btn btn-primary waves-light" (click)="style.show()" mdbRippleRadius>Central Modal</button>
-
+<a (click)="style.show()" mdbTooltip="Show logs" placement="Left"><i class="fa fa-file-text-o" aria-hidden="true" ></i></a>
 <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div [ngClass]="{
 		'modal-dialog':true,
@@ -19,9 +17,6 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="text-center">
-
-				</div>
 				<div class="log-content">
 					<div class="logEntry {{ log.level }}" *ngFor="let log of content">
 						<div class="title">{{ log.title }}</div>

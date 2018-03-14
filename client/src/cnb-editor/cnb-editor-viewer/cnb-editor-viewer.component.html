@@ -1,0 +1,18 @@
+<div class="row">    	
+	<div class="col-sm-4">
+		pdf actions
+	</div>	
+	<div class="col-sm-4">
+		<cnb-editor-mp3 [content]="dataBase64Mp3" ></cnb-editor-mp3>
+	</div>
+	<div class="col-sm-4">
+		<cnb-editor-log [content]="dataLog" ></cnb-editor-log>
+	</div>
+</div>
+<pdf-viewer
+	[src]=binaryContent 
+    [original-size]="false"
+    [fit-to-page]="false"
+    [autoresize]="true"
+    style = "max-width:300px; max-height:300px"
+></pdf-viewer>
