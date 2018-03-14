@@ -1,3 +1,12 @@
+.modal {
+    max-height: 95%;
+}
+
+.log-content {
+    overflow-y: scroll;
+    overflow-y: scroll;
+}
+
 .logEntry {
 	width : 100%;
     font-family: Roboto,"Helvetica Neue",sans-serif;

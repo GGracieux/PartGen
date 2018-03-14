@@ -22,7 +22,7 @@
 				<div class="text-center">
 
 				</div>
-				<div>
+				<div class="log-content">
 					<div class="logEntry {{ log.level }}" *ngFor="let log of content">
 						<div class="title">{{ log.title }}</div>
 						<div class="content" [innerHTML]=log.content></div>

@@ -28,7 +28,7 @@ export class CnbEditorLogComponent {
     }
 
     // Modal error level
-    private errorLevel: number = -1;
+    public errorLevel: number = -1;
 
     // Gets max error level from all log level
     getMaxErrorLevel(): number {
