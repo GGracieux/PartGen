@@ -60,7 +60,27 @@ export class CnbEditorComponent implements OnInit {
     	this.dataLog = [
             { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.success},
             { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.warning},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error}
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
+            { "title": "Converting TXT to Lilypond", "content": "Log content last",  "level": logLevel.error}
+
         ];
     }
 

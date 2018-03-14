@@ -1,9 +1,17 @@
 .modal {
     max-height: 95%;
+    min-height: 300px;
 }
 
-.log-content {
-    overflow-y: scroll;
+.modal-dialog {
+    height: calc(100% - 69px);
+}
+
+.modal-content {
+    height: 100%;
+}
+
+.modal-body {
     overflow-y: scroll;
 }
 
