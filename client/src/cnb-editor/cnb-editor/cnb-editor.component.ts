@@ -86,14 +86,14 @@ export class CnbEditorComponent implements OnInit {
 
     private initDefaultValues()
     {
-        this.dataCnb = "[language=français]\n" +
-			"[titre=Highland_Cathedral]\n" +
-			"[piedPage=www.bagpipe-scores.com]\n" +
-            "[tempo=90]\n" +
-            "[clef=G]\n" +
-            "[tonalite=mibM]\n" +
+        this.dataCnb = "#language = français\n" +
+			"#titre = Highland Cathedral\n" +
+			"#piedPage = www.bagpipe-scores.com\n" +
+            "#tempo = 90\n" +
+            "#clef = G\n" +
+            "#tonalite = mibM\n" +
             "\n" +
-            "[4/4] \n" +
+            "[4/4] \n" + 
             "R2{ \n" +
             "\t(LA,mi,re) mi4 - mi8 fa16 sol16 (la,fa,sol) fa8 mi8 (la) SI8 mi8\n" +
             "\t(la,fa,sol) fa4 - fa8 sol8 (fa) sol2\n" +

@@ -14,12 +14,18 @@ export class Cnb2lpService {
     // tableau de correspondance des notes
     private notesConv;
 
-	// Header variables
-	private title: string = "";
-	private subtitle: string = " ";
-	private titleLeft: string = "";
-	private titleRight: string = "";		
-	private footer: string = "";
+	// User variables
+	private userVar = {
+		"titre" : "",
+		"titre2": " ",
+		"titreGauche": "" ,
+		"titreDroite": "",
+		"piedPage": "",
+		"tempo": "",
+		"clef": "G",
+		"language": "français",
+		"tonalite": "mibM"
+	}
 	
 	
     // ----- Initialisation tableau de correspondance des notes
@@ -128,7 +134,8 @@ export class Cnb2lpService {
     // Converti un texte cnb en lp
     public convertData(content)
     {
-        let tokens = this.getTokens(content);
+		// Convert tokens
+        let tokens = this.getTokens(content); 
         let LPTokens = [];
         for (let token of tokens) {
 			let convToken = this.convertToken(token);
@@ -136,7 +143,15 @@ export class Cnb2lpService {
 				LPTokens.push(convToken);
 			}            
         }
-        return this.composeHeader() + "\\score{ \\new Staff \\with {midiInstrument = #\"bagpipe\"} { " + LPTokens.join(' ') + " } \\layout{} \\midi{} }";
+		
+		// Assmeble file parts
+		let result = this.composeFileHeader();
+		result += "\\score{ " + this.composeScoreHeader();
+		result += "\\new Staff \\with {midiInstrument = #\"bagpipe\"} { ";
+		result += LPTokens.join(' ');
+		result += " } \\layout{} \\midi{} }";
+		
+        return  result;
     }
 
     // Prepare la réponse du convert
@@ -162,13 +177,16 @@ export class Cnb2lpService {
         return content.split(' ');
     }
 
-    // Converti un token
+	// ----- Token convertion
+	
+    // Converts one token
     private convertToken(token)
     {
         let first = token.substr(0,1);
         switch (first) {
-            case '[':
-                return this.convertVariable(token);
+            case '#':				
+                this.setVariable(token);				
+				return '';
             case '@':
                 return this.convertAnacrouse(token);
             case 'R':
@@ -199,74 +217,6 @@ export class Cnb2lpService {
                 return this.convertNote(token);
         }
     }
-
-    private convertVariable(token)
-    {
-        if (this.isTokenVariable(token)) {
-            token = this.replaceAll('[', '', token);
-            token = this.replaceAll(']', '', token);
-            let userVar = token.split('=');
-            switch (userVar[0]) {
-                case 'tempo':
-                    return '\\tempo 4 = ' + userVar[1];
-                case 'clef':
-                case 'language':
-                    return '\\' + userVar[0] + ' "' + userVar[1] + '"';
-                case 'tonalite':
-                    this.currKey = userVar[1];
-                    return '\\key ' + userVar[1].substr(0,userVar[1].length-1) + ' \\major';
-					
-				case 'titre':
-				case 'titre2':
-				case 'titreGauche':
-				case 'titreDroite':
-				case 'piedPage':
-					this.setHeaderVariable(userVar[0], userVar[1]);	
-					return '';					
-					
-                default : 
-                    return '\\' + userVar[0] + ' ' + userVar[1];
-            }
-        } else if (this.isTokenTime(token)) {
-            token = this.replaceAll('[', '', token);
-            token = this.replaceAll(']', '', token);
-            return '\\time ' + token;
-        } else {
-            throw "Token incorrect : " + token;
-        }
-    }
-	
-	private setHeaderVariable(name, value) {
-		switch (name) {
-			case "titre":
-				this.title = value;
-				break;
-			case "titre2":
-				this.subtitle = value;
-				break;
-			case "titreGauche":
-				this.titleLeft = value;
-				break;
-			case "titreDroite":
-				this.titleRight = value;
-				break;
-			case "piedPage":
-				this.footer = value;
-				break;		
-		}
-	}
-	
-	private composeHeader()
-	{
-		let header = "\\header {\n";
-		header += "title = \"" + this.title + "\"\n";
-		header += "subtitle = \"" + this.subtitle + "\"\n";
-		header += "tagline = \"" + this.footer + "\"\n";
-		header += "meter = \"" + this.titleLeft + "\"\n";
-		header += "arranger = \"" + this.titleRight + "\"\n";
-		header += "}\n";
-		return header;
-	}
 
     private convertAnacrouse(token)
     {
@@ -337,7 +287,6 @@ export class Cnb2lpService {
         return "\\stemUp \\normalsize " + this.getConvertedNote(note) + duree;
     }
 
-
     private getConvertedNote(note) {
         return  note.toLowerCase() +
             this.notesConv['bemol'][this.currKey][note] +
@@ -345,20 +294,53 @@ export class Cnb2lpService {
             this.notesConv['hauteur'][note];
     }
 
-    private isTokenVariable(token)
-    {
-        if (token.substr(0,1) != '[') return false;
-        if (token.substr(token.length-1,1) != ']') return false;
-        if (this.substrCount(token,'=') != 1) return false;
-        return true;
-    }
+	// ----- User variable handling and headers generation
 
-    private isTokenTime(token){
-        if (token.substr(0,1) != '[') return false;
-        if (token.substr(token.length-1,1) != ']') return false;
-        if (this.substrCount(token,'/') != 1) return false;
-        return true;
-    }
+	private setVariable(token) {
+	
+		console.log('there');
+	
+		// gets variable name and content
+		token = token.substr(1);
+		let tokenPart = token.split('=');
+		let key = tokenPart[0].trim();
+		console.log(tokenPart);
+		let val = tokenPart[1].trim();
+
+
+		// sets user variable
+		if (this.userVar.hasOwnProperty(key)) {
+			this.userVar[key] = val;
+		}
+	}
+	
+	private composeFileHeader()
+	{
+		let header = "\\header {\n";
+		header += "title = \"" + this.userVar.titre + "\"\n";
+		header += "subtitle = \"" + this.userVar.titre2 + "\"\n";
+		header += "tagline = \"" + this.userVar.piedPage + "\"\n";
+		header += "meter = \"" + this.userVar.titreGauche + "\"\n";
+		header += "arranger = \"" + this.userVar.titreDroite + "\"\n";
+		header += "}\n";
+		return header;
+	}
+	
+	private composeScoreHeader()
+	{
+		let header = "";
+		header += "\\language \"" + this.userVar.language + "\"\n";
+		if (this.userVar.tempo != "") {
+			header += "\\tempo 4 = " + this.userVar.tempo + "\n";
+		}				
+		header += "\\clef \"" + this.userVar.clef + "\"\n";	
+		header += "\\key " + this.userVar.tonalite.substr(0,this.userVar.tonalite.length -1) + " \\major\n";	
+		header += "\n";
+		return header;
+	}	
+	
+	
+	// ----- Helpers
 
     private replaceAll(search, replace, subject) {
         return subject.split(search).join(replace);
