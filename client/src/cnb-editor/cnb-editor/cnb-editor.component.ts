@@ -86,12 +86,9 @@ export class CnbEditorComponent implements OnInit {
 
     private initDefaultValues()
     {
-        this.dataCnb = "#language = français\n" +
-			"#titre = Highland Cathedral\n" +
+        this.dataCnb = "#titre = Highland Cathedral\n" +
 			"#piedPage = www.bagpipe-scores.com\n" +
             "#tempo = 90\n" +
-            "#clef = G\n" +
-            "#tonalite = mibM\n" +
             "\n" +
             "[4/4] \n" + 
             "R2{ \n" +

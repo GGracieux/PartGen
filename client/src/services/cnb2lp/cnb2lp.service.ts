@@ -145,12 +145,12 @@ export class Cnb2lpService {
 		
 		// Assmeble file parts
 		let result = this.composeFileHeader();
-		result += "\\score{ " + this.composeScoreHeader();
-		result += "\\new Staff \\with {midiInstrument = #\"bagpipe\"} { ";
+		result += "\\score{ \n"; 
+		result += "\\new Staff \\with {midiInstrument = #\"bagpipe\"} { \n";
+        result += this.composeScoreHeader();
 		result += LPTokens.join(' ');
-		result += " } \\layout{} \\midi{} }";
+		result += " } \n\n\\layout{} \n\\midi{} \n}";
 		
-		console.log(result);
         return  result;
     }
 
@@ -180,6 +180,7 @@ export class Cnb2lpService {
 				line = this.replaceAll('  ', ' ', line);
 				line = this.replaceAll(String.fromCharCode(9), ' & ', line);		
 				tokens = tokens.concat(line.split(' '));
+                tokens.push('$');
 			}		
 		}
         return tokens;
@@ -350,7 +351,6 @@ export class Cnb2lpService {
 		}				
 		header += "\\clef \"" + this.userVar.clef + "\"\n";	
 		header += "\\key " + this.userVar.tonalite.substr(0,this.userVar.tonalite.length -1) + " \\major\n";	
-		header += "\n";
 		return header;
 	}	
 	
