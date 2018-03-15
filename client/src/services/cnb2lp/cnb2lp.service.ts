@@ -120,7 +120,6 @@ export class Cnb2lpService {
         try
         {
             let lpData = this.convertData(content);
-			console.log(lpData);
             result = this.getConvertResponse(true, '', lpData, 'Convertion termiée');
         }
         catch (e)
@@ -151,6 +150,7 @@ export class Cnb2lpService {
 		result += LPTokens.join(' ');
 		result += " } \\layout{} \\midi{} }";
 		
+		console.log(result);
         return  result;
     }
 
@@ -169,24 +169,36 @@ export class Cnb2lpService {
     // Récupération de la liste des tokens non convertis
     private getTokens(content)
     {
-        content = this.replaceAll(String.fromCharCode(10), ' $ ', content);
-        content = this.replaceAll(String.fromCharCode(13), '', content);
-        content = this.replaceAll(String.fromCharCode(9), ' & ', content);
-        content = this.replaceAll('  ', ' ', content);
-
-        return content.split(' ');
+		let tokens: string[] = [];
+		content = this.replaceAll(String.fromCharCode(13), '', content);
+		let lines = content.split(String.fromCharCode(10));
+		for (let line of lines) {
+			line = line.trim();
+			if (line.substr(0,1) == "#") {
+				tokens.push(line);
+			} else {
+				line = this.replaceAll('  ', ' ', line);
+				line = this.replaceAll(String.fromCharCode(9), ' & ', line);		
+				tokens = tokens.concat(line.split(' '));
+			}		
+		}
+        return tokens;
     }
 
 	// ----- Token convertion
 	
     // Converts one token
     private convertToken(token)
-    {
+    {		
         let first = token.substr(0,1);
         switch (first) {
+			case '':
+				return '';
             case '#':				
                 this.setVariable(token);				
 				return '';
+			case '[':
+				return this.convertTime(token);
             case '@':
                 return this.convertAnacrouse(token);
             case 'R':
@@ -217,6 +229,12 @@ export class Cnb2lpService {
                 return this.convertNote(token);
         }
     }
+	
+	private convertTime(token) {
+		token = this.replaceAll('[', '', token);
+		token = this.replaceAll(']', '', token);
+		return '\\time ' + token;
+	}
 
     private convertAnacrouse(token)
     {
@@ -298,13 +316,10 @@ export class Cnb2lpService {
 
 	private setVariable(token) {
 	
-		console.log('there');
-	
 		// gets variable name and content
 		token = token.substr(1);
 		let tokenPart = token.split('=');
 		let key = tokenPart[0].trim();
-		console.log(tokenPart);
 		let val = tokenPart[1].trim();
 
 
@@ -315,7 +330,7 @@ export class Cnb2lpService {
 	}
 	
 	private composeFileHeader()
-	{
+	{		
 		let header = "\\header {\n";
 		header += "title = \"" + this.userVar.titre + "\"\n";
 		header += "subtitle = \"" + this.userVar.titre2 + "\"\n";
@@ -328,7 +343,7 @@ export class Cnb2lpService {
 	
 	private composeScoreHeader()
 	{
-		let header = "";
+		let header = "\n";
 		header += "\\language \"" + this.userVar.language + "\"\n";
 		if (this.userVar.tempo != "") {
 			header += "\\tempo 4 = " + this.userVar.tempo + "\n";
