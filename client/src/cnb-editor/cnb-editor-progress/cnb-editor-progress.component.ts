@@ -27,8 +27,9 @@ export class CnbEditorProgressComponent {
     set currState(wfState: WorkFlowState) {
 
         this._currState = wfState;
+        console.log(wfState);
 		
-		if(wfState == WorkFlowState.CNB2LP_RUN) {
+		if (wfState != WorkFlowState.APP_INIT) {
 			this.progressModal.show();
 		}		
 		

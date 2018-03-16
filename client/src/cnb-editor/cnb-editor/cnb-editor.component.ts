@@ -256,7 +256,7 @@ export class CnbEditorComponent implements OnInit {
             zip.file(this.scoreName + '.mp3', this.dataBase64Mp3, {base64: true});
         }
         zip.generateAsync({type:"blob"}).then(function(content) {
-            filesaver.saveAs(content, 'score.zip');
+            filesaver.saveAs(content, this.scoreName);
         });
     }
 

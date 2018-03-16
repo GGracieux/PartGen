@@ -1,6 +1,6 @@
 .row {
     height: calc(100% - (61px + 50px));
     width: calc(100% + 15px);
-    overflow-y: hidden;
+    overflow-y: scroll;
 	padding-top: 10px;
 }
