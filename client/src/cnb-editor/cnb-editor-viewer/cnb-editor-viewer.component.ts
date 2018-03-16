@@ -19,7 +19,7 @@ export class CnbEditorViewerComponent {
 	@Input() b64Mp3: string;
 
 
-	// --------------- PDF --------------------
+	// --------------- PDF (content) --------------------
 
 	// Conteny binaire du PDF
 	public binaryContent;
@@ -54,5 +54,17 @@ export class CnbEditorViewerComponent {
 	    }
 	    return bytes.buffer;
 	}
+
+
+	// --------------- PDF (controls) --------------------
 	
+	public zoom: number = 1;
+
+	zoomIn() {
+		this.zoom = Math.max(0.1,this.zoom-0.1);
+	}
+
+	zoomOut() {
+		this.zoom = Math.min(3,this.zoom+0.1);
+	}
 }
