@@ -25,16 +25,21 @@ export class CnbEditorProgressComponent {
 
     @Input()
     set currState(wfState: WorkFlowState) {
-		if(wfState>1) this.progressModal.show();
+
         this._currState = wfState;
+		
+		if(wfState == WorkFlowState.CNB2LP_RUN) {
+			this.progressModal.show();
+		}		
+		
 		switch (wfState) {
-			case WorkFlowState.MIDI2MP3_OK:
-				console.log('Success, auto close popup after 1 sec');
+			case WorkFlowState.SUCCESS:
+				setTimeout(()=>{ this.progressModal.hide() }, 1000);
 				break;
 			case WorkFlowState.CNB2LP_ERR:
 			case WorkFlowState.LILYPOND_ERR:
 			case WorkFlowState.MIDI2MP3_ERR:
-				console.log('Error, auto close popup after 1 sec and open log');
+				this.progressModal.hide();
 				break;			 
 		}
     }		

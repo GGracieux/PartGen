@@ -4,61 +4,47 @@ import {Component, Input, ViewChild} from '@angular/core';
 // Imports du composant
 import {LogEntry, logLevel} from './cnb-editor-log.interface';
 
+// Import enum du workflow de generation des données
+import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';
+
 @Component({
     selector: 'cnb-editor-log',
     styleUrls: ['./cnb-editor-log.component.css'],
     templateUrl: './cnb-editor-log.component.html'
 })
 
-export class CnbEditorLogComponent {
+export class CnbEditorLogComponent {	
 
-	// Log Modal
+	// Log Modal handler
 	@ViewChild('logModal') public logWindow;
 
-    // Log content
-    private _content: LogEntry[] = [];
+	// Log data
+	@Input() content: LogEntry[] = [];
+	
+	// Is current workflow state an error
+	public stateError:boolean = false;
+	public stateSuccess:boolean = false;
+	
+	private isErrorState(wfState: WorkFlowState) {
+		switch (wfState) {
+			case WorkFlowState.CNB2LP_ERR:
+			case WorkFlowState.LILYPOND_ERR:
+			case WorkFlowState.MIDI2MP3_ERR:
+				return true;
+		}		
+		return false;
+	}
 
-    // Log content : Getter
-    get content(): LogEntry[] {
-        return this._content;
-    }
-
-    // Log content : Setter
-    @Input()
-    set content(content: LogEntry[]) {
-        this._content = content;
-        this.errorLevel = this.getMaxErrorLevel();
-		if (this.errorLevel > 0) {
+	// Handles workflow state changes
+	private _wfState: WorkFlowState;	
+	
+	@Input() set wfState(wfState: WorkFlowState) {
+		this._wfState = wfState;
+		this.stateError = this.isErrorState(wfState);
+		this.stateSuccess = (wfState == WorkFlowState.SUCCESS);
+		if (this.stateError) {
 			this.logWindow.show();
 		}
-    }
-
-    // Modal error level
-    public errorLevel: number = -1;
-
-    // Gets max error level from all log level
-    getMaxErrorLevel(): number {
-        let currLevel = -1;
-        let len = this._content.length;
-        for (let i = 0; i < len; i++) {
-            currLevel = Math.max(currLevel, this.getErrLevelValue(this._content[i].level));
-        }
-        return currLevel;
-    }
-
-    // Return an int for each level for comparison
-    getErrLevelValue(level: logLevel): number {
-        switch (level) {
-            case logLevel.success:
-                return -1;
-            case logLevel.info:
-                return 0;
-            case logLevel.warning:
-                return 1;
-            case logLevel.error:
-                return 2;
-        }
-        return 0;
-    }
+	}	
 
 }

@@ -4,6 +4,9 @@ import {Component, Input} from '@angular/core';
 // Imports du composant
 import {LogEntry} from '../cnb-editor-log/cnb-editor-log.interface';
 
+// Import enum du workflow de generation des données
+import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';
+
 @Component({
     selector: 'cnb-editor-viewer',
     styleUrls: ['./cnb-editor-viewer.component.css'],
@@ -14,6 +17,8 @@ export class CnbEditorViewerComponent {
 
 	// ------------ LOGS & MP3 ----------------
 
+	@Input() wfState: WorkFlowState;	
+	
 	@Input() logs: LogEntry[];
 
 	@Input() b64Mp3: string;

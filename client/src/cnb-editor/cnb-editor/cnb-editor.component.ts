@@ -38,7 +38,7 @@ export class CnbEditorComponent implements OnInit {
     public dataLog: LogEntry[] = [];
 
 	//-- Workflow & Generation state
-	public wfState: WorkFlowState = WorkFlowState.INIT;
+	public wfState: WorkFlowState = WorkFlowState.APP_INIT;
 	public working: boolean = false;
 
 	//-- Current song name
@@ -96,8 +96,55 @@ export class CnbEditorComponent implements OnInit {
     // ------------------------------------
 
     public menuAction(methodName: string) {
-		this[methodName]();	
+		this[methodName]();
+		//this.simulateWorkflowErrorLilyPond();
+		//this.simulateWorkflowOK();
     }
+	
+	private simulateWorkflowOK() {
+		setTimeout(()=>{ 
+			this.wfState = WorkFlowState.CNB2LP_RUN 
+			setTimeout(()=>{ 
+				this.wfState = WorkFlowState.CNB2LP_OK
+				setTimeout(()=>{ 
+					this.wfState = WorkFlowState.LILYPOND_RUN 
+					setTimeout(()=>{ 
+						this.wfState = WorkFlowState.LILYPOND_OK 
+						setTimeout(()=>{ 
+							this.wfState = WorkFlowState.MIDI2MP3_RUN 
+							setTimeout(()=>{ 
+								this.wfState = WorkFlowState.MIDI2MP3_OK 
+								setTimeout(()=>{ 
+									this.wfState = WorkFlowState.SUCCESS 
+								}, 100);								
+							}, 1000);							
+						}, 100);							
+					}, 1000);						
+				}, 100);	 				
+			}, 1000);	 
+		}, 100);		
+	}
+	
+	private simulateWorkflowErrorLilyPond() {
+		setTimeout(()=>{ 
+			this.wfState = WorkFlowState.CNB2LP_RUN 
+			setTimeout(()=>{ 
+				this.wfState = WorkFlowState.CNB2LP_OK
+				setTimeout(()=>{ 
+					this.wfState = WorkFlowState.LILYPOND_RUN 
+					setTimeout(()=>{ 
+						this.wfState = WorkFlowState.LILYPOND_ERR							
+						this.dataLog = [
+							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.success},
+							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.warning},
+							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},					
+							{ "title": "Converting TXT to Lilypond", "content": "Log content last",  "level": logLevel.error}
+						];
+					}, 1000);						
+				}, 100);	 				
+			}, 1000);	 
+		}, 100);		
+	}	
 
 
     // ------------------------------------
@@ -107,7 +154,7 @@ export class CnbEditorComponent implements OnInit {
     private generate() {
 
         // Reinit workflow and data
-        this.wfState = WorkFlowState.INIT;
+        this.wfState = WorkFlowState.APP_INIT;
         this.working = true;
         this.dataLp = '';
         this.dataBase64Pdf = '';
@@ -120,6 +167,7 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchCnb2Lp() {
+		this.wfState = WorkFlowState.CNB2LP_RUN;
         this.cnb2lp.convert(this.dataCnb).subscribe(
             cnb => {
                 let title = 'Cnb2lp : Convertion CNB -> Lilypond';
@@ -129,11 +177,13 @@ export class CnbEditorComponent implements OnInit {
                     this.wfState = WorkFlowState.CNB2LP_OK;
                     this.launchLilypond();
                 } else {
+					this.wfState = WorkFlowState.CNB2LP_ERR;
                     this.log (title, cnb.log, logLevel.warning);
                     this.working = false;
                 }
             },
             msg => {
+				this.wfState = WorkFlowState.CNB2LP_ERR;
                 this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
                 this.working = false;
             }
@@ -141,6 +191,7 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchLilypond() {
+		this.wfState = WorkFlowState.LILYPOND_RUN;
         this.lilypond.convert(this.dataLp).subscribe(
             lp => {
                 if (lp.statusCode == LPStatusCode.OK) {
@@ -150,11 +201,13 @@ export class CnbEditorComponent implements OnInit {
                     this.wfState = WorkFlowState.LILYPOND_OK;
                     this.launchMidi2Mp3();
                 } else {
+					this.wfState = WorkFlowState.LILYPOND_ERR;
                     this.PGlog(lp.logs, logLevel.warning);
                     this.working = false;
                 }
             },
             msg => {
+				this.wfState = WorkFlowState.LILYPOND_ERR;
                 this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
                 this.working = false;
             }
@@ -162,18 +215,22 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchMidi2Mp3() {
+		this.wfState = WorkFlowState.MIDI2MP3_RUN;
         this.midi2mp3.convert(this.dataBase64Midi).subscribe(
             mp3 => {
                 if (mp3.statusCode == MMStatusCode.OK) {
                     this.dataBase64Mp3 = mp3.base64Mp3Data;
                     this.PGlog(mp3.logs, logLevel.success);
 					this.wfState = WorkFlowState.MIDI2MP3_OK;
+					this.wfState = WorkFlowState.SUCCESS;
                 } else {
+					this.wfState = WorkFlowState.MIDI2MP3_ERR;
                     this.PGlog(mp3.logs, logLevel.warning);
                 }
                 this.working = false;
             },
             msg => {
+				this.wfState = WorkFlowState.MIDI2MP3_ERR
                 this.log('midi2mp3', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
                 this.working = false;
             }
