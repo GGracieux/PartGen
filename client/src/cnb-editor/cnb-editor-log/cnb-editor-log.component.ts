@@ -1,5 +1,5 @@
 // Imports core
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 
 // Imports du composant
 import {LogEntry, logLevel} from './cnb-editor-log.interface';
@@ -11,6 +11,9 @@ import {LogEntry, logLevel} from './cnb-editor-log.interface';
 })
 
 export class CnbEditorLogComponent {
+
+	// Log Modal
+	@ViewChild('logModal') public logWindow;
 
     // Log content
     private _content: LogEntry[] = [];
@@ -25,6 +28,9 @@ export class CnbEditorLogComponent {
     set content(content: LogEntry[]) {
         this._content = content;
         this.errorLevel = this.getMaxErrorLevel();
+		if (this.errorLevel > 0) {
+			this.logWindow.show();
+		}
     }
 
     // Modal error level

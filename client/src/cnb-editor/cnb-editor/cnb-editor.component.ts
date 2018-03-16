@@ -57,31 +57,7 @@ export class CnbEditorComponent implements OnInit {
 
     public ngOnInit() {
     	this.initDefaultValues();
-    	this.dataLog = [
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.success},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.warning},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},
-            { "title": "Converting TXT to Lilypond", "content": "Log content last",  "level": logLevel.error}
-
-        ];
+    	this.dataLog = [];
     }
 
     private initDefaultValues()
@@ -120,7 +96,7 @@ export class CnbEditorComponent implements OnInit {
     // ------------------------------------
 
     public menuAction(methodName: string) {
-		this[methodName]();
+		this[methodName]();	
     }
 
 

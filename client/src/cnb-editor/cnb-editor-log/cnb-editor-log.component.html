@@ -1,5 +1,5 @@
-<a (click)="style.show()" mdbTooltip="Show logs" placement="Left"><i class="fa fa-file-text-o" aria-hidden="true" ></i></a>
-<div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<a (click)="logModal.show()" mdbTooltip="Show logs" placement="Left"><i class="fa fa-file-text-o" aria-hidden="true" ></i></a>
+<div mdbModal #logModal="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div [ngClass]="{
 		'modal-dialog':true,
 		'modal-notify':true,
@@ -12,7 +12,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<p class="heading lead">Logs</p>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="logModal.hide()">
 					<span aria-hidden="true" class="white-text">×</span>
 				</button>
 			</div>
