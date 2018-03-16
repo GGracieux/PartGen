@@ -1,0 +1,41 @@
+<div mdbModal #progress="mdb-modal" [config]="{ backdrop: false }" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Processing ...</h4>
+            </div>
+			<div class="modal-body">
+				<div class="loader">
+					<!-- <mdb-spinner spinnerType="small" spinnerColor="yellow"></mdb-spinner> -->
+				</div>
+				<div class="progress-step">
+					<i [ngClass]="{
+						'fa':true,
+						'fa-square-o':currState < workflowState.CNB2LP_ERR,
+						'fa-window-close':currState == workflowState.CNB2LP_ERR,
+						'fa-check-square-o':currState >= workflowState.CNB2LP_OK
+						}" aria-hidden="true"></i>
+					<span>TXT convertion</span>
+				</div>
+				<div class="progress-step">
+					<i [ngClass]="{
+						'fa':true,
+						'fa-square-o':currState < workflowState.LILYPOND_ERR,
+						'fa-window-close':currState == workflowState.LILYPOND_ERR,
+						'fa-check-square-o':currState >= workflowState.LILYPOND_OK
+						}" aria-hidden="true"></i>				
+					<span>Generating PDF & MIDI</span>
+				</div>
+				<div class="progress-step">
+					<i [ngClass]="{
+						'fa':true,
+						'fa-square-o':currState < workflowState.MIDI2MP3_ERR,
+						'fa-window-close':currState == workflowState.MIDI2MP3_ERR,
+						'fa-check-square-o':currState >= workflowState.MIDI2MP3_OK
+						}" aria-hidden="true"></i>	
+					<span>Generating MP3</span>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

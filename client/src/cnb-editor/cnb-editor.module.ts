@@ -25,6 +25,7 @@ import {CnbEditorInputComponent} 	from './cnb-editor-input/cnb-editor-input.comp
 import {CnbEditorViewerComponent} 	from './cnb-editor-viewer/cnb-editor-viewer.component';
 import {CnbEditorMp3Component} 		from './cnb-editor-mp3/cnb-editor-mp3.component';
 import {CnbEditorLogComponent} 		from './cnb-editor-log/cnb-editor-log.component';
+import {CnbEditorProgressComponent} from './cnb-editor-progress/cnb-editor-progress.component';
 import {CnbEditorFooterComponent} 	from './cnb-editor-footer/cnb-editor-footer.component';
 import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 
@@ -48,6 +49,7 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	CnbEditorViewerComponent,
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
+	CnbEditorProgressComponent,
 	CnbEditorFooterComponent
 	],
   exports: [CnbEditorComponent]
