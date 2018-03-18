@@ -3,7 +3,7 @@
 	class="btn btn-sm btn-outline-primary audioBtn" 
 	mdbRippleRadius 
 	(click)="backward()" 
-	[disabled]="audioPlayer !== false"
+	[disabled]="audioPlayer === false"
 	mdbTooltip="Back 5 sec." 
 	placement="bottom"
 	>
@@ -15,7 +15,7 @@
 	class="btn btn-sm btn-outline-primary audioBtn" 
 	mdbRippleRadius 
 	(click)="playPause()" 
-	[disabled]="audioPlayer !== false"
+	[disabled]="audioPlayer === false"
 	mdbTooltip="Play / Pause" 
 	placement="bottom"
 	>
@@ -31,7 +31,7 @@
 	class="btn btn-sm btn-outline-primary audioBtn" 
 	mdbRippleRadius 
 	(click)="forward()" 
-	[disabled]="audioPlayer !== false"
+	[disabled]="audioPlayer === false"
 	mdbTooltip="Forward 5 sec." 
 	placement="bottom"
 	>
