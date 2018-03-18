@@ -1,4 +1,12 @@
-<button type="button" class="btn btn-sm btn-outline-primary logBtn" mdbRippleRadius (click)="logModal.show()" [disabled]="content.length == 0">
+<button 
+	type="button" 
+	class="btn btn-sm btn-outline-primary logBtn" 
+	mdbRippleRadius 
+	(click)="logModal.show()" 
+	[disabled]="content.length == 0"
+	mdbTooltip="Show logs" 
+	placement="bottom"
+	>
 	<i class="fa fa-file-text-o" aria-hidden="true"></i>
 </button>
 <div mdbModal #logModal="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
