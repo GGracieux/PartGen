@@ -1,1 +1,14 @@
-<audio controls src="data:audio/mp3;base64,{{content}}" ></audio>
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="backward()">
+	<i class="fa fa-step-backward" aria-hidden="true"></i>
+</button>
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="playPause()">
+	<i [ngClass]="{
+        'fa':true,
+        'fa-play': audio.paused,
+        'fa-pause': !audio.paused
+        }" aria-hidden="true"></i>
+</button>
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="forward()">
+	<i class="fa fa-step-forward" aria-hidden="true"></i>
+</button>
+{{audio.currentTime | minuteSeconds}} / {{audio.duration | minuteSeconds}}

@@ -1,4 +1,6 @@
-<a (click)="logModal.show()" mdbTooltip="Show logs" placement="Left"><i class="fa fa-file-text-o" aria-hidden="true" ></i></a>
+<button type="button" class="btn btn-sm btn-outline-primary logBtn" mdbRippleRadius (click)="logModal.show()">
+	<i class="fa fa-file-text-o" aria-hidden="true"></i>
+</button>
 <div mdbModal #logModal="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div [ngClass]="{
 		'modal-dialog':true,

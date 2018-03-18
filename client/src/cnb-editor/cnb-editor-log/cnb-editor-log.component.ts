@@ -2,7 +2,7 @@
 import {Component, Input, ViewChild} from '@angular/core';
 
 // Imports du composant
-import {LogEntry, logLevel} from './cnb-editor-log.interface';
+import {LogEntry} from './cnb-editor-log.interface';
 
 // Import enum du workflow de generation des données
 import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';

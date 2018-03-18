@@ -29,6 +29,9 @@ import {CnbEditorProgressComponent} from './cnb-editor-progress/cnb-editor-progr
 import {CnbEditorFooterComponent} 	from './cnb-editor-footer/cnb-editor-footer.component';
 import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 
+// Time format pipe
+import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
+
 @NgModule({
   imports: [
 	CommonModule, 
@@ -50,7 +53,8 @@ import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
 	CnbEditorProgressComponent,
-	CnbEditorFooterComponent
+	CnbEditorFooterComponent,
+    MinuteSecondsPipe
 	],
   exports: [CnbEditorComponent]
 })
