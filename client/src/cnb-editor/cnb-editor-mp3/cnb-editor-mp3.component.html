@@ -1,14 +1,14 @@
-<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="backward()">
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="backward()" [disabled]="audioPlayer === false">
 	<i class="fa fa-step-backward" aria-hidden="true"></i>
 </button>
-<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="playPause()">
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="playPause()" [disabled]="audioPlayer === false">
 	<i [ngClass]="{
         'fa':true,
-        'fa-play': audio.paused,
-        'fa-pause': !audio.paused
+        'fa-play': !(audioPlayer === false) || audioPlayer.paused,
+        'fa-pause': !audioPlayer.paused
         }" aria-hidden="true"></i>
 </button>
-<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="forward()">
+<button type="button" class="btn btn-sm btn-outline-primary audioBtn" mdbRippleRadius (click)="forward()" [disabled]="audioPlayer === false">
 	<i class="fa fa-step-forward" aria-hidden="true"></i>
 </button>
-{{audio.currentTime | minuteSeconds}} / {{audio.duration | minuteSeconds}}
+{{audioPlayer.currentTime | minuteSeconds}} / {{audioPlayer.duration | minuteSeconds}}

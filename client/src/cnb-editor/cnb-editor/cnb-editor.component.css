@@ -22,7 +22,10 @@
 }
 
 .viewer-toolbar {
-    height: 50px;
+    background:#f7faff ;
+    height: 43px;
+    display: flex;
+    justify-content: space-between;    
 }
 
 .pdf-content {

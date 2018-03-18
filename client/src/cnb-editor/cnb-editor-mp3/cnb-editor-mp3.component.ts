@@ -9,30 +9,32 @@ import {Component, Input} from '@angular/core';
 
 export class CnbEditorMp3Component {
 
-	// Contenu base64 du MP3 
-	@Input() content;
+    // instance du player
+    public audioPlayer;
 
-	private audio;
-
-	private load() {
-        this.audio = new Audio();
-        this.audio.src = "data:audio/mp3;base64," + this.content;
+    @Input() set b64Mp3(b64Mp3: string) {
+        if (b64Mp3 == '') {
+            this.audioPlayer = false;
+        } else {
+            this.audioPlayer = new Audio();
+            this.audioPlayer.src = "data:audio/mp3;base64," + b64Mp3;
+        }
     }
 
     playPause(){
-	    if (this.audio.paused) {
-            this.audio.play();
+	    if (this.audioPlayer.paused) {
+            this.audioPlayer.play();
         } else {
-	        this.audio.pause();
+	        this.audioPlayer.pause();
         }
     }
 
     backward(){
-        this.audio.currentTime = Math.max(0, this.audio.currentTime - 5);
+        this.audioPlayer.currentTime = Math.max(0, this.audioPlayer.currentTime - 5);
     }
 
     forward() {
-        this.audio.currentTime = Math.min(this.audio.duration, this.audio.currentTime + 5);
+        this.audioPlayer.currentTime = Math.min(this.audioPlayer.duration, this.audioPlayer.currentTime + 5);
     }
 	
 }
