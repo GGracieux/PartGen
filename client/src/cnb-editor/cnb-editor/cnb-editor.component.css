@@ -1,6 +1,31 @@
-.row {
+.mainrow {
     height: calc(100% - (61px + 50px));
     width: calc(100% + 15px);
-    overflow-y: scroll;
+    overflow-y: hidden;
 	padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .view-col {
+        max-height: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .view-col.col-top {
+        height: calc(50% - 50px/2);
+        padding-right: 0px;
+    }
+    .view-col.col-bottom {
+        height: calc(50% + 50px/2);
+        padding-right: 0px;
+    }
+}
+
+.viewer-toolbar {
+    height: 50px;
+}
+
+.pdf-content {
+    height: calc(100% - 50px);
+    overflow-y: scroll;
 }

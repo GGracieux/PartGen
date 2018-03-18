@@ -1,11 +1,18 @@
 <cnb-editor-menu [disable]="working" (menuClicked)="menuAction($event)"></cnb-editor-menu>
-<div class="row">
-    <div class="col-sm-12 col-md-6">
+<div class="mainrow row">
+    <div class="col-sm-12 col-md-6 view-col col-top">
         <cnb-editor-input [(content)]="dataCnb" ></cnb-editor-input>
     </div>
-    <div class="col-sm-12 col-md-6">
-    	<cnb-editor-viewer [wfState]="wfState" [b64Mp3]="dataBase64Mp3" [logs]="dataLog" [b64Pdf]="dataBase64Pdf"></cnb-editor-viewer>
+    <div class="col-sm-12 col-md-6 view-col col-bottom">
+        <div class="viewer-toolbar">
+            <cnb-editor-mp3 [content]="dataBase64Mp3" ></cnb-editor-mp3>
+            <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log>
+        </div>
+        <div class="pdf-content">
+            <cnb-editor-pdf [b64Pdf]="dataBase64Pdf"></cnb-editor-pdf>
+        </div>
     </div>
 </div>
 <cnb-editor-footer></cnb-editor-footer>
+
 <cnb-editor-progress [currState]="wfState"></cnb-editor-progress>
