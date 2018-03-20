@@ -20,14 +20,15 @@ import {Midi2mp3API} from '../services/midi2mp3-api/midi2mp3-api.service';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Imports des composants du module
-import {CnbEditorMenuComponent} 	from './cnb-editor-menu/cnb-editor-menu.component';
-import {CnbEditorInputComponent} 	from './cnb-editor-input/cnb-editor-input.component';
-import {CnbEditorPdfComponent} 		from './cnb-editor-pdf/cnb-editor-pdf.component';
-import {CnbEditorMp3Component} 		from './cnb-editor-mp3/cnb-editor-mp3.component';
-import {CnbEditorLogComponent} 		from './cnb-editor-log/cnb-editor-log.component';
-import {CnbEditorProgressComponent} from './cnb-editor-progress/cnb-editor-progress.component';
-import {CnbEditorFooterComponent} 	from './cnb-editor-footer/cnb-editor-footer.component';
-import {CnbEditorComponent} 		from './cnb-editor/cnb-editor.component';
+import {CnbEditorMenuComponent} 		from './cnb-editor-menu/cnb-editor-menu.component';
+import {CnbEditorInputComponent} 		from './cnb-editor-input/cnb-editor-input.component';
+import {CnbEditorPdfComponent} 			from './cnb-editor-pdf/cnb-editor-pdf.component';
+import {CnbEditorPdfControlsComponent} 	from './cnb-editor-pdf-controls/cnb-editor-pdf-controls.component';
+import {CnbEditorMp3Component} 			from './cnb-editor-mp3/cnb-editor-mp3.component';
+import {CnbEditorLogComponent} 			from './cnb-editor-log/cnb-editor-log.component';
+import {CnbEditorProgressComponent} 	from './cnb-editor-progress/cnb-editor-progress.component';
+import {CnbEditorFooterComponent} 		from './cnb-editor-footer/cnb-editor-footer.component';
+import {CnbEditorComponent} 			from './cnb-editor/cnb-editor.component';
 
 // Time format pipe
 import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
@@ -50,6 +51,7 @@ import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
 	CnbEditorMenuComponent,
 	CnbEditorInputComponent,
 	CnbEditorPdfComponent,
+	CnbEditorPdfControlsComponent,
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
 	CnbEditorProgressComponent,

@@ -1,0 +1,9 @@
+.viewer {
+	display: block;	
+	max-height: 100%;
+	overflow: scroll;
+}
+
+:host /deep/ .ng2-pdf-viewer-container {
+	overflow: visible !important;
+}

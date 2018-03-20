@@ -278,4 +278,14 @@ export class CnbEditorComponent implements OnInit {
         }
     }
 
+    // ------------------------------------
+    // VIEWER
+    // ------------------------------------
+
+    public zoom = 1;
+
+    zoomAction(zoomLevel: number) {
+        this.zoom = zoomLevel;
+    }
+    
 }

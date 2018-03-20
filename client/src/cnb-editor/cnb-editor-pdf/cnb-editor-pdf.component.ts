@@ -9,20 +9,23 @@ import {Component, Input} from '@angular/core';
 
 export class CnbEditorPdfComponent {
 
-	// Conteny binaire du PDF
+	// Zoom level
+	@Input() zoomLevel;
+
+	// PDF binary content
 	public binaryContent;
 
-	// Contenu base64 du PDF
+	// Base64 PDF content
 	private _b64Pdf;
 
-	// Contenu base64 du PDF : Setter
+	// Base64 PDF content : Setter
 	@Input() 
 	set b64Pdf(b64Pdf: string) {
     	this._b64Pdf = b64Pdf;
     	this.loadPdf(this._b64Pdf);
 	}
 
-	// Charge le contenu du pdf a partir du contenu base64
+	// Load PDF from base64 content
     public loadPdf(base64pdf) {
     	this.binaryContent = this.base64ToArrayBuffer(base64pdf);
     }
