@@ -112,9 +112,9 @@ export class CnbEditorComponent implements OnInit {
     }
 
     public menuAction(methodName: string) {
-		//this[methodName]();
+		this[methodName]();
 		//this.simulateWorkflowErrorLilyPond();
-		this.simulateWorkflowOK();
+		//this.simulateWorkflowOK();
     }
 	
 	private simulateWorkflowOK() {
