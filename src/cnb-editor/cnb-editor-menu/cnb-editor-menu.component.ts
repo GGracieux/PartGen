@@ -1,6 +1,8 @@
 // Imports Core
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
+import {WorkFlowState} from '../cnb-editor/cnb-editor.workflow';
+
 @Component({
     selector: 'cnb-editor-menu',
     styleUrls: ['./cnb-editor-menu.component.css'],
@@ -9,7 +11,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class CnbEditorMenuComponent {
 
-    @Input() disable: boolean = false;
+    @Input() wfState: WorkFlowState;
 
 	@Output() menuClicked = new EventEmitter<string>();
 

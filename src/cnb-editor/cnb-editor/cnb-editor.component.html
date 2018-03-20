@@ -1,19 +1,17 @@
-<cnb-editor-menu [disable]="working" (menuClicked)="menuAction($event)"></cnb-editor-menu>
+<cnb-editor-menu [wfState]="wfState" (menuClicked)="menuAction($event)"></cnb-editor-menu>
 <div class="mainrow row">
     <div class="col-sm-12 col-md-6 view-col col-top">
         <cnb-editor-input [(content)]="dataCnb" ></cnb-editor-input>
     </div>
     <div class="col-sm-12 col-md-6 view-col col-bottom">
         <div class="viewer-toolbar">
-            <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3"></cnb-editor-mp3>
-            <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)"></cnb-editor-pdf-controls>
+            <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3" [generating]="wfState == state.MIDI2MP3_RUN"></cnb-editor-mp3>
+            <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)" [disabled]="this.dataBase64Pdf == ''"></cnb-editor-pdf-controls>
             <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log>
         </div>
         <div class="pdf-content">
-            <cnb-editor-pdf [b64Pdf]="dataBase64Pdf" [zoomLevel]="zoom"></cnb-editor-pdf>
+            <cnb-editor-pdf [b64Pdf]="dataBase64Pdf" [zoomLevel]="zoom" [generating]="wfState == state.LILYPOND_RUN"></cnb-editor-pdf>
         </div>
     </div>
 </div>
 <cnb-editor-footer></cnb-editor-footer>
-
-<cnb-editor-progress [currState]="wfState"></cnb-editor-progress>

@@ -9,7 +9,10 @@ import {Component, Input} from '@angular/core';
 
 export class CnbEditorMp3Component {
 
-    // instance du player
+    // generation flag
+    @Input() generating = false;
+
+    // player instance
     public audioPlayer;
 
     @Input() set b64Mp3(b64Mp3: string) {

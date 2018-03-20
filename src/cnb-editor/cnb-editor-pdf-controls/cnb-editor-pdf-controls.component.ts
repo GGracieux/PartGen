@@ -1,5 +1,5 @@
 // Imports core
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'cnb-editor-pdf-controls',
@@ -8,6 +8,8 @@ import {Component, Output, EventEmitter} from '@angular/core';
 })
 
 export class CnbEditorPdfControlsComponent {
+
+    @Input() disabled = true;
 
     private zoomLevel: number = 1; 
 

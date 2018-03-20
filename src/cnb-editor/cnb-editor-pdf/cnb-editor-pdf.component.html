@@ -1,9 +1,17 @@
-<pdf-viewer
-	[src]="binaryContent"
-    [original-size]="false"
-    [fit-to-page]="true"
-    [autoresize]="false"
-    [show-all]="true"
-    [zoom]="zoomLevel"
-    class="viewer"
-></pdf-viewer>
+<div *ngIf="generating; then loadingTemplate else viewerTemplate"></div>
+
+<ng-template #viewerTemplate>
+	<pdf-viewer
+		[src]="binaryContent"
+	    [original-size]="false"
+	    [fit-to-page]="true"
+	    [autoresize]="false"
+	    [show-all]="true"
+	    [zoom]="zoomLevel"
+	    class="viewer"
+	></pdf-viewer>
+</ng-template>
+
+<ng-template #loadingTemplate>
+	GENERATING PDF
+</ng-template>

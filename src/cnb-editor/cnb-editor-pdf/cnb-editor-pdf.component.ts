@@ -9,6 +9,9 @@ import {Component, Input} from '@angular/core';
 
 export class CnbEditorPdfComponent {
 
+	// generation flag
+	@Input() generating;
+
 	// Zoom level
 	@Input() zoomLevel;
 

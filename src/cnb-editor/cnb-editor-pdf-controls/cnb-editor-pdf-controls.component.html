@@ -5,6 +5,7 @@
 	(click)="zoomPlus()" 
 	mdbTooltip="Zoom in" 
 	placement="bottom"
+	[disabled]="disabled"
 	>
 	<i class="fa fa-plus" aria-hidden="true"></i>
 </button>
@@ -16,6 +17,7 @@
 	(click)="zoomMinus()" 
 	mdbTooltip="Zoom out" 
 	placement="bottom"
+	[disabled]="disabled"
 	>
 	<i class="fa fa-minus" aria-hidden="true"></i>
 </button>

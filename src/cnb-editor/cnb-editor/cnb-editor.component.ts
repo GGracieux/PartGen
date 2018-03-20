@@ -38,6 +38,7 @@ export class CnbEditorComponent implements OnInit {
     public dataLog: LogEntry[] = [];
 
 	//-- Workflow & Generation state
+    public state = WorkFlowState;
 	public wfState: WorkFlowState = WorkFlowState.APP_INIT;
 	public working: boolean = false;
 
@@ -95,10 +96,25 @@ export class CnbEditorComponent implements OnInit {
     // MENU
     // ------------------------------------
 
+    public isGenerable() {
+    console.log(this.wfState);
+        switch(this.wfState) {
+            case WorkFlowState.APP_INIT:
+            case WorkFlowState.CNB2LP_ERR:
+            case WorkFlowState.LILYPOND_ERR:
+            case WorkFlowState.MIDI2MP3_ERR:
+            case WorkFlowState.SUCCESS:
+                console.log('true');
+                return true;
+        }
+        console.log('false');
+        return false;
+    }
+
     public menuAction(methodName: string) {
-		this[methodName]();
+		//this[methodName]();
 		//this.simulateWorkflowErrorLilyPond();
-		//this.simulateWorkflowOK();
+		this.simulateWorkflowOK();
     }
 	
 	private simulateWorkflowOK() {
