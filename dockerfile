@@ -8,4 +8,4 @@ MAINTAINER ggracieux@gmail.com
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Ajout du front
-COPY client/dist /public
+COPY dist /public
