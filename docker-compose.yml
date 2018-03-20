@@ -6,7 +6,7 @@ services:
     # Gateway & Front
     # -------------------------
     gateway-web:
-        image: cornpart:latest
+        image: bagpipe-scores:latest
         ports:
             - "80:80"
         depends_on:
@@ -19,7 +19,7 @@ services:
     # API - lilypond
     # -------------------------
     lilypond-web:
-        image: lilypond:latest
+        image: teuki/lilypond-api:latest
         expose:
             - "80"
         networks:
@@ -29,7 +29,7 @@ services:
     # API - midi2mp3
     # -------------------------
     midi2mp3-web:
-        image: midi2mp3:latest
+        image: teuki/midi2mp3-api:latest
         expose:
             - "80"
         networks:
