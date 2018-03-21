@@ -111,9 +111,9 @@ export class CnbEditorComponent implements OnInit {
     }
 
     public menuAction(methodName: string) {
-		//this[methodName]();
+		this[methodName]();
 		//this.simulateWorkflowErrorLilyPond();
-		this.simulateWorkflowOK();
+		//this.simulateWorkflowOK();
     }
 	
 	private simulateWorkflowOK() {
@@ -181,9 +181,11 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchCnb2Lp() {
+        this.scoreName = 'score';
 		this.wfState = WorkFlowState.CNB2LP_RUN;
         this.cnb2lp.convert(this.dataCnb).subscribe(
             cnb => {
+                this.scoreName = cnb.scoreName;
                 let title = 'Cnb2lp : Convertion CNB -> Lilypond';
                 if (cnb.statusCode == CNBStatusCode.OK) {
                     this.dataLp = cnb.lpData;
@@ -248,8 +250,12 @@ export class CnbEditorComponent implements OnInit {
     // ------------------------------------
 	// DOWNLOADS
     // ------------------------------------
-	
+
+    public zipping: boolean = false;
+
 	private download() {
+
+	    this.zipping = true;
 
 	    let zip = new JSZip();
         zip.file(this.scoreName + '.txt', this.dataCnb);
@@ -263,8 +269,11 @@ export class CnbEditorComponent implements OnInit {
         if (this.wfState >= WorkFlowState.MIDI2MP3_OK) {
             zip.file(this.scoreName + '.mp3', this.dataBase64Mp3, {base64: true});
         }
+
+        var self = this;
         zip.generateAsync({type:"blob"}).then(function(content) {
-            filesaver.saveAs(content, 'score.zip');
+            filesaver.saveAs(content, self.scoreName + '.zip');
+            self.zipping = false;
         });
     }
 

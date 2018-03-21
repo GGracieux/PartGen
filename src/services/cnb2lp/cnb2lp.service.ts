@@ -8,6 +8,9 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class Cnb2lpService {
 
+    // score name
+    private scoreName;
+
     // armure par défaut
     private currKey = 'mibM';
 
@@ -116,6 +119,8 @@ export class Cnb2lpService {
 
     // Lance la convertion
     private doConvert(content: string) {
+
+        this.scoreName = 'score';
         let result;
         try
         {
@@ -160,6 +165,7 @@ export class Cnb2lpService {
         // retourne la réponse formatté
         return {
             'statusCode': (success ? 'OK' : 'ERROR'),
+            'scoreName': this.scoreName,
             'message': message,
             'lpData': lpData,
             'log': logData
@@ -323,12 +329,25 @@ export class Cnb2lpService {
 		let key = tokenPart[0].trim();
 		let val = tokenPart[1].trim();
 
-
 		// sets user variable
 		if (this.userVar.hasOwnProperty(key)) {
 			this.userVar[key] = val;
 		}
+
+		// sets title
+        if (key == 'titre') {
+            this.scoreName = this.slugify(val);
+        }
 	}
+
+    private slugify(text)  {
+        return text.toString().toLowerCase()
+            .replace(/(\w)\'/g, '$1')           // Special case for apostrophes
+            .replace(/[^a-z0-9_\-]+/g, '-')     // Replace all non-word chars with -
+            .replace(/\-\-+/g, '-')             // Replace multiple - with single -
+            .replace(/^-+/, '')                 // Trim - from start of text
+            .replace(/-+$/, '');                // Trim - from end of text
+    }
 	
 	private composeFileHeader()
 	{		

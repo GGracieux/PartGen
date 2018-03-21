@@ -1,6 +1,7 @@
 export interface CNBConvert {
     statusCode: CNBStatusCode;
     message: string;
+    scoreName: string;
     lpData: string;
     log: string;
 }
