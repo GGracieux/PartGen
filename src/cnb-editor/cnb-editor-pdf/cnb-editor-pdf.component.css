@@ -7,3 +7,25 @@
 :host /deep/ .ng2-pdf-viewer-container {
 	overflow: visible !important;
 }
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 15px);
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45px; 
+}
+
+.spinLogo {
+	height: 40px;
+}
