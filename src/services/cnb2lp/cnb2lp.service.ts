@@ -18,23 +18,28 @@ export class Cnb2lpService {
     private notesConv;
 
 	// User variables
-	private userVar = {
-		"titre" : "",
-		"titre2": " ",
-		"titreGauche": "" ,
-		"titreDroite": "",
-		"piedPage": "",
-		"tempo": "",
-		"clef": "G",
-		"language": "français",
-		"tonalite": "mibM"
-	}
+	private userVar;
 	
 	
     // ----- Initialisation tableau de correspondance des notes
 
     public constructor() {
         this.initNotesConv();
+        this.initUserVariables();
+    }
+
+    private initUserVariables() {
+        this.userVar = {
+            "titre" : "",
+            "titre2": " ",
+            "titreGauche": "" ,
+            "titreDroite": "",
+            "piedPage": "",
+            "tempo": "",
+            "clef": "G",
+            "language": "français",
+            "tonalite": "mibM"
+        }
     }
 
     private initNotesConv() {
