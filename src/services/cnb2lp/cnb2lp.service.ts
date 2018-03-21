@@ -131,6 +131,7 @@ export class Cnb2lpService {
         {
             result = this.getConvertResponse(false,'Error while converting', e.message);
         }
+        console.log(result);
         return result;
 
     }
@@ -182,7 +183,7 @@ export class Cnb2lpService {
 			line = line.trim();
 			if (line.substr(0,1) == "#") {
 				tokens.push(line);
-			} else {
+            } else if (line.substr(0,1) != "%") {
 				line = this.replaceAll('  ', ' ', line);
 				line = this.replaceAll(String.fromCharCode(9), ' & ', line);		
 				tokens = tokens.concat(line.split(' '));
