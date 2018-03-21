@@ -125,11 +125,11 @@ export class Cnb2lpService {
         try
         {
             let lpData = this.convertData(content);
-            result = this.getConvertResponse(true, '', lpData, 'Convertion termiée');
+            result = this.getConvertResponse(true, '', lpData, 'Convertion OK');
         }
         catch (e)
         {
-            result = this.getConvertResponse(false,'Erreur lors de la convertion', e.message);
+            result = this.getConvertResponse(false,'Error while converting', e.message);
         }
         return result;
 
