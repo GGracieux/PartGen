@@ -186,7 +186,7 @@ export class CnbEditorComponent implements OnInit {
         this.cnb2lp.convert(this.dataCnb).subscribe(
             cnb => {
                 this.scoreName = cnb.scoreName;
-                let title = 'Cnb2lp : Convertion CNB -> Lilypond';
+                let title = 'Cnb2lp : Text to Lilypond Convertion';
                 if (cnb.statusCode == CNBStatusCode.OK) {
                     this.dataLp = cnb.lpData;
                     this.log (title, cnb.log, logLevel.success);
