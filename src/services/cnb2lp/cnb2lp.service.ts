@@ -154,14 +154,36 @@ export class Cnb2lpService {
         }
 		
 		// Assmeble file parts
-		let result = this.composeFileHeader();
-		result += "\\score{ \n"; 
-		result += "\\new Staff \\with {midiInstrument = #\"bagpipe\"} { \n";
+        let result = "\\version \"2.14.2\"\n\n";
+		result += this.composeFileHeader();
+		result += "\nnotes = { \n"; 
         result += this.composeScoreHeader();
 		result += LPTokens.join(' ');
-		result += " } \n\n\\layout{} \n\\midi{} \n}";
-		
+		result += "} \n\n";
+        result += this.composeLpPdfSection();
+        result += this.composeLpMidiSection();
+
         return  result;
+    }
+
+    private composeLpPdfSection() {
+        return "\\score  {\n"
+            + "  \\new Staff  <<\n"
+            + "    \\notes\n"
+            + "    >>\n"
+            + "  \\layout{}\n"
+            + "}\n\n";
+    }
+
+    private composeLpMidiSection() {
+        return "\\score  {\n"
+            + "  \\unfoldRepeats\n"
+            + "  \\new Staff  <<\n"
+            + "    \\set Staff.midiInstrument = \"bagpipe\"\n"
+            + "    \\notes\n"
+            + "    >>\n"
+            + "  \\midi{}\n"
+            + "}\n\n";
     }
 
     // Prepare la réponse du convert
@@ -357,11 +379,11 @@ export class Cnb2lpService {
 	private composeFileHeader()
 	{		
 		let header = "\\header {\n";
-		header += "title = \"" + this.userVar.titre + "\"\n";
-		header += "subtitle = \"" + this.userVar.titre2 + "\"\n";
-		header += "tagline = \"" + this.userVar.piedPage + "\"\n";
-		header += "meter = \"" + this.userVar.titreGauche + "\"\n";
-		header += "arranger = \"" + this.userVar.titreDroite + "\"\n";
+		header += "  title = \"" + this.userVar.titre + "\"\n";
+		header += "  subtitle = \"" + this.userVar.titre2 + "\"\n";
+		header += "  tagline = \"" + this.userVar.piedPage + "\"\n";
+		header += "  meter = \"" + this.userVar.titreGauche + "\"\n";
+		header += "  arranger = \"" + this.userVar.titreDroite + "\"\n";
 		header += "}\n";
 		return header;
 	}
@@ -369,12 +391,12 @@ export class Cnb2lpService {
 	private composeScoreHeader()
 	{
 		let header = "\n";
-		header += "\\language \"" + this.userVar.language + "\"\n";
+		header += " \\language \"" + this.userVar.language + "\"\n";
 		if (this.userVar.tempo != "") {
-			header += "\\tempo 4 = " + this.userVar.tempo + "\n";
+			header += " \\tempo 4 = " + this.userVar.tempo + "\n";
 		}				
-		header += "\\clef \"" + this.userVar.clef + "\"\n";	
-		header += "\\key " + this.userVar.tonalite.substr(0,this.userVar.tonalite.length -1) + " \\major\n";	
+		header += " \\clef \"" + this.userVar.clef + "\"\n";	
+		header += " \\key " + this.userVar.tonalite.substr(0,this.userVar.tonalite.length -1) + " \\major\n";	
 		return header;
 	}	
 	
