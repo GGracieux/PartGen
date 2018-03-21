@@ -15,8 +15,14 @@ export class CnbEditorMenuComponent {
 
 	@Output() menuClicked = new EventEmitter<string>();
 
+	@Output() sampleLoad = new EventEmitter<string>();
+
     public menuClick(action:string) {
     	this.menuClicked.emit(action);
+    } 
+
+    public sampleClick(name:string) {
+    	this.sampleLoad.emit(name);
     } 
 
 }
