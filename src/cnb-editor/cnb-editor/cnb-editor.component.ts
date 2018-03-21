@@ -17,6 +17,9 @@ import {LogEntry, logLevel} from '../cnb-editor-log/cnb-editor-log.interface';
 // Import enum du workflow de generation des données
 import {WorkFlowState} from './cnb-editor.workflow';
 
+// Import score sample loader
+import {CnbEditorSamples} from './cnb-editor.samples';
+
 // Import for zipping and saving
 import * as filesaver from 'file-saver';
 import * as JSZip from 'jszip';
@@ -44,6 +47,9 @@ export class CnbEditorComponent implements OnInit {
 	//-- Current song name
     public scoreName = 'score';
 
+    //-- Sample loader
+    public sampleLoader: CnbEditorSamples;
+
 
     // ------------------------------------
     // INIT
@@ -62,32 +68,8 @@ export class CnbEditorComponent implements OnInit {
 
     private initDefaultValues()
     {
-        this.dataCnb = "#titre = Highland Cathedral\n" +
-			"#piedPage = www.bagpipe-scores.com\n" +
-            "#tempo = 90\n" +
-            "\n" +
-            "[4/4] \n" + 
-            "R2{ \n" +
-            "\t(LA,mi,re) mi4 - mi8 fa16 sol16 (la,fa,sol) fa8 mi8 (la) SI8 mi8\n" +
-            "\t(la,fa,sol) fa4 - fa8 sol8 (fa) sol2\n" +
-            "\t(la) sol4 - sol8 la16 si16 (sol) la8 sol8 (la) fa8 mi8\n" +
-            "\t(la,fa,sol) fa4 - fa8 sol8 (SI,LA,SI,LA) SI2 |\n" +
-            "\n" +
-            "\t(LA,mi,LA) do4 - do8 re16 mi16 (re) mi8 SI8 (mi) re8 mi8 \n" +
-            "\t(si,la) si4 -si8 si8 la8 (si) sol2\n" +
-            "\t(la,fa,sol) fa4 - fa8 sol16 la16 (si) sol8 mi8 (la) SI8 mi8\n" +
-            "\t(la,fa,sol) fa4 - fa8 mi8 (la,mi,re) mi2 |\n" +
-            "\n" +
-            "\t(la,re,mi) re4 - re8 SI8 (la,fa,sol) fa4 - fa8 re16 fa16\n" +
-            "\t(la,sol,la) sol4 - sol8 re8 (LA,mi,LA) re4 - re8 do8\n" +
-            "\t(LA) SI4 (la) SI16 do16 re8 (la,do,mi) do2\n" +
-            "\t(la,re,mi) re4 (la) re16 mi16 fa8 (la,do,mi) do2 |\n" +
-            "\n" +
-            "\t(la,re,mi) re4 - re8 SI8 (la,fa,sol) fa4 - fa8 re16 fa16\n" +
-            "\t(la,sol,la) sol4 - sol8 re8 (LA,mi,LA) re4 - re8 do8\n" +
-            "\t(LA) SI4 (la) SI16 do16 re8 (la,do,mi) do4 - do8 SI8\n" +
-            "\t(la,SI,LA,SI,LA) SI2 - SI2 |\n" +
-            "}";
+        this.sampleLoader = new CnbEditorSamples();
+        this.dataCnb = this.sampleLoader.getSample('highland-cathedral');
     }
 
 
