@@ -66,7 +66,7 @@ export class CnbEditorComponent implements OnInit {
     	this.loadSample('highland-cathedral');
     }
 
-    private loadSample(name: string)
+    public loadSample(name: string)
     {   
         this.dataCnb = this.sampleLoader.getSample(name);
     }

@@ -119,6 +119,55 @@ export class CnbEditorSamples {
             "\t(la,SI,LA,SI,LA) SI2 - SI2 |\n" +
             "}";
 
+            this.samples['amazing-grace'] = "#titre = Amazing Grace\n" +
+                "#piedPage = www.bagpipe-scores.com\n" +
+                "#tempo = 60\n" +
+                "\n" +
+                "[3/4] \n" +
+                "(la) SI8 mi8 (la,mi,re) mi2\n" +
+                "(la) sol8 fa16 mi16 (la) sol2\n" +
+                "(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
+                "(la) do4 (LA) SI2 |\n" +
+                "\n" +
+                "(la) SI8 mi8 (la,mi,re) mi2\n" +
+                "(la) sol8 fa16 mi16 (la) sol2\n" +
+                "(la) fa8 sol8 (si,la) si2\n" +
+                "(la) si4 (la) si2 |\n" +
+                "\n" +
+                "sol8 si8 (la) si2\n" +
+                "sol8 fa16 mi16 (la) sol2\n" +
+                "(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
+                "(la) do4 (LA) SI2 |\n" +
+                "\n" +
+                "(la) SI8 mi8 (la,mi,re) mi2\n" +
+                "(la) sol8 fa16 mi16 (la) sol2\n" +
+                "fa4 (LA,mi,LA,re) mi2\n" +
+                "(re) mi4 (la,mi,re) mi2 |";
+
+            this.samples['greenlands'] = "#titre = Greenlands\n" +
+                "#piedPage = www.bagpipe-scores.com\n" +
+                "#tempo = 90\n" +
+                "\n" +
+                "@4 \n" +
+                "R2{ \n" +
+                "\t[4/4] (la) do8. (mi) re16\n" +
+                "\t(la) SI8. do16 (la) re16 fa8. (LA) fa4 re8. fa16\n" +
+                "\t(la) sol8. si16 (sol,la) sol16 fa8. (LA) fa4 (la) do8. (mi) re16 |\n" +
+                "\n" +
+                "\t(la) SI8. do16 (la) re16 fa8. (la,sol,la) sol16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
+                "\t(LA,mi,LA) do2. \n" +
+                "}\n" +
+                "\n" +
+                "@4 \n" +
+                "R2{ \n" +
+                "\tsi4\n" +
+                "\t(sol,la) sol8. fa16 (la) sol16 si8. (la) si4 (la) si4 |\n" +
+                "\n" +
+                "\t(sol,la) sol8. fa16 (la) sol16 re8. (LA,mi,LA) re4 si8. (sol,la) sol16\n" +
+                "\tfa8. sol16 si8. do16 (la) re16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
+                "\t(LA,mi,LA) do2. |\n" +
+                "}";
+
     }
 
 	// Retrurns a sample score by name
