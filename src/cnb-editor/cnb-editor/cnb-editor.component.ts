@@ -40,7 +40,6 @@ export class CnbEditorComponent implements OnInit {
 	//-- Workflow & Generation state
     public state = WorkFlowState;
 	public wfState: WorkFlowState = WorkFlowState.APP_INIT;
-	public working: boolean = false;
 
 	//-- Current song name
     public scoreName = 'score';
@@ -112,9 +111,9 @@ export class CnbEditorComponent implements OnInit {
     }
 
     public menuAction(methodName: string) {
-		this[methodName]();
+		//this[methodName]();
 		//this.simulateWorkflowErrorLilyPond();
-		//this.simulateWorkflowOK();
+		this.simulateWorkflowOK();
     }
 	
 	private simulateWorkflowOK() {
@@ -171,7 +170,6 @@ export class CnbEditorComponent implements OnInit {
 
         // Reinit workflow and data
         this.wfState = WorkFlowState.APP_INIT;
-        this.working = true;
         this.dataLp = '';
         this.dataBase64Pdf = '';
         this.dataBase64Midi = '';
@@ -195,13 +193,11 @@ export class CnbEditorComponent implements OnInit {
                 } else {
 					this.wfState = WorkFlowState.CNB2LP_ERR;
                     this.log (title, cnb.log, logLevel.warning);
-                    this.working = false;
                 }
             },
             msg => {
 				this.wfState = WorkFlowState.CNB2LP_ERR;
                 this.log('cnb2lp', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.working = false;
             }
         )
     }
@@ -219,13 +215,11 @@ export class CnbEditorComponent implements OnInit {
                 } else {
 					this.wfState = WorkFlowState.LILYPOND_ERR;
                     this.PGlog(lp.logs, logLevel.warning);
-                    this.working = false;
                 }
             },
             msg => {
 				this.wfState = WorkFlowState.LILYPOND_ERR;
                 this.log('lilypond', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.working = false;
             }
         );
     }
@@ -243,12 +237,10 @@ export class CnbEditorComponent implements OnInit {
 					this.wfState = WorkFlowState.MIDI2MP3_ERR;
                     this.PGlog(mp3.logs, logLevel.warning);
                 }
-                this.working = false;
             },
             msg => {
 				this.wfState = WorkFlowState.MIDI2MP3_ERR
                 this.log('midi2mp3', `Erreur: ${msg.status} ${msg.statusText}`, logLevel.error );
-                this.working = false;
             }
         );
     }
@@ -272,7 +264,7 @@ export class CnbEditorComponent implements OnInit {
             zip.file(this.scoreName + '.mp3', this.dataBase64Mp3, {base64: true});
         }
         zip.generateAsync({type:"blob"}).then(function(content) {
-            filesaver.saveAs(content, this.scoreName);
+            filesaver.saveAs(content, 'score.zip');
         });
     }
 
