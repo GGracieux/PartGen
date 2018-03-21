@@ -9,22 +9,21 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class CnbEditorInputComponent {
 
-	// Contenu de l'editeur
+	// Editor content
 	private _content: string;
 
-	// Contenu de l'editeur : Getter
+	// Editor content : Getter
   	get content(): string {
     	return this._content;
 	}
 
-	// Contenu de l'editeur : Setter
-	@Input() 
-	set content(content: string) {
+	// Editor content : Setter
+	@Input() set content(content: string) {
     	this._content = content;
     	this.contentChange.emit(this._content);
 	}
 
-	// Evenement pour 2 way binding
+	// Content change event
 	@Output() contentChange = new EventEmitter<string>();
 
 }
