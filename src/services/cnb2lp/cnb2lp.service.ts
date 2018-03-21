@@ -131,7 +131,6 @@ export class Cnb2lpService {
         {
             result = this.getConvertResponse(false,'Error while converting', e.message);
         }
-        console.log(result);
         return result;
 
     }
