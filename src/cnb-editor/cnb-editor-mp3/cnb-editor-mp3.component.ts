@@ -15,7 +15,16 @@ export class CnbEditorMp3Component {
     // player instance
     public audioPlayer;
 
+    // flag if this mp3 has been started once
+    private playedOnce: boolean = false;
+
     @Input() set b64Mp3(b64Mp3: string) {
+
+        if (this.playedOnce) {
+            this.audioPlayer.pause()
+            this.playedOnce = false;
+        }
+
         if (b64Mp3 == '') {
             this.audioPlayer = false;
         } else {
@@ -27,6 +36,7 @@ export class CnbEditorMp3Component {
     playPause(){
 	    if (this.audioPlayer.paused) {
             this.audioPlayer.play();
+            this.playedOnce = true;
         } else {
 	        this.audioPlayer.pause();
         }
