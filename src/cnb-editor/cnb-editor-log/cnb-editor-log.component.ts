@@ -21,7 +21,7 @@ export class CnbEditorLogComponent {
 	// Log data
 	@Input() content: LogEntry[] = [];
 	
-	// Is current workflow state an error
+	// Is current workflow state error or success
 	public stateError:boolean = false;
 	public stateSuccess:boolean = false;
 	
@@ -34,17 +34,11 @@ export class CnbEditorLogComponent {
 		}		
 		return false;
 	}
-
-	// Handles workflow state changes
-	private _wfState: WorkFlowState;	
 	
 	@Input() set wfState(wfState: WorkFlowState) {
-		this._wfState = wfState;
 		this.stateError = this.isErrorState(wfState);
 		this.stateSuccess = (wfState == WorkFlowState.SUCCESS);
-		if (this.stateError) {
-			this.logWindow.show();
-		}
+		if (this.stateError) this.logWindow.show();
 	}	
 
 }
