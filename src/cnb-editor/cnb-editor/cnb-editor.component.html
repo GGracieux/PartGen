@@ -8,12 +8,29 @@
     <div class="col-sm-12 col-md-6 view-col col-bottom">
 
         <div class="viewer-toolbar">
-            <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3" [generating]="wfState == state.MIDI2MP3_RUN"></cnb-editor-mp3>
-            <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)" [disabled]="this.dataBase64Pdf == ''"></cnb-editor-pdf-controls>
-            <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log>
-            <button type="button" class="btn btn-sm btn-outline-primary ctrlBtn" mdbRippleRadius (click)="menuAction('download')" mdbTooltip="Download" placement="bottom">
-                <i class="fa fa-download" aria-hidden="true"></i>
-            </button>
+
+                <div class="mp3-ctrl" >
+                    <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3" [generating]="wfState == state.MIDI2MP3_RUN"></cnb-editor-mp3>
+                </div>
+
+                <div class="pdf-ctrl" >
+                    <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)" [disabled]="this.dataBase64Pdf == ''"></cnb-editor-pdf-controls>
+                </div>
+
+                <div class="data-ctrl" >
+                    <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log>
+                    <button 
+                        type="button" 
+                        class="btn btn-sm btn-outline-primary ctrlBtn" 
+                        mdbRippleRadius 
+                        (click)="menuAction('download')" 
+                        mdbTooltip="Download" 
+                        placement="bottom" 
+                        [disabled]="zipping" >
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </button>
+                </div>
+
         </div>
 
         <div class="pdf-content">

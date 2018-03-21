@@ -13,10 +13,12 @@
 @media (max-width: 768px) {
     .view-col.col-top {
         height: calc(50% - 50px/2);
+        max-height: calc(50% - 50px/2);
         padding-right: 0px;
     }
     .view-col.col-bottom {
         height: calc(50% + 50px/2);
+        max-height: calc(50% + 50px/2);
         padding-right: 0px;
     }
 }
@@ -31,11 +33,30 @@
 .pdf-content {
     height: calc(100% - 50px);
     max-height: 100%;
-};
+}
 
 .ctrlBtn {
     width: 20px;
     padding-top: 5px;
     padding-left: 13px;
     padding-right: 20px;
+}
+
+.toolbarRow {
+    width:100%;
+}
+
+.mp3-ctrl {
+    display: inline-block; 
+    min-width:155px;
+}
+
+.pdf-ctrl {
+    display: inline-block; 
+    min-width:105px;
+}
+
+.data-ctrl {
+    display: inline-block; 
+    min-width:105px;
 }
