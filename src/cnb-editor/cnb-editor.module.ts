@@ -9,24 +9,23 @@ import {AceEditorModule} from 'ng2-ace-editor';
 // Imports Pdf Viewer
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 
-// Import service de convertion CNB -> LP
+// Imports CNB to Lilypond convertion service
 import {Cnb2lpService} from '../services/cnb2lp/cnb2lp.service';
 
-// Import des API
+// Lilypond and Midi to Mp3 API import
 import {LilyPondAPI} from '../services/lilypond-api/lilypond-api.service';
 import {Midi2mp3API} from '../services/midi2mp3-api/midi2mp3-api.service';
 
 // Import Angular Material Boostrap
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
-// Imports des composants du module
+// Imports module components
 import {CnbEditorMenuComponent} 		from './cnb-editor-menu/cnb-editor-menu.component';
 import {CnbEditorInputComponent} 		from './cnb-editor-input/cnb-editor-input.component';
 import {CnbEditorPdfComponent} 			from './cnb-editor-pdf/cnb-editor-pdf.component';
 import {CnbEditorPdfControlsComponent} 	from './cnb-editor-pdf-controls/cnb-editor-pdf-controls.component';
 import {CnbEditorMp3Component} 			from './cnb-editor-mp3/cnb-editor-mp3.component';
 import {CnbEditorLogComponent} 			from './cnb-editor-log/cnb-editor-log.component';
-import {CnbEditorProgressComponent} 	from './cnb-editor-progress/cnb-editor-progress.component';
 import {CnbEditorFooterComponent} 		from './cnb-editor-footer/cnb-editor-footer.component';
 import {CnbEditorComponent} 			from './cnb-editor/cnb-editor.component';
 
@@ -54,7 +53,6 @@ import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
 	CnbEditorPdfControlsComponent,
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
-	CnbEditorProgressComponent,
 	CnbEditorFooterComponent,
     MinuteSecondsPipe
 	],
