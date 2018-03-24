@@ -8,7 +8,7 @@ import {MMInfo, MMConvert, MMLog, MMStatusCode} from './midi2mp3-api.interfaces'
 @Injectable()
 export class Midi2mp3API {
 
-    private endPoint = 'http://192.168.99.100/api/v1/midi2mp3';
+    private endPoint = 'http://' + window.location.hostname + '/api/v1/midi2mp3';
 
     constructor(private http: HttpClient) {}
 

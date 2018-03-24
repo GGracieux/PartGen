@@ -8,7 +8,7 @@ import {LPInfo, LPConvert, LPLog, LPStatusCode} from './lilypond-api.interfaces'
 @Injectable()
 export class LilyPondAPI {
 
-    private endPoint = 'http://192.168.99.100/api/v1/lilypond';
+    private endPoint = 'http://' + window.location.hostname + '/api/v1/lilypond';
 
     constructor(private http: HttpClient) {}
 
