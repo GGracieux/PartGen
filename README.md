@@ -8,25 +8,24 @@ Containerized application (Docker, Nginx, Angular5 + Material + AceEditor + PDFj
 
 ## Start
 
-### Installation
+#### Installation
 ```bash
 npm install
 ```
 
-### Build
+#### Build
 ```bash
-npm run build
-docker image build -t bagpipe-scores .
+npm run docker-build
 ```
 
-### Run 
+#### Run 
 ```bash
 docker-compose up
 ```
 
-## Dev tools
+## Development tools
 	
-### Run with nodejs
+#### Run with nodejs
 ```bash
 npm start
 ```
@@ -34,20 +33,20 @@ npm start
 - Recompiles and refresh page on modification.
 - External APIs are not available.
 
-### Compiles & Build
+#### Compiles
 ```bash
 npm run build
 ```
 - Compiles into dist.
 
-### Compiles & Build
+#### Compiles & Build
 ```bash
 npm run docker-build
 ```
 - Compiles into dist.
 - Creates bagpipe-scores docker image
 
-### Compiles, Build & Run
+#### Compiles, Build & Run
 ```bash
 npm run docker-build-up
 ```
@@ -59,11 +58,11 @@ npm run docker-build-up
 - midi2mp3 API endpoints are exposed at : http://[docker-machine]/api/v1/midi2mp3/*
 
 
-### Stop all running containers
+#### Stop all running containers
 ```bash
 npm run docker-stop
 ```
 
-### Also read
+## Also read
 - [How to contribute](CONTRIBUTING.md)
 - [Code of conduct](CODE_OF_CONDUCT.md)
