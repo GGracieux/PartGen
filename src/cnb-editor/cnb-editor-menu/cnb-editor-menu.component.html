@@ -7,15 +7,15 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown" dropdown>
                 <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
-                Samples<span class="caret"></span></a>
+                Exemples<span class="caret"></span></a>
                 <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-scale')" mdbRippleRadius href="#">Tuto : Scale</a>
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-note-length')" mdbRippleRadius href="#">Tuto : Note lenght</a>
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-grace-notes')" mdbRippleRadius href="#">Tuto : Grace notes</a>
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-titles')" mdbRippleRadius href="#">Tuto : Titles &amp; text</a>
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-triolets')" mdbRippleRadius href="#">Tuto : Triplet</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-scale')" mdbRippleRadius href="#">Tuto : Gamme</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-note-length')" mdbRippleRadius href="#">Tuto : Durée des notes</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-grace-notes')" mdbRippleRadius href="#">Tuto : Notes d'ornementation</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-titles')" mdbRippleRadius href="#">Tuto : Titres &amp; textes</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-triolets')" mdbRippleRadius href="#">Tuto : Triolets</a>
                     <a class="dropdown-item waves-light" (click)="sampleClick('exemple-anacrouse')" mdbRippleRadius href="#">Tuto : Anacrouse</a>
-                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-repeat')" mdbRippleRadius href="#">Tuto : Repetition</a>
+                    <a class="dropdown-item waves-light" (click)="sampleClick('exemple-repeat')" mdbRippleRadius href="#">Tuto : Répétitions</a>
                     <div class="divider dropdown-divider"></div>
                     <a class="dropdown-item waves-light" (click)="sampleClick('highland-cathedral')" mdbRippleRadius href="#">Highland Cathedral</a>
                     <a class="dropdown-item waves-light" (click)="sampleClick('amazing-grace')" mdbRippleRadius href="#">Amazing Grace</a>
@@ -23,12 +23,12 @@
                 </div>
             </li>
             <li class="nav-item waves-light" mdbRippleRadius>
-                <a [ngClass]="{ 'nav-link': true, 'disabled': wfState%2 != 0 }" (click)="menuClick('generate')" >Generate</a>
+                <a [ngClass]="{ 'nav-link': true, 'disabled': wfState%2 != 0 }" (click)="menuClick('generate')" >Générer</a>
             </li>
         </ul>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item waves-light" mdbRippleRadius>
-                <a href="https://github.com/GGracieux/cornpart" target="_new" class="nav-link" mdbTooltip="View sources" placement="left" >
+                <a href="https://github.com/GGracieux/cornpart" target="_new" class="nav-link" mdbTooltip="Voir les sources" placement="left" >
                     <i class="fa fa-github"></i>
                 </a>
             </li>

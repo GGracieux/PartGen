@@ -93,55 +93,8 @@ export class CnbEditorComponent implements OnInit {
 
     public menuAction(methodName: string) {
 		this[methodName]();
-		//this.simulateWorkflowErrorLilyPond();
-		//this.simulateWorkflowOK();
     }
 	
-	private simulateWorkflowOK() {
-		setTimeout(()=>{ 
-			this.wfState = WorkFlowState.CNB2LP_RUN 
-			setTimeout(()=>{ 
-				this.wfState = WorkFlowState.CNB2LP_OK
-				setTimeout(()=>{ 
-					this.wfState = WorkFlowState.LILYPOND_RUN 
-					setTimeout(()=>{ 
-						this.wfState = WorkFlowState.LILYPOND_OK 
-						setTimeout(()=>{ 
-							this.wfState = WorkFlowState.MIDI2MP3_RUN 
-							setTimeout(()=>{ 
-								this.wfState = WorkFlowState.MIDI2MP3_OK 
-								setTimeout(()=>{ 
-									this.wfState = WorkFlowState.SUCCESS 
-								}, 100);								
-							}, 1000);							
-						}, 100);							
-					}, 1000);						
-				}, 100);	 				
-			}, 1000);	 
-		}, 100);		
-	}
-	
-	private simulateWorkflowErrorLilyPond() {
-		setTimeout(()=>{ 
-			this.wfState = WorkFlowState.CNB2LP_RUN 
-			setTimeout(()=>{ 
-				this.wfState = WorkFlowState.CNB2LP_OK
-				setTimeout(()=>{ 
-					this.wfState = WorkFlowState.LILYPOND_RUN 
-					setTimeout(()=>{ 
-						this.wfState = WorkFlowState.LILYPOND_ERR							
-						this.dataLog = [
-							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.success},
-							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.warning},
-							{ "title": "Converting TXT to Lilypond", "content": "Log content",  "level": logLevel.error},					
-							{ "title": "Converting TXT to Lilypond", "content": "Log content last",  "level": logLevel.error}
-						];
-					}, 1000);						
-				}, 100);	 				
-			}, 1000);	 
-		}, 100);		
-	}	
-
 
     // ------------------------------------
     // GENERATION
@@ -162,9 +115,9 @@ export class CnbEditorComponent implements OnInit {
     }
 
     private launchCnb2Lp() {
-        this.scoreName = 'score';
+        this.scoreName = 'partition';
 		this.wfState = WorkFlowState.CNB2LP_RUN;
-        this.cnb2lp.convert(this.dataCnb).subscribe(
+        this.cnb2lp.convert(this.dataCnb, this.scoreName).subscribe(
             cnb => {
                 this.scoreName = cnb.scoreName;
                 let title = 'Cnb2lp : Text to Lilypond Convertion';

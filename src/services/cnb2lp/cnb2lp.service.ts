@@ -118,14 +118,14 @@ export class Cnb2lpService {
     // TRAITEMENT
     //--------------------------------
 
-    public convert(cnbData): Observable<CNBConvert> {
-        return Observable.of<CNBConvert>(this.doConvert(cnbData));
+    public convert(cnbData:string, defaultScoreName:string = 'score'): Observable<CNBConvert> {
+        return Observable.of<CNBConvert>(this.doConvert(cnbData,defaultScoreName));
     }
 
     // Lance la convertion
-    private doConvert(content: string) {
+    private doConvert(content: string, defaultScoreName:string) {
 
-        this.scoreName = 'score';
+        this.scoreName = defaultScoreName;
         let result;
         try
         {
