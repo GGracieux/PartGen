@@ -1,5 +1,5 @@
 # Bagpipe Scores
-Textual score editor for bagpipe with PDF and MP3 generation.
+[bagpipe-scores.com](http://bagpipe-scores.com) is a textual score editor for bagpipe with PDF and MP3 generation.
 Containerized application (Docker, Nginx, Angular5 + Material + AceEditor + PDFjs) using [lilypond](https://github.com/GGracieux/lilypond-api) and [midi2mp3](https://github.com/GGracieux/midi2mp3-api) APIs
 
 ## Prerequisite
