@@ -10,44 +10,40 @@
 
 <ng-template #playerTemplate>
 
-	<button 
-		type="button" 
-		class="btn btn-sm btn-outline-primary audioBtn" 
-		mdbRippleRadius 
-		(click)="backward()" 
-		[disabled]="audioPlayer === false"
-		mdbTooltip="Reculer 5 sec." 
-		placement="bottom"
-		>
-		<i class="fa fa-step-backward" aria-hidden="true"></i>
-	</button>
-
-	<button 
-		type="button" 
-		class="btn btn-sm btn-outline-primary audioBtn" 
-		mdbRippleRadius 
-		(click)="playPause()" 
-		[disabled]="audioPlayer === false"
-		mdbTooltip="Lire / Pause" 
-		placement="bottom"
-		>
-		<i [ngClass]="{
-	        'fa':true,
-	        'fa-play': !(audioPlayer === false) || audioPlayer.paused,
-	        'fa-pause': !audioPlayer.paused
-	        }" aria-hidden="true"></i>
-	</button>
-
-	<button 
-		type="button" 
-		class="btn btn-sm btn-outline-primary audioBtn" 
-		mdbRippleRadius 
-		(click)="forward()" 
-		[disabled]="audioPlayer === false"
-		mdbTooltip="Avançer 5 sec." 
-		placement="bottom"
-		>
-		<i class="fa fa-step-forward" aria-hidden="true"></i>
-	</button>
+<button 
+	type="button" 
+	class="btn btn-sm btn-outline-primary audioBtn" 
+	mdbRippleRadius 
+	(click)="backward()" 
+	[disabled]="audioPlayer === false"
+	mdbTooltip="Reculer 5 sec." 
+	placement="bottom"
+	>
+	<i class="fa fa-step-backward" aria-hidden="true"></i>
+</button><button 
+	type="button" 
+	class="btn btn-sm btn-outline-primary audioBtn" 
+	mdbRippleRadius 
+	(click)="playPause()" 
+	[disabled]="audioPlayer === false"
+	mdbTooltip="Lire / Pause" 
+	placement="bottom"
+	>
+	<i [ngClass]="{
+        'fa':true,
+        'fa-play': !(audioPlayer === false) || audioPlayer.paused,
+        'fa-pause': !audioPlayer.paused
+        }" aria-hidden="true"></i>
+</button><button 
+	type="button" 
+	class="btn btn-sm btn-outline-primary audioBtn" 
+	mdbRippleRadius 
+	(click)="forward()" 
+	[disabled]="audioPlayer === false"
+	mdbTooltip="Avançer 5 sec." 
+	placement="bottom"
+	>
+	<i class="fa fa-step-forward" aria-hidden="true"></i>
+</button>
 
 </ng-template>

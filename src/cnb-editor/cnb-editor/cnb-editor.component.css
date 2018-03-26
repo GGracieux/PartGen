@@ -38,8 +38,8 @@
 .ctrlBtn {
     width: 20px;
     padding-top: 5px;
-    padding-left: 13px;
-    padding-right: 20px;
+    padding-left: 11px;
+    padding-right: 18px;
 }
 
 .toolbarRow {
@@ -48,12 +48,12 @@
 
 .mp3-ctrl {
     display: inline-block; 
-    min-width:155px;
+    min-width:135px;
 }
 
 .pdf-ctrl {
     display: inline-block; 
-    min-width:105px;
+    min-width:90px;
 }
 
 .data-ctrl {
