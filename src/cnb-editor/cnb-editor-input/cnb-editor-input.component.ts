@@ -1,6 +1,9 @@
 // Imports core
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
+// Imports code mirror mode
+import 'codemirror-bps/mode/bps-breizh/bps-breizh.js';
+
 @Component({
     selector: 'cnb-editor-input',
     styleUrls: ['./cnb-editor-input.component.css'],
@@ -9,21 +12,23 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class CnbEditorInputComponent {
 
-	// Editor content
-	private _content: string;
+	private config = { lineNumbers: true, mode: 'text/bps-breizh' };
 
-	// Editor content : Getter
-  	get content(): string {
-    	return this._content;
+	// Editor code
+	private _code: string;
+
+	// Editor code : Getter
+  	get code(): string {
+    	return this._code;
 	}
 
-	// Editor content : Setter
-	@Input() set content(content: string) {
-    	this._content = content;
-    	this.contentChange.emit(this._content);
+	// Editor code : Setter
+	@Input() set code(code: string) {
+    	this._code = code;
+    	this.contentChange.emit(this._code);
 	}
 
-	// Content change event
+	// Code change event
 	@Output() contentChange = new EventEmitter<string>();
 
 }

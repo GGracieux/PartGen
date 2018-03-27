@@ -3,8 +3,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpModule, Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
 
-// Imports ace mirror
-import {AceEditorModule} from 'ng2-ace-editor';
+// Imports code mirror
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CodemirrorModule} from 'ng2-codemirror';
 
 // Imports Pdf Viewer
 import {PdfViewerModule} from 'ng2-pdf-viewer';
@@ -36,7 +37,8 @@ import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
   imports: [
 	CommonModule, 
 	HttpModule,
-	AceEditorModule,
+	FormsModule,
+	CodemirrorModule,
 	PdfViewerModule,
 	MDBBootstrapModule.forRoot()
 	],
