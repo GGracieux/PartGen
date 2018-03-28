@@ -1,7 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body {
     height: 100%;
 	padding: 0px;
 	margin:0px;
 }
+
+/* Code mirror css */
+.cm-uservar {color: #998c06;}
+.cm-tempo {color: #d17200;}
+.cm-ornement {color: #7c7c7c;}
+.cm-note {color: #0b4a91;}
+.cm-liaison {color: black;}
+.cm-anacrouse {color: black;}
+.cm-silence {color: #0b4a91;}
+.cm-linebreak {color: #ff7b00;}
+.cm-repeatBlock {color: #3b7200;}
+.cm-endBlock {color: #3b7200;}
+.cm-altBlock {color: #3b7200;}	
+.cm-annotation {color: blue;}	
+.cm-commentaire {color: grey;}
+.cm-nolet {color: black;}
