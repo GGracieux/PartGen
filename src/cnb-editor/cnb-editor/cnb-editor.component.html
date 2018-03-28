@@ -1,42 +1,44 @@
-<cnb-editor-menu [wfState]="wfState" (menuClicked)="menuAction($event)" (sampleLoad)="loadSample($event)"></cnb-editor-menu>
-<div class="mainrow row">
+<div class="container-main">
+    <cnb-editor-menu [wfState]="wfState" (menuClicked)="menuAction($event)" (sampleLoad)="loadSample($event)"></cnb-editor-menu>
+    <div class="mainrow row no-gutters">
 
-    <div class="col-sm-12 col-md-6 view-col col-top">
-        <cnb-editor-input [(code)]="dataCnb" ></cnb-editor-input>
-    </div>
+        <div class="col-sm-12 col-md-6 view-col col-top">
+            <cnb-editor-input [(code)]="dataCnb" ></cnb-editor-input>
+        </div>
 
-    <div class="col-sm-12 col-md-6 view-col col-bottom">
+        <div class="col-sm-12 col-md-6 view-col col-bottom">
 
-        <div class="viewer-toolbar">
+            <div class="viewer-toolbar">
 
-                <div class="mp3-ctrl" >
-                    <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3" [generating]="wfState == state.MIDI2MP3_RUN"></cnb-editor-mp3>
-                </div>
+                    <div class="mp3-ctrl" >
+                        <cnb-editor-mp3 [b64Mp3]="dataBase64Mp3" [generating]="wfState == state.MIDI2MP3_RUN"></cnb-editor-mp3>
+                    </div>
 
-                <div class="pdf-ctrl" >
-                    <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)" [disabled]="this.dataBase64Pdf == ''"></cnb-editor-pdf-controls>
-                </div>
+                    <div class="pdf-ctrl" >
+                        <cnb-editor-pdf-controls (zoomChanged)="zoomAction($event)" [disabled]="this.dataBase64Pdf == ''"></cnb-editor-pdf-controls>
+                    </div>
 
-                <div class="data-ctrl" >
-                    <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log><button 
-                        type="button" 
-                        class="btn btn-sm btn-outline-primary ctrlBtn" 
-                        mdbRippleRadius 
-                        (click)="menuAction('download')" 
-                        mdbTooltip="Télécharger" 
-                        placement="bottom" 
-                        [disabled]="zipping" >
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                    </button>
-                </div>
+                    <div class="data-ctrl" >
+                        <cnb-editor-log [wfState]="wfState" [content]="dataLog" ></cnb-editor-log><button 
+                            type="button" 
+                            class="btn btn-sm btn-outline-primary ctrlBtn" 
+                            mdbRippleRadius 
+                            (click)="menuAction('download')" 
+                            mdbTooltip="Télécharger" 
+                            placement="bottom" 
+                            [disabled]="zipping" >
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+            </div>
+
+            <div class="pdf-content">
+                <cnb-editor-pdf [b64Pdf]="dataBase64Pdf" [zoomLevel]="zoom" [generating]="wfState == state.LILYPOND_RUN"></cnb-editor-pdf>
+            </div>
 
         </div>
 
-        <div class="pdf-content">
-            <cnb-editor-pdf [b64Pdf]="dataBase64Pdf" [zoomLevel]="zoom" [generating]="wfState == state.LILYPOND_RUN"></cnb-editor-pdf>
-        </div>
-
     </div>
-
+    <cnb-editor-footer></cnb-editor-footer>
 </div>
-<cnb-editor-footer></cnb-editor-footer>
