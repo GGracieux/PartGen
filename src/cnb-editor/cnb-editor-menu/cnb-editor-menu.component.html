@@ -6,10 +6,10 @@
     <links>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item waves-light" mdbRippleRadius>
-                <a [ngClass]="{ 'nav-link': true, 'disabled': wfState%2 != 0 }" (click)="tutoModal.show()" >Notation</a>
+                <a class="nav-link" (click)="tutoModal.show()" >Notation</a>
             </li>
             <li class="nav-item waves-light" mdbRippleRadius>
-                <a [ngClass]="{ 'nav-link': true, 'disabled': wfState%2 != 0 }" (click)="menuClick('generate')" >Générer</a>
+                <a [ngClass]="{ 'nav-link': true, 'disabled': (wfState%2 != 0) || !generable }" (click)="menuClick('generate')" >Générer</a>
             </li>
         </ul>
         <ul class="navbar-nav nav-flex-icons">

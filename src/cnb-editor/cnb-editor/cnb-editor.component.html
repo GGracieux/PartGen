@@ -1,9 +1,9 @@
 <div class="container-main">
-    <cnb-editor-menu [wfState]="wfState" (menuClicked)="menuAction($event)" (sampleLoad)="loadSample($event)"></cnb-editor-menu>
+    <cnb-editor-menu [wfState]="wfState" (menuClicked)="menuAction($event)" (sampleLoad)="loadSample($event)" [generable]="inputChanged"></cnb-editor-menu>
     <div class="mainrow row no-gutters">
 
         <div class="col-sm-12 col-md-6 view-col col-top">
-            <cnb-editor-input [(code)]="dataCnb" (contentChange)="dataCnb = $event"></cnb-editor-input>
+            <cnb-editor-input [code]="dataCnb" (contentChange)="contentChange($event)"></cnb-editor-input>
         </div>
 
         <div class="col-sm-12 col-md-6 view-col col-bottom">

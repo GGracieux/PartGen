@@ -13,6 +13,8 @@ export class CnbEditorMenuComponent {
 
     @Input() wfState: WorkFlowState;
 
+    @Input() generable: boolean = false;
+
 	@Output() menuClicked = new EventEmitter<string>();
 
 	@Output() sampleLoad = new EventEmitter<string>();

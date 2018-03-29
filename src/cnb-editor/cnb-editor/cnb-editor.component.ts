@@ -44,6 +44,9 @@ export class CnbEditorComponent implements OnInit {
     public state = WorkFlowState;
 	public wfState: WorkFlowState = WorkFlowState.APP_INIT;
 
+    // Text modified flag
+    public inputChanged = true;
+
 	//-- Current song name
     public scoreName = 'score';
 
@@ -76,21 +79,6 @@ export class CnbEditorComponent implements OnInit {
     // MENU
     // ------------------------------------
 
-    public isGenerable() {
-    console.log(this.wfState);
-        switch(this.wfState) {
-            case WorkFlowState.APP_INIT:
-            case WorkFlowState.CNB2LP_ERR:
-            case WorkFlowState.LILYPOND_ERR:
-            case WorkFlowState.MIDI2MP3_ERR:
-            case WorkFlowState.SUCCESS:
-                console.log('true');
-                return true;
-        }
-        console.log('false');
-        return false;
-    }
-
     public menuAction(methodName: string) {
 		this[methodName]();
     }
@@ -99,6 +87,11 @@ export class CnbEditorComponent implements OnInit {
     // ------------------------------------
     // GENERATION
     // ------------------------------------
+
+    public contentChange(newCode: string) {
+        this.dataCnb = newCode;
+        this.inputChanged = true;
+    }
 
     private generate() {
 
@@ -109,6 +102,9 @@ export class CnbEditorComponent implements OnInit {
         this.dataBase64Midi = '';
         this.dataBase64Mp3 = '';
         this.dataLog = [];
+
+        // Prevent generating if text does not change
+        this.inputChanged = false;
 
         // Launches generation chain
         this.launchCnb2Lp();
