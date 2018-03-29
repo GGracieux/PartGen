@@ -12,7 +12,7 @@ import 'codemirror-bps/mode/bps-breizh/bps-breizh.js';
 
 export class CnbEditorInputComponent {
 
-	private config = { lineNumbers: true, mode: 'text/bps-breizh' };
+	public config = { lineNumbers: true, mode: 'text/bps-breizh' };
 
 	// Editor code
 	private _code: string;
