@@ -38,8 +38,11 @@ export class Cnb2lpService {
             "tempo": "",
             "clef": "G",
             "language": "français",
-            "tonalite": "mibM"
-        }
+            "tonalite": "mibM",
+			"indenterPremiere" : "non",
+			"etirerDerniere" : "oui",
+			"orientation" : "portrait"
+		};
     }
 
     private initNotesConv() {
@@ -156,6 +159,8 @@ export class Cnb2lpService {
 		// Assmeble file parts
         let result = "\\version \"2.14.2\"\n\n";
 		result += this.composeFileHeader();
+		result += this.composeOrientationHeader();
+		result += this.composeLayout();
 		result += "\nnotes = { \n"; 
         result += this.composeScoreHeader();
 		result += LPTokens.join(' ');
@@ -163,6 +168,7 @@ export class Cnb2lpService {
         result += this.composeLpPdfSection();
         result += this.composeLpMidiSection();
 
+		console.log(result);
         return  result;
     }
 
@@ -399,6 +405,39 @@ export class Cnb2lpService {
 		header += " \\key " + this.userVar.tonalite.substr(0,this.userVar.tonalite.length -1) + " \\major\n";	
 		return header;
 	}	
+	
+	private composeLayout()
+	{
+		// Composing indent info
+		let ident = "";
+		if (this.userVar.indenterPremiere == "non") {
+			ident = "  indent = #0\n";		
+		}
+	
+		// Composing ragged-last info
+		let ragged = "";	
+		if (this.userVar.etirerDerniere == "oui") {
+			ragged = "  ragged-last = ##f\n";
+		}		
+		
+		// Assembling
+		let layout = "\n";
+		layout += "\\layout {\n";
+		layout += ident;
+		layout += ragged;
+		layout += "}\n";
+		
+		return layout;
+	}	
+	
+	private composeOrientationHeader()
+	{
+		let orient = "";
+		if (this.userVar.orientation == "paysage") {
+			orient += "#(set-default-paper-size \"a4landscape\")\n";		
+		} 
+		return orient;
+	}
 	
 	
 	// ----- Helpers
