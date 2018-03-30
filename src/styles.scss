@@ -5,9 +5,7 @@ html, body {
 }
 
 /* Code mirror css */
-
 .cm-uservar {color: #af9316;}
-
 .cm-tempo {color: #f98b16;}
 .cm-linebreak {color: #f98b16;}
 .cm-repeatBlock {color: #f98b16;}
@@ -17,12 +15,8 @@ html, body {
 .cm-anacrouse {color: #f98b16;}
 .cm-silence {color: #f98b16;}
 .cm-nolet {color: #f98b16;}
-
 .cm-ornement {color: #7c7c7c;}
-
 .cm-note {color: #0b4a91;}
-
 .cm-annotation {color: black;}	
-
 .cm-commentaire {color: #249115;}
-
+span[role=presentation] {color: red;}
