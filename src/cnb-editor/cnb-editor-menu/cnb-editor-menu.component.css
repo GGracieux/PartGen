@@ -1,0 +1,10 @@
+.modal {
+    max-height: 95%;
+    min-height: 300px;
+}
+
+.modal-dialog {
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}

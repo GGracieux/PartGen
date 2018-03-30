@@ -20,3 +20,14 @@ html, body {
 .cm-annotation {color: black;}	
 .cm-commentaire {color: #249115;}
 span[role=presentation] {color: red;}
+
+/* Roboto font fix, switching to Poppins font */
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+.navbar-brand, 
+.nav-link,
+.modal-header,
+.modal-body, 
+.tooltip,
+.footer-copyright { 
+	font-family: 'Poppins', sans-serif; 
+}
