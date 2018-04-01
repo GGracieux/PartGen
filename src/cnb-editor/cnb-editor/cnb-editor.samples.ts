@@ -5,25 +5,44 @@ export class CnbEditorSamples {
 
 	constructor() {
 
-		this.samples['exemple-scale'] = "#titre = Exemple : Gamme\n" +
-            "[9/4] LA SI do re mi fa sol la si";
+		this.samples['exemple-scale'] = "% Gamme complète de la cornemuse du LA grave au si aigu \n" +
+            "LA SI do re mi fa sol la si";
 
-            this.samples['exemple-note-length'] = "#titre = Exemple : Durée des notes\n" +
-            "[4/4] sol64 la32 sol16 la8 sol4 la2 sol1";
+		this.samples['exemple-note-length'] = "% --------------- DUREE -----------------\n" +
+			"% Les durées des notes sont indiquées par leur valeur fractionnaire \n" +
+			"% par rapport à la durée d’une ronde. Une noire, par exemple, qui \n" +
+			"% équivaut à un 1/4 de ronde s'écrit 4, une blanche (1/2 ronde) s'écrit 2\n" +
+			"LA1\t\t% ronde\n" +
+			"SI2\t\t% blanche\n" +
+			"do4\t\t% noire\n" +
+			"re8\t\t% croche\n" +
+			"mi16\t% double croche\n" +
+			"fa32\t% triple croche\n" +
+			"sol64\t% quadruple croche\n" +
+			"la64\t% quadruple croche\n" +
+			"\n" +
+			"% --------------- LIAISONS -----------------\n" +
+			"% Pour créer une liaison de prolognation on utilise le trait d'union\n" +
+			"do2 - do8\n" +
+			"\n" +
+			"% --------------- POINTEES -----------------\n" +
+			"% Pour créer une note pointée on ajoute un point aprés la durée\n" +
+			"do8. re16";
 
-		this.samples['exemple-grace-notes'] = "#titre = Exemple : Ornementations\n" +
+		this.samples['exemple-grace-notes'] = "% Les notes d'ornementations s'écrivent entre parenthése\n" +
+            "% sans précision de durée et séparées par des virules\n" +
             "\n" +
-            "% --- Sans ornementation\n" +
-            "mi4 - mi8 fa16 sol16 fa8 mi8 SI8 mi8\n" +
-            "fa4 - fa8 sol8 sol2\n" +
-            "sol4 - sol8 la16 si16 la8 sol8 fa8 mi8\n" +
-            "fa4 - fa8 sol8 SI2 |\n" +
+            "% Détaché de la\n" +
+            "(la) do2\n" +
             "\n" +
-            "% --- Avec ornementation\n" +
-            "(LA,mi,re) mi4 - mi8 fa16 sol16 (la,fa,sol) fa8 mi8 (la) SI8 mi8\n" +
-            "(la,fa,sol) fa4 - fa8 sol8 (fa) sol2\n" +
-            "(la) sol4 - sol8 la16 si16 (sol) la8 sol8 (la) fa8 mi8\n" +
-            "(la,fa,sol) fa4 - fa8 sol8 (SI,LA,SI,LA) SI2 |";
+            "% Doublé de mi\n" +
+            "(la,mi,la) mi2\n" +
+            "\n" +
+            "% Grip\n" +
+            "(LA,mi,LA) fa2\n" +
+            "\n" +
+            "% Birl\n" +
+            "(la,SI,LA,SI,LA) SI2 ";
 
 		this.samples['exemple-titles'] = "#titre = Exemple : Titres & textes\n" +
             "#titre2 = Sous-titre\n" +
@@ -43,54 +62,71 @@ export class CnbEditorSamples {
             "si la sol fa\n" +
             "mi re do SI";
 
-		this.samples['exemple-triolets'] = "#titre = Exemple : Triolets\n" +
+		this.samples['exemple-rythm'] = "% Indication de tempo (90 est le tempo par defaut)\n" +
+            "#tempo = 200\n" +
             "\n" +
-            "% ---- Première mesure\n" +
-            "do re mi fa \n" +
+            "% Métrique : 3/4\n" +
+            "[3/4] \t\t\t\t\n" +
             "\n" +
-            "% ---- Triolet noté N3/2 (3 notes pour une durée de 1/2 de la mesure)\n" +
-            "N3/2{ do re mi } fa sol \n" +
+            "% Première mesure\n" +
+            "do4 re4 mi4 \n" +
             "\n" +
-            "% ---- Troisième mesure \n" +
-            "do re mi fa ";
+            "% Deuxième mesure\n" +
+            "fa2 sol4\n" +
+            "\n" +
+            "% Métrique 4/4 (métrique par défaut si rien n'est précisé)\n" +
+            "[4/4]   \t\t\t\n" +
+            "\n" +
+            "% Troisième mesure : Anacrouse de la durée d'une noire\n" +
+            "@4 mi4\t\t\t\n" +
+            "\n" +
+            "% Quatrième mesure\n" +
+            "sol2 si4 la4\n" +
+            "\n" +
+            "% Cinquième mesure avec un triolet noté N3/2 (3 notes pour une durée de 2)\n" +
+            "sol2\t\t\t\t\n" +
+            "N3/2{ do4 re4 mi4 }";
 
-		this.samples['exemple-anacrouse'] = "#titre = Exemple : Anacrouse\n" +
-            "\n" +
-            "% --- Anacrouse de durée 4 (noir)\n" +
-            "[4/4] \n" +
-            "@4 mi\n" +
-            "SI do re mi\n" +
-            "fa sol la si\n" +
-            "la sol fa mi\n" +
-            "re do SI LA |\n" +
-            "\n" +
-            "% --- Anacrouse de durée 2 (blanche)\n" +
-            "@2 mi re\n" +
-            "SI do re mi\n" +
-            "fa sol la si\n" +
-            "la sol fa mi\n" +
-            "re do SI LA |";
-
-		this.samples['exemple-repeat'] = "#titre = Exemple : Répétitions\n" +
-            "\n" +
-            "% --- Première ligne : Répétition (x3)\n" +
+		this.samples['exemple-repeat'] = "% --- Mesures 1 et 2 : Répétition (x3)\n" +
             "R3{ \n" +
             "    do re mi fa\n" +
             "    sol fa mi re\n" +
-            "} |\n" +
+            "}\n" +
             "\n" +
-            "% --- Deuxième linge : répétition avec alternative\n" +
+            "% --- Mesures 3 et 4 : répétition avec alternative\n" +
             "R2{ \n" +
             "    do re mi fa\n" +
             "    sol fa\n" +
-            "}\n" +
+            "} \n" +
             "A{ \n" +
-            "    % --- Première fin\n" +
-            "\t{ mi re }\n" +
-            "\t\n" +
-            "\t% --- Fin alternative\n" +
-            "\t{ do do }\n" +
-            "}\n";
+            "\t{ mi re } % --- Première fin\n" +
+            "\t{ do do } % --- Fin alternative\n" +
+            "}";
+
+		this.samples['exemple-paging'] = "% Défini l'orientation de la partition\n" +
+            "% valeurs possibles : portrait (par defaut) / paysage\n" +
+            "#orientation = paysage\n" +
+            "\n" +
+            "% Défini si la première ligne doit être indentée\n" +
+            "% valeurs possibles : oui / non (par defaut)\n" +
+            "#indenterPremiere = oui\n" +
+            "\n" +
+            "% Défini si la dernière ligne doit être étirée sur la largeur de la page\n" +
+            "% valeurs possibles : oui (par defaut) / non\n" +
+            "#etirerDerniere = non\n" +
+            "\n" +
+            "LA SI do re mi fa sol la | % Le symbol \"|\" permet de forcer un retour ligne\n" +
+            "si la sol fa mi re do SI | \n" +
+            "LA SI do re";
+
+		this.samples['exemple-pitch'] = "% Valeurs possibles : G, C ou F\n" +
+            "#clef = F\n" +
+            "\n" +
+            "% Valeurs possibles : Toutes les tonalités \n" +
+            "% du do bémol majeur noté dobM au do dièse majeur noté dodM\n" +
+            "#tonalite = dodM\n" +
+            "LA SI do re mi fa sol  la si";
+
 
 		this.samples['highland-cathedral'] = "#titre = Highland Cathedral\n" +
             "#piedPage = www.bagpipe-scores.com\n" +
@@ -119,54 +155,54 @@ export class CnbEditorSamples {
             "\t(la,SI,LA,SI,LA) SI2 - SI2 |\n" +
             "}";
 
-            this.samples['amazing-grace'] = "#titre = Amazing Grace\n" +
-                "#piedPage = www.bagpipe-scores.com\n" +
-                "#tempo = 60\n" +
-                "\n" +
-                "[3/4] \n" +
-                "(la) SI8 mi8 (la,mi,re) mi2\n" +
-                "(la) sol8 fa16 mi16 (la) sol2\n" +
-                "(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
-                "(la) do4 (LA) SI2 |\n" +
-                "\n" +
-                "(la) SI8 mi8 (la,mi,re) mi2\n" +
-                "(la) sol8 fa16 mi16 (la) sol2\n" +
-                "(la) fa8 sol8 (si,la) si2\n" +
-                "(la) si4 (la) si2 |\n" +
-                "\n" +
-                "sol8 si8 (la) si2\n" +
-                "sol8 fa16 mi16 (la) sol2\n" +
-                "(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
-                "(la) do4 (LA) SI2 |\n" +
-                "\n" +
-                "(la) SI8 mi8 (la,mi,re) mi2\n" +
-                "(la) sol8 fa16 mi16 (la) sol2\n" +
-                "fa4 (LA,mi,LA,re) mi2\n" +
-                "(re) mi4 (la,mi,re) mi2 |";
+		this.samples['amazing-grace'] = "#titre = Amazing Grace\n" +
+			"#piedPage = www.bagpipe-scores.com\n" +
+			"#tempo = 60\n" +
+			"\n" +
+			"[3/4] \n" +
+			"(la) SI8 mi8 (la,mi,re) mi2\n" +
+			"(la) sol8 fa16 mi16 (la) sol2\n" +
+			"(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
+			"(la) do4 (LA) SI2 |\n" +
+			"\n" +
+			"(la) SI8 mi8 (la,mi,re) mi2\n" +
+			"(la) sol8 fa16 mi16 (la) sol2\n" +
+			"(la) fa8 sol8 (si,la) si2\n" +
+			"(la) si4 (la) si2 |\n" +
+			"\n" +
+			"sol8 si8 (la) si2\n" +
+			"sol8 fa16 mi16 (la) sol2\n" +
+			"(la) sol8 fa8 (LA,mi,LA,re) mi2\n" +
+			"(la) do4 (LA) SI2 |\n" +
+			"\n" +
+			"(la) SI8 mi8 (la,mi,re) mi2\n" +
+			"(la) sol8 fa16 mi16 (la) sol2\n" +
+			"fa4 (LA,mi,LA,re) mi2\n" +
+			"(re) mi4 (la,mi,re) mi2 |";
 
-            this.samples['greenlands'] = "#titre = Greenlands\n" +
-                "#piedPage = www.bagpipe-scores.com\n" +
-                "#tempo = 90\n" +
-                "\n" +
-                "@4 \n" +
-                "R2{ \n" +
-                "\t[4/4] (la) do8. (mi) re16\n" +
-                "\t(la) SI8. do16 (la) re16 fa8. (LA) fa4 re8. fa16\n" +
-                "\t(la) sol8. si16 (sol,la) sol16 fa8. (LA) fa4 (la) do8. (mi) re16 |\n" +
-                "\n" +
-                "\t(la) SI8. do16 (la) re16 fa8. (la,sol,la) sol16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
-                "\t(LA,mi,LA) do2. \n" +
-                "}\n" +
-                "\n" +
-                "@4 \n" +
-                "R2{ \n" +
-                "\tsi4\n" +
-                "\t(sol,la) sol8. fa16 (la) sol16 si8. (la) si4 (la) si4 |\n" +
-                "\n" +
-                "\t(sol,la) sol8. fa16 (la) sol16 re8. (LA,mi,LA) re4 si8. (sol,la) sol16\n" +
-                "\tfa8. sol16 si8. do16 (la) re16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
-                "\t(LA,mi,LA) do2. |\n" +
-                "}";
+		this.samples['greenlands'] = "#titre = Greenlands\n" +
+			"#piedPage = www.bagpipe-scores.com\n" +
+			"#tempo = 90\n" +
+			"\n" +
+			"@4 \n" +
+			"R2{ \n" +
+			"\t[4/4] (la) do8. (mi) re16\n" +
+			"\t(la) SI8. do16 (la) re16 fa8. (LA) fa4 re8. fa16\n" +
+			"\t(la) sol8. si16 (sol,la) sol16 fa8. (LA) fa4 (la) do8. (mi) re16 |\n" +
+			"\n" +
+			"\t(la) SI8. do16 (la) re16 fa8. (la,sol,la) sol16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
+			"\t(LA,mi,LA) do2. \n" +
+			"}\n" +
+			"\n" +
+			"@4 \n" +
+			"R2{ \n" +
+			"\tsi4\n" +
+			"\t(sol,la) sol8. fa16 (la) sol16 si8. (la) si4 (la) si4 |\n" +
+			"\n" +
+			"\t(sol,la) sol8. fa16 (la) sol16 re8. (LA,mi,LA) re4 si8. (sol,la) sol16\n" +
+			"\tfa8. sol16 si8. do16 (la) re16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
+			"\t(LA,mi,LA) do2. |\n" +
+			"}";
 
     }
 
