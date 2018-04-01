@@ -119,7 +119,7 @@ export class CnbEditorComponent implements OnInit {
                 let title = 'Cnb2lp : Text to Lilypond Convertion';
                 if (cnb.statusCode == CNBStatusCode.OK) {
                     this.dataLp = cnb.lpData;
-                    this.log (title, cnb.log, logLevel.success);
+                    this.log (title, cnb.log + "\n" + cnb.lpData, logLevel.success);
                     this.wfState = WorkFlowState.CNB2LP_OK;
                     this.launchLilypond();
                 } else {
