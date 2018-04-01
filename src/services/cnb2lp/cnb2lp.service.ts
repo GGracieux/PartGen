@@ -416,8 +416,8 @@ export class Cnb2lpService {
 	
 		// Composing ragged-last info
 		let ragged = "";	
-		if (this.userVar.etirerDerniere == "oui") {
-			ragged = "  ragged-last = ##f\n";
+		if (this.userVar.etirerDerniere == "non") {
+			ragged = "  ragged-last = ##t\n";
 		}		
 		
 		// Assembling
