@@ -9,25 +9,39 @@ export class CnbEditorSamples {
             "LA SI do re mi fa sol la si";
 
 		this.samples['exemple-note-length'] = "% --------------- DUREE -----------------\n" +
-			"% Les durées des notes sont indiquées par leur valeur fractionnaire \n" +
-			"% par rapport à la durée d’une ronde. Une noire, par exemple, qui \n" +
-			"% équivaut à un 1/4 de ronde s'écrit 4, une blanche (1/2 ronde) s'écrit 2\n" +
-			"LA1\t\t% ronde\n" +
-			"SI2\t\t% blanche\n" +
-			"do4\t\t% noire\n" +
-			"re8\t\t% croche\n" +
-			"mi16\t% double croche\n" +
-			"fa32\t% triple croche\n" +
-			"sol64\t% quadruple croche\n" +
-			"la64\t% quadruple croche\n" +
-			"\n" +
-			"% --------------- LIAISONS -----------------\n" +
-			"% Pour créer une liaison de prolognation on utilise le trait d'union\n" +
-			"do2 - do8\n" +
-			"\n" +
-			"% --------------- POINTEES -----------------\n" +
-			"% Pour créer une note pointée on ajoute un point aprés la durée\n" +
-			"do8. re16";
+            "% Les durées des notes sont indiquées par leur valeur fractionnaire \n" +
+            "% par rapport à la durée d’une ronde. Une noire, par exemple, qui \n" +
+            "% équivaut à un 1/4 de ronde s'écrit 4, une blanche (1/2 ronde) s'écrit 2\n" +
+            "\n" +
+            "% ronde\n" +
+            "LA1\n" +
+            "\n" +
+            "% blanche\n" +
+            "SI2\n" +
+            "\n" +
+            "% noire\n" +
+            "do4\n" +
+            "\n" +
+            "%croche\n" +
+            "re8\n" +
+            "\n" +
+            "% double croche\n" +
+            "mi16\n" +
+            "\n" +
+            "% triple croche\n" +
+            "fa32\n" +
+            "\n" +
+            "% quadrupes croches\n" +
+            "sol64\n" +
+            "la64\n" +
+            "\n" +
+            "% --------------- LIAISONS -----------------\n" +
+            "% Pour créer une liaison de prolognation on utilise le trait d'union\n" +
+            "do2 - do8\n" +
+            "\n" +
+            "% --------------- POINTEES -----------------\n" +
+            "% Pour créer une note pointée on ajoute un point aprés la durée\n" +
+            "do8. re16\n";
 
 		this.samples['exemple-grace-notes'] = "% Les notes d'ornementations s'écrivent entre parenthése\n" +
             "% sans précision de durée et séparées par des virules\n" +
@@ -99,8 +113,8 @@ export class CnbEditorSamples {
             "    sol fa\n" +
             "} \n" +
             "A{ \n" +
-            "\t{ mi re } % --- Première fin\n" +
-            "\t{ do do } % --- Fin alternative\n" +
+            "\t{ mi re } \n" +
+            "\t{ do do }\n" +
             "}";
 
 		this.samples['exemple-paging'] = "% Défini l'orientation de la partition\n" +
@@ -115,7 +129,8 @@ export class CnbEditorSamples {
             "% valeurs possibles : oui (par defaut) / non\n" +
             "#etirerDerniere = non\n" +
             "\n" +
-            "LA SI do re mi fa sol la | % Le symbol \"|\" permet de forcer un retour ligne\n" +
+            "% Le symbol \"|\" permet de forcer un retour ligne\n" +
+            "LA SI do re mi fa sol la | \n" +
             "si la sol fa mi re do SI | \n" +
             "LA SI do re";
 
