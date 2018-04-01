@@ -15,6 +15,10 @@
     overflow-y: scroll;
 }
 
+.modal-header {
+    min-height: 69px;
+}
+
 .logEntry {
 	width : 100%;
     margin-top: 14px;

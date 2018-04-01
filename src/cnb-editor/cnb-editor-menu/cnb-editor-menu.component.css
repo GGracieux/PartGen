@@ -8,3 +8,7 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+
+.modal-header {
+	min-height: 69px;
+}
