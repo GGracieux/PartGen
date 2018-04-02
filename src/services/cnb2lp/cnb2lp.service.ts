@@ -11,9 +11,6 @@ export class Cnb2lpService {
     // score name
     private scoreName;
 
-    // armure par défaut
-    private currKey = 'mibM';
-
     // tableau de correspondance des notes
     private notesConv;
 
@@ -62,8 +59,8 @@ export class Cnb2lpService {
             'laM':   this.getConvBemol(0, 0, 0, 0, 0, 0, 0),
             'miM':   this.getConvBemol(0, 0, 0, 0, 0, 0, 0),
             'siM':   this.getConvBemol(0, 0, 0, 0, 0, 0, 0),
-            'fa#M':  this.getConvBemol(0, 0, 0, 0, 0, 0, 0),
-            'do#M':  this.getConvBemol(0, 0, 0, 0, 0, 0, 0)
+            'fadM':  this.getConvBemol(0, 0, 0, 0, 0, 0, 0),
+            'dodM':  this.getConvBemol(0, 0, 0, 0, 0, 0, 0)
         };
         let diese = {
             'dobM':  this.getConvDiese(0, 0, 0, 0, 0, 0, 0),
@@ -79,14 +76,15 @@ export class Cnb2lpService {
             'laM':   this.getConvDiese(1, 1, 1, 0, 0, 0, 0),
             'miM':   this.getConvDiese(1, 1, 1, 1, 0, 0, 0),
             'siM':   this.getConvDiese(1, 1, 1, 1, 1, 0, 0),
-            'fa#M':  this.getConvDiese(1, 1, 1, 1, 1, 1, 0),
-            'do#M':  this.getConvDiese(1, 1, 1, 1, 1, 1, 1)
+            'fadM':  this.getConvDiese(1, 1, 1, 1, 1, 1, 0),
+            'dodM':  this.getConvDiese(1, 1, 1, 1, 1, 1, 1)
         };
         this.notesConv = {
             'hauteur': hauteur,
             'bemol': bemol,
             'diese': diese
         };
+
     }
 
     private getConvBemol (nsi, nmi, nla, nre, nsol, ndo, nfa) {
@@ -94,7 +92,7 @@ export class Cnb2lpService {
     }
 
     private getConvDiese (nfa, ndo, nsol, nre, nla, nmi, nsi) {
-        return this.getConv('#',nsi, nla, nsol, nfa, nmi, nre, ndo, nsi, nla);
+        return this.getConv('d',nsi, nla, nsol, nfa, nmi, nre, ndo, nsi, nla);
     }
 
     private getConv(symbol, nsi, nla, nsol, nfa, nmi, nre, ndo, nSI, nLA) {
@@ -348,8 +346,8 @@ export class Cnb2lpService {
 
     private getConvertedNote(note) {
         return  note.toLowerCase() +
-            this.notesConv['bemol'][this.currKey][note] +
-            this.notesConv['diese'][this.currKey][note] +
+            this.notesConv['bemol'][this.userVar['tonalite']][note] +
+            this.notesConv['diese'][this.userVar['tonalite']][note] +
             this.notesConv['hauteur'][note];
     }
 
