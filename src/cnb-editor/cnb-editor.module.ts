@@ -27,7 +27,6 @@ import {CnbEditorPdfComponent} 			from './cnb-editor-pdf/cnb-editor-pdf.componen
 import {CnbEditorPdfControlsComponent} 	from './cnb-editor-pdf-controls/cnb-editor-pdf-controls.component';
 import {CnbEditorMp3Component} 			from './cnb-editor-mp3/cnb-editor-mp3.component';
 import {CnbEditorLogComponent} 			from './cnb-editor-log/cnb-editor-log.component';
-import {CnbEditorFooterComponent} 		from './cnb-editor-footer/cnb-editor-footer.component';
 import {CnbEditorComponent} 			from './cnb-editor/cnb-editor.component';
 
 // Time format pipe
@@ -55,7 +54,6 @@ import {MinuteSecondsPipe} from './cnb-editor-mp3/cnb-editor-mp3.pipes';
 	CnbEditorPdfControlsComponent,
 	CnbEditorMp3Component,
 	CnbEditorLogComponent,
-	CnbEditorFooterComponent,
     MinuteSecondsPipe
 	],
   exports: [CnbEditorComponent]

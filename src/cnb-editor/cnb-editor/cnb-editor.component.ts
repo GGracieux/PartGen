@@ -229,7 +229,7 @@ export class CnbEditorComponent implements OnInit {
     // VIEWER
     // ------------------------------------
 
-    public zoom = 1;
+    public zoom = 0.9;
 
     zoomAction(zoomLevel: number) {
         this.zoom = zoomLevel;

@@ -5,7 +5,8 @@
 }
 
 .mainrow {
-    height: calc(100% - (61px + 50px));
+    min-height: 152px;
+    height: calc(100% - (61px + 20px));
     width: 100%;
     overflow-y: hidden;
 	padding-top: 10px;
@@ -60,6 +61,7 @@
 .pdf-content {
     height: calc(100% - 50px);
     max-height: 100%;
+    background-color: #e0e0e0;
 }
 
 .ctrlBtn {
@@ -86,4 +88,8 @@
 .data-ctrl {
     display: inline-block; 
     min-width:97px;
+}
+
+.footer {
+    height: 20px;
 }
