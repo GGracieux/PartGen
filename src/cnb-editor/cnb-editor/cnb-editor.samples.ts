@@ -150,6 +150,33 @@ export class CnbEditorSamples {
             "#tonalite = dodM\n" +
             "LA SI do re mi fa sol la si";
 
+		this.samples['exemple-multi'] = "#titre = Morceau 1\n" +
+            "LA SI do re mi fa sol la si LA SI do re mi fa sol\n" +
+            "% Le changement de morceau se matérialise par 4 \n" +
+            "% traits d'union successifs (ou plus)\n\n" +
+            "----\n" +
+            "#titre = Morceau 2\n" +
+            "si la sol fa mi re do SI LA si la sol fa mi re do\n" +
+            "\n" +
+            "----\n" +
+            "#titre = Morceau 3\n" +
+            "si sol la mi fa do re LA SI si sol la mi fa do re \n" +
+            "\n" +
+            "----\n" +
+            "#titre = Morceau 4\n" +
+            "si sol la mi fa do re LA SI si sol la mi fa do re\n" +
+            "\n" +
+            "----\n" +
+            "#titre = Morceau 5\n" +
+            "si sol la mi fa do re LA SI si sol la mi fa do re\n" +
+            "\n" +
+            "% Le symbole de saut de ligne \"|\" permet lorsqu'il\n" +
+            "% est doublé, de forcer un saut de page\n" +
+            "||\n" +
+            "\n" +
+            "----\n" +
+            "#titre = Morceau 6\n" +
+            "si sol la mi fa do re LA SI si sol la mi fa do re\n";
 
 		this.samples['highland-cathedral'] = "#titre = Highland Cathedral\n" +
             "#piedPage = www.bagpipe-scores.com\n" +
@@ -226,6 +253,173 @@ export class CnbEditorSamples {
 			"\tfa8. sol16 si8. do16 (la) re16 fa8. (la,re,mi) re16 (fa) SI8.\n" +
 			"\t(LA,mi,LA) do2. |\n" +
 			"}";
+
+		this.samples['da-bourmen'] = "#titre = \"Da Bourmen\"\n" +
+            "#titre2 = \"Marche\"\n" +
+            "#tempo = 90\n" +
+            "#tonalite = sibM\n" +
+            "\n" +
+            "R2{\n" +
+            "\t@4. [3/4] re8 (la,re,mi) re8. do16\n" +
+            "\t[2/4] (la) SI (la) re16 do16 re16 mi16\n" +
+            "\t[3/4] (la) fa8 mi16 fa16 (la) sol8 fa8 (la) mi8 re8 |\n" +
+            "\n" +
+            "\t[2/4] (la,do,re) do8 SI8 (la) re8. do16 \n" +
+            "\t(la) SI (la) re16 do16 re16 mi16 \n" +
+            "\t[3/4] (la) fa8 mi16 fa16 si8 fa8 (la,mi,fa) mi8. re16 (fa) do4. |\n" +
+            "} \n" +
+            "@4. SI8 (la) re8 mi8 \n" +
+            "R2{\n" +
+            "\t(la) fa8 mi16 fa16 (la) sol8 fa8 (la,mi,fa) mi8 do8 \n" +
+            "\t[2/4] mi4 (la,re,mi) re8. SI16 \n" +
+            "\t[3/4] (la) do4. SI8 (la) re8 mi8 |\n" +
+            "\n" +
+            "\t(la) fa8 mi16 fa16 si8 fa8 (la,mi,fa) mi8 do8 \n" +
+            "\t[2/4] mi4 (la) re8 do16 re16 \n" +
+            "} \n" +
+            "A{ \n" +
+            "\t{ [3/4] (fa) SI4. (mi) SI8 (la) re8 mi8 }\n" +
+            "\t{ (fa) SI4. }\n" +
+            "}";
+
+		this.samples['book'] = "#titre = An Hollaika\n" +
+            "#titre2 = Appel de pâtre de Cornouaille\n" +
+            "#tempo = 100\n" +
+            "\n" +
+            "[2/4] \n" +
+            "R2{ \n" +
+            "\t(la) re8. mi16 fa8 re8\n" +
+            "\t(la) mi4 (fa) do4\n" +
+            "\t(la) re4 SI4\n" +
+            "\t(la) re8. mi16 fa8 re8\n" +
+            "\t(la) mi4 (fa) do4\n" +
+            "\t(LA) SI2 |\n" +
+            "}\n" +
+            "\n" +
+            "(la) SI8. do16 re8 mi8\n" +
+            "(la) fa4 (SI) fa4\n" +
+            "(la) sol4 mi4\n" +
+            "(la) re8. mi16 fa8 re8\n" +
+            "(la) mi4 re4\n" +
+            "(fa) do2 |\n" +
+            "\n" +
+            "(la) re8. mi16 fa8 re8\n" +
+            "(la) mi4 (fa) do4\n" +
+            "(la) re4 SI4\n" +
+            "(la) re8. mi16 fa8 re8\n" +
+            "(la) mi4 (fa) do4\n" +
+            "(LA) SI2\n" +
+            "\n" +
+            "-----------------------------------------------\n" +
+            "\n" +
+            "#titre = An Dro\n" +
+            "#titre2 = Danse Vannetaise\n" +
+            "#tempo = 100\n" +
+            "\n" +
+            "[2/4] \n" +
+            "R2{ \n" +
+            "\t@16 (la) do16\n" +
+            "\t(LA) do8 mi8 (la,re,mi) re8. do16\n" +
+            "\t(la) re8 SI8 (la) do8 (LA) do8\n" +
+            "\t(la) do8 mi8 (la,re,mi) re8. do16\n" +
+            "\t(la) re8 SI8 (la) do8. \n" +
+            "}\n" +
+            "\n" +
+            "R2{ \n" +
+            "\t@16 (LA) do16\n" +
+            "\t(la) mi8 fa8 (la,sol,la) sol8. (fa) sol16\n" +
+            "\t(la) sol8 la8 (si) sol8. fa16\n" +
+            "\t(la) mi8 do8 (la) mi8. re16\n" +
+            "\t(la,do,mi) do8 SI8 (la) do8. \n" +
+            "}\n" +
+            "\n" +
+            "-----------------------------------------------\n" +
+            "\n" +
+            "#titre = Hanter Dro\n" +
+            "#titre = Dans Vannetaise\n" +
+            "#etirerDerniere = non\n" +
+            "#tempo = 100\n" +
+            "\n" +
+            "[3/4] \n" +
+            "R2{ \n" +
+            "\t(la) SI8 (mi) SI16 do16 (la) re8 do8 (LA,mi,LA) re8. do16\n" +
+            "\t(la) SI8 (mi) SI16 do16 (la) re8 do8 (LA,mi,LA) re8. do16\n" +
+            "\t(la) SI8 (mi) SI16 do16 (la) re8 do8 (LA,mi,LA) re4 |\n" +
+            "}\n" +
+            "\n" +
+            "R2{ \n" +
+            "\t(la) do8 re16 mi16 (la) fa8 (SI) fa8 (la,re,mi) re8. do16\n" +
+            "\t(la) fa8 (SI) fa16 mi16 (la) re8 (LA) re16 SI16 (la) do4\n" +
+            "\t(la) do8 re16 mi16 (la) fa8 (SI) fa8 (la,re,mi) re8. do16 |\n" +
+            "\n" +
+            "\t(la) re8 mi16 re16 (la) do8 (LA,mi,LA) do8 (LA) SI4 \n" +
+            "}\n" +
+            "\n" +
+            "-----------------------------------------------\n" +
+            "\n" +
+            "#titre = An Teir Seienn\n" +
+            "#titre2 = Les trois rubans de soie\n" +
+            "#tempo = 66\n" +
+            "\n" +
+            "[6/8] \n" +
+            "@8 \n" +
+            "R3{ \n" +
+            "\t(la) SI8\n" +
+            "\t(LA,mi,LA,re) mi4 fa8 (la) sol8 fa8 si8\n" +
+            "\t(sol,la) sol4. - sol4 \n" +
+            "} \n" +
+            "(la) sol8\n" +
+            "(si,la) si4. la8 sol8 si8\n" +
+            "(LA,mi,LA,re) mi4. - mi4 sol8\n" +
+            "(la,fa,sol) fa4. (la) mi8 re8 mi8 |\n" +
+            "\n" +
+            "(la) N4/3{ fa8 sol8 la8 sol8 } (la,fa,sol) fa4 sol8\n" +
+            "(si,la) si4. la8 sol8 si8\n" +
+            "(LA,mi,LA,re) mi4. - mi4 sol8\n" +
+            "(la,fa,sol) fa4. (la) SI8 re8 fa8\n" +
+            "(LA,mi,LA,re) mi4. - mi4\n" +
+            "\n" +
+            "-----------------------------------------------\n" +
+            "\n" +
+            "#titre = Jezuz Kroedur\n" +
+            "#titre2 = Cantique de Noël Vannetais\n" +
+            "#tempo = 56\n" +
+            "\n" +
+            "[6/8] \n" +
+            "(la) do8 (mi) do8 (fa) do8 (la) sol4.\n" +
+            "(la) fa8 sol8 mi8 (la,re,mi) re4.\n" +
+            "(la) fa8 (SI) fa8 mi8 (la,do,mi) do4 re8\n" +
+            "(la) fa4 mi8 (la,re,mi) re4. |\n" +
+            "\n" +
+            "(la) mi8 re8 do8 (mi) re4 fa8\n" +
+            "[9/8] (la) re4 mi8 (la,do,mi) do4. (LA) SI4.\n" +
+            "[6/8] (la) do8 mi8 do8 (mi) re4 fa8\n" +
+            "(la) re4 mi8 (la,do,mi) do4. |\n" +
+            "\n" +
+            "-----------------------------------------------\n" +
+            "\n" +
+            "#titre = Kantik Ar Baradoz\n" +
+            "#titre2 = Cantique du Paradis\n" +
+            "#etirerDerniere = non\n" +
+            "#tempo = 60\n" +
+            "\n" +
+            "@8 \n" +
+            "R2{ \n" +
+            "\t[6/8] do8 \n" +
+            "\t(la) mi4 re8 (la) do8 re8 mi8\n" +
+            "\t(la,re,mi) re4. - re4 \n" +
+            "} \n" +
+            "(la) re8\n" +
+            "do4 (la) do8 (mi) do8 re8 do8\n" +
+            "(LA) SI4. (mi) do4. |\n" +
+            "\n" +
+            "(la) mi8 re8 do8 (LA) SI8 do8 re8\n" +
+            "(la,do,mi) do4. - do4 (la) do8\n" +
+            "(mi) do4 (la) do8 (mi) do8 re8 do8\n" +
+            "(LA) SI4. (mi) do4.\n" +
+            "(la) mi8 re8 do8 (LA) SI8 do8 re8 |\n" +
+            "\n" +
+            "(la,do,mi) do4. - do4\n";
 
     }
 
