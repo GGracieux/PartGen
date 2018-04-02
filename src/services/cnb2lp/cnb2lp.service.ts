@@ -159,6 +159,7 @@ export class Cnb2lpService {
 		
 		// Assmeble file parts
         let result = "\\version \"2.14.2\"\n\n";
+        result += this.composePaperHeader();
 		result += this.composeFileHeader();
 		result += this.composeOrientationHeader();
 		result += this.composeLayout();
@@ -380,6 +381,15 @@ export class Cnb2lpService {
             .replace(/\-\-+/g, '-')             // Replace multiple - with single -
             .replace(/^-+/, '')                 // Trim - from start of text
             .replace(/-+$/, '');                // Trim - from end of text
+    }
+
+    private composePaperHeader()
+    {
+        let paper = "\\paper {\n";
+        paper += "  top-margin = 1.5 \\cm\n";
+        paper += "  bottom-margin = 1.5 \\cm\n";
+        paper += "}\n";
+        return paper;
     }
 	
 	private composeFileHeader()
