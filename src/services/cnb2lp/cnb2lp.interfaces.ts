@@ -3,6 +3,7 @@ export interface CNBConvert {
     message: string;
     scoreName: string;
     lpData: string;
+    multiple: boolean;
     log: string;
 }
 

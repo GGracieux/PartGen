@@ -16,30 +16,14 @@ export class Cnb2lpService {
 
 	// User variables
 	private userVar;
-	
-	
-    // ----- Initialisation tableau de correspondance des notes
+
+
+    // ------------------------------------
+    // - Initialization
+    // ------------------------------------
 
     public constructor() {
         this.initNotesConv();
-        this.initUserVariables();
-    }
-
-    private initUserVariables() {
-        this.userVar = {
-            "titre" : "",
-            "titre2": " ",
-            "titreGauche": "" ,
-            "titreDroite": "",
-            "piedPage": "",
-            "tempo": "",
-            "clef": "G",
-            "language": "français",
-            "tonalite": "mibM",
-			"indenterPremiere" : "non",
-			"etirerDerniere" : "oui",
-			"orientation" : "portrait"
-		};
     }
 
     private initNotesConv() {
@@ -115,84 +99,154 @@ export class Cnb2lpService {
     }
 
 
-    //--------------------------------
-    // TRAITEMENT
-    //--------------------------------
+    // ------------------------------------
+    // - Processing
+    // ------------------------------------
 
-    public convert(cnbData:string, defaultScoreName:string = 'score'): Observable<CNBConvert> {
+    public convert(cnbData:string, defaultScoreName:string = 'partition'): Observable<CNBConvert> {
         return Observable.of<CNBConvert>(this.doConvert(cnbData,defaultScoreName));
     }
 
-    // Lance la convertion
     private doConvert(content: string, defaultScoreName:string) {
 
-        this.initUserVariables();
         this.scoreName = defaultScoreName;
+        this.initUserVariables();
         let result;
         try
         {
-            let lpData = this.convertData(content);
-            result = this.getConvertResponse(true, '', lpData, 'Convertion OK');
+            let conv = this.convertData(content);
+            result = this.getConvertResponse(true, '', conv.data, conv.multiple,  'Convertion OK');
         }
         catch (e)
         {
-            result = this.getConvertResponse(false,'Error while converting', e.message);
+            result = this.getConvertResponse(false,'Error while converting', "", false, e.message);
         }
         return result;
 
     }
 
-    // Converti un texte cnb en lp
-    public convertData(content)
-    {
-		// Convert tokens
-        let tokens = this.getTokens(content); 
+    private initUserVariables() {
+        this.userVar = {
+            "titre" : "",
+            "titre2": " ",
+            "titreGauche": "" ,
+            "titreDroite": "",
+            "piedPage": "",
+            "tempo": "",
+            "clef": "G",
+            "language": "français",
+            "tonalite": "mibM",
+            "indenterPremiere" : "non",
+            "etirerDerniere" : "oui",
+            "orientation" : "portrait"
+        };
+    }
+
+    public convertData(content) {
+
+        // Test presence of multiple scores
+        var multiple = /-{4,}/;
+        var multiScore = multiple.test(content);
+
+        // Returns appropriate convertion
+        if (multiScore) {
+            return { "data" : this.convertDataMultiple(content), "multiple"  : true } ;
+        } else {
+            return { "data" : this.convertDataSimple(content), "multiple"  : false } ;
+        }
+    }
+
+    private convertDataMultiple(content) {
+
+        // Convert tokens
+        let scores : string[] = [];
+        let tokens = this.getTokens(content);
         let LPTokens = [];
         for (let token of tokens) {
-			let convToken = this.convertToken(token);
-			if (convToken.length > 0) {
-				LPTokens.push(convToken);
-			}            
+
+            // getting token first char
+            if ((token.length >= 4) && (token.substr(0,4) == '----')) {
+
+                // score separator : rendering current score
+                scores.push(this.renderCurrentScore(LPTokens));
+                let footer = this.userVar['piedPage'];
+                this.initUserVariables();
+                this.userVar['piedPage'] = footer;
+                LPTokens = [];
+
+            } else {
+
+                // current score token : adding to LPToken array
+                let convToken = this.convertToken(token);
+                if (convToken.length > 0) {
+                    LPTokens.push(convToken);
+                }
+            }
         }
-		
-		// Assmeble file parts
+
+        // flushing last score
+        scores.push(this.renderCurrentScore(LPTokens));
+
+
+        // Assemblage
+        let result = "\\version \"2.14.2\"\n" +
+            "\n" + this.composePaperHeader() + "\n" +
+            "\n" +
+            "\\book {\n" +
+            "\n" +
+            "  \\paper {\n" +
+            "    print-all-headers = ##t\n" +
+            "  }\n" +
+            "\n" +
+            this.composeMultiScoreHeader() + "\n";
+
+        result += scores.join("\n") + "\n}";
+
+        return result;
+    }
+
+    private renderCurrentScore(tokens :string [] = []) {
+
+        let score = "\n\\score {\n";
+        score += " {\n";
+        score += this.composeScoreHeader();
+        score += tokens.join(' ') + "\n}\n";
+        score += this.composeFileHeader();
+        score += this.composeLayout();
+        score += "\n}\n";
+        score += "\\markup { \\vspace #1 }\n\n";
+        return score;
+    }
+
+    private convertDataSimple(content) {
+
+        // Convert tokens
+        let tokens = this.getTokens(content);
+        let LPTokens = [];
+        for (let token of tokens) {
+            let convToken = this.convertToken(token);
+            if (convToken.length > 0) {
+                LPTokens.push(convToken);
+            }
+        }
+
+        // Assmeble file parts
         let result = "\\version \"2.14.2\"\n\n";
         result += this.composePaperHeader();
-		result += this.composeFileHeader();
-		result += this.composeOrientationHeader();
-		result += this.composeLayout();
-		result += "\nnotes = { \n"; 
+        result += this.composeFileHeader();
+        result += this.composeOrientationHeader();
+        result += this.composeLayout();
+        result += "\nnotes = { \n";
         result += this.composeScoreHeader();
-		result += LPTokens.join(' ');
-		result += "} \n\n";
+        result += LPTokens.join(' ');
+        result += "} \n\n";
         result += this.composeLpPdfSection();
         result += this.composeLpMidiSection();
 
         return  result;
     }
 
-    private composeLpPdfSection() {
-        return "\\score  {\n"
-            + "  \\new Staff  <<\n"
-            + "    \\notes\n"
-            + "    >>\n"
-            + "  \\layout{}\n"
-            + "}\n\n";
-    }
-
-    private composeLpMidiSection() {
-        return "\\score  {\n"
-            + "  \\unfoldRepeats\n"
-            + "  \\new Staff  <<\n"
-            + "    \\set Staff.midiInstrument = \"bagpipe\"\n"
-            + "    \\notes\n"
-            + "    >>\n"
-            + "  \\midi{}\n"
-            + "}\n\n";
-    }
-
-    // Prepare la réponse du convert
-    private getConvertResponse(success, message, lpData = null, logData = '') {
+    private getConvertResponse(success, message, lpData = null, multiple = false, logData = '') {
 
         // retourne la réponse formatté
         return {
@@ -200,13 +254,12 @@ export class Cnb2lpService {
             'scoreName': this.scoreName,
             'message': message,
             'lpData': lpData,
+            'multiple' : multiple,
             'log': logData
         };
     }
 
-    // Récupération de la liste des tokens non convertis
-    private getTokens(content)
-    {
+    private getTokens(content) {
 		let tokens: string[] = [];
 		content = this.replaceAll(String.fromCharCode(13), '', content);
 		let lines = content.split(String.fromCharCode(10));
@@ -224,11 +277,12 @@ export class Cnb2lpService {
         return tokens;
     }
 
-	// ----- Token convertion
-	
-    // Converts one token
-    private convertToken(token)
-    {		
+
+    // ------------------------------------
+    // - Token convertion
+    // ------------------------------------
+
+    private convertToken(token) {
         let first = token.substr(0,1);
         switch (first) {
 			case '':
@@ -253,7 +307,7 @@ export class Cnb2lpService {
             case '}':
                 return '}';
             case '|':
-                return '\\break';
+                return this.convertBreak(token);
             case '$':
                 return String.fromCharCode(10);
             case '&':
@@ -275,41 +329,42 @@ export class Cnb2lpService {
 		return '\\time ' + token;
 	}
 
-    private convertAnacrouse(token)
-    {
+    private convertAnacrouse(token) {
         return '\\partial ' + token.substr(1);
     }
 
-    private convertRepeat(token)
-    {
+    private convertRepeat(token) {
         return '\\repeat volta ' + token.substr(1,token.length-2) +  ' {';
     }
 
-    private convertAlternative(token)
-    {
+    private convertAlternative(token) {
         return '\\alternative {';
     }
 
-    private convertText(token)
-    {
+    private convertText(token) {
         return "\\mark \\markup { \\normalsize \\bold " + this.replaceAll('_', ' ', token) + ' }';
 
     }
 
-    private convertSilence(token)
+    private convertBreak(token)
     {
+        if (token == '||') {
+            return "\\pageBreak";
+        }
+        return "\\break";
+    }
+
+    private convertSilence(token) {
         return 'r' + token.substr(1);
     }
 
-    private convertNolet(token)
-    {
+    private convertNolet(token) {
         token = this.replaceAll('N', '', token);
         token = this.replaceAll('{', '', token);
         return '\\tuplet ' + token + ' {';
     }
 
-    private convertGrace(token)
-    {
+    private convertGrace(token) {
         token = token.substr(1, token.length-2);
         let notes = token.split(',');
         let result = "\\grace{\\stemDown \\teeny " +  this.getConvertedNote(notes[0]) + '32';
@@ -325,8 +380,7 @@ export class Cnb2lpService {
         return result;
     }
 
-    private convertNote(token)
-    {
+    private convertNote(token) {
         // nb de car pour la note
         let nb = 2;
         if (token.length>=3) {
@@ -351,8 +405,6 @@ export class Cnb2lpService {
             this.notesConv['hauteur'][note];
     }
 
-	// ----- User variable handling and headers generation
-
 	private setVariable(token) {
 	
 		// gets variable name and content
@@ -372,17 +424,12 @@ export class Cnb2lpService {
         }
 	}
 
-    private slugify(text)  {
-        return text.toString().toLowerCase()
-            .replace(/(\w)\'/g, '$1')           // Special case for apostrophes
-            .replace(/[^a-z0-9_\-]+/g, '-')     // Replace all non-word chars with -
-            .replace(/\-\-+/g, '-')             // Replace multiple - with single -
-            .replace(/^-+/, '')                 // Trim - from start of text
-            .replace(/-+$/, '');                // Trim - from end of text
-    }
 
-    private composePaperHeader()
-    {
+    // ------------------------------------
+    // - Composing Lilypond file parts
+    // ------------------------------------
+
+    private composePaperHeader() {
         let paper = "\\paper {\n";
         paper += "  top-margin = 1.5 \\cm\n";
         paper += "  bottom-margin = 1.5 \\cm\n";
@@ -390,8 +437,7 @@ export class Cnb2lpService {
         return paper;
     }
 	
-	private composeFileHeader()
-	{		
+	private composeFileHeader() {
 		let header = "\\header {\n";
 		header += "  title = \"" + this.userVar.titre + "\"\n";
 		header += "  subtitle = \"" + this.userVar.titre2 + "\"\n";
@@ -402,8 +448,7 @@ export class Cnb2lpService {
 		return header;
 	}
 	
-	private composeScoreHeader()
-	{
+	private composeScoreHeader() {
 		let header = "\n";
 		header += " \\language \"" + this.userVar.language + "\"\n";
 		if (this.userVar.tempo != "") {
@@ -414,8 +459,7 @@ export class Cnb2lpService {
 		return header;
 	}	
 	
-	private composeLayout()
-	{
+	private composeLayout() {
 		// Composing indent info
 		let ident = "";
 		if (this.userVar.indenterPremiere == "non") {
@@ -438,17 +482,45 @@ export class Cnb2lpService {
 		return layout;
 	}	
 	
-	private composeOrientationHeader()
-	{
+	private composeOrientationHeader() {
 		let orient = "";
 		if (this.userVar.orientation == "paysage") {
 			orient += "#(set-default-paper-size \"a4landscape\")\n";		
 		} 
 		return orient;
 	}
-	
-	
-	// ----- Helpers
+
+    private composeMultiScoreHeader() {
+        let header = "\\header {\n";
+        header += "tagline = \"" + this.userVar['piedPage'] + "\"\n";
+        header += "}\n";
+        return header;
+    }
+
+    private composeLpPdfSection() {
+        return "\\score  {\n"
+            + "  \\new Staff  <<\n"
+            + "    \\notes\n"
+            + "    >>\n"
+            + "  \\layout{}\n"
+            + "}\n\n";
+    }
+
+    private composeLpMidiSection() {
+        return "\\score  {\n"
+            + "  \\unfoldRepeats\n"
+            + "  \\new Staff  <<\n"
+            + "    \\set Staff.midiInstrument = \"bagpipe\"\n"
+            + "    \\notes\n"
+            + "    >>\n"
+            + "  \\midi{}\n"
+            + "}\n\n";
+    }
+
+
+    // ------------------------------------
+    // - Helpers
+    // ------------------------------------
 
     private replaceAll(search, replace, subject) {
         return subject.split(search).join(replace);
@@ -462,5 +534,14 @@ export class Cnb2lpService {
             deb = subject.indexOf(search,++deb);
         }
         return nb;
+    }
+
+    private slugify(text)  {
+        return text.toString().toLowerCase()
+            .replace(/(\w)\'/g, '$1')           // Special case for apostrophes
+            .replace(/[^a-z0-9_\-]+/g, '-')     // Replace all non-word chars with -
+            .replace(/\-\-+/g, '-')             // Replace multiple - with single -
+            .replace(/^-+/, '')                 // Trim - from start of text
+            .replace(/-+$/, '');                // Trim - from end of text
     }
 }

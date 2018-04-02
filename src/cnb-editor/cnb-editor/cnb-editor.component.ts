@@ -121,7 +121,7 @@ export class CnbEditorComponent implements OnInit {
                     this.dataLp = cnb.lpData;
                     this.log (title, cnb.log + "\n" + cnb.lpData, logLevel.success);
                     this.wfState = WorkFlowState.CNB2LP_OK;
-                    this.launchLilypond();
+                    this.launchLilypond(cnb.multiple);
                 } else {
 					this.wfState = WorkFlowState.CNB2LP_ERR;
                     this.log (title, cnb.log, logLevel.warning);
@@ -134,7 +134,7 @@ export class CnbEditorComponent implements OnInit {
         )
     }
 
-    private launchLilypond() {
+    private launchLilypond(multiple = false) {
 		this.wfState = WorkFlowState.LILYPOND_RUN;
         this.lilypond.convert(this.dataLp).subscribe(
             lp => {
@@ -143,7 +143,11 @@ export class CnbEditorComponent implements OnInit {
                     this.dataBase64Midi = lp.base64MidiData;
                     this.PGlog(lp.logs, logLevel.success);
                     this.wfState = WorkFlowState.LILYPOND_OK;
-                    this.launchMidi2Mp3();
+                    if (!multiple) {
+                        this.launchMidi2Mp3();
+                    } else {
+                        this.wfState = WorkFlowState.SUCCESS;
+                    }
                 } else {
 					this.wfState = WorkFlowState.LILYPOND_ERR;
                     this.PGlog(lp.logs, logLevel.warning);
