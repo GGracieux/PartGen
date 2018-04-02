@@ -134,13 +134,21 @@ export class CnbEditorSamples {
             "si la sol fa mi re do SI | \n" +
             "LA SI do re";
 
-		this.samples['exemple-pitch'] = "% Valeurs possibles : G, C ou F\n" +
+		this.samples['exemple-pitch'] = "% Valeurs possibles : G (par défaut), C ou F\n" +
             "#clef = F\n" +
             "\n" +
-            "% Valeurs possibles : Toutes les tonalités \n" +
-            "% du do bémol majeur noté dobM au do dièse majeur noté dodM\n" +
+            "% Pour faciliter l'écriture les notes sont toujours exprimées\n" +
+            "% comme s'il n'y avait aucune altération a la clé.\n" +
+            "\n" +
+            "% Par exemple dans la tonalité par défaut (mi bémol Majeur)\n" +
+            "% il n'est pas nécessaire de rajouter les bémols sur si, mi et la\n" +
+            "% on peut écrire simplement \"do re mi fa sol la si\"\n" +
+            "\n" +
+            "% Valeurs possibles : Toutes les tonalités du do bémol majeur\n" +
+            "% noté dobM au do dièse majeur noté dodM\n" +
+            "\n" +
             "#tonalite = dodM\n" +
-            "LA SI do re mi fa sol  la si";
+            "LA SI do re mi fa sol la si";
 
 
 		this.samples['highland-cathedral'] = "#titre = Highland Cathedral\n" +
