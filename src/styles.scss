@@ -6,23 +6,23 @@ html, body {
 }
 
 /* Code mirror css */
-.cm-uservar {color: #af9316;}
-.cm-tempo {color: #f98b16;}
-.cm-linebreak {color: #f98b16;}
-.cm-repeatBlock {color: #f98b16;}
-.cm-beginBlock {color: #f98b16;}
-.cm-endBlock {color: #f98b16;}
-.cm-altBlock {color: #f98b16;}
-.cm-liaison {color: #f98b16;}
-.cm-anacrouse {color: #f98b16;}
-.cm-silence {color: #f98b16;}
-.cm-nolet {color: #f98b16;}
+.cm-uservar {color: #a88600;}
+.cm-tempo {color: #3da526; font-weight: bold;}
+.cm-linebreak {color: #3da526; font-weight: bold;}
+.cm-repeatBlock {color: #3da526; font-weight: bold;}
+.cm-beginBlock {color: #3da526; font-weight: bold;}
+.cm-endBlock {color: #3da526; font-weight: bold;}
+.cm-altBlock {color: #3da526; font-weight: bold;}
+.cm-liaison {color: #3da526; font-weight: bold;}
+.cm-anacrouse {color: #3da526; font-weight: bold;}
+.cm-silence {color: #3da526; font-weight: bold;}
+.cm-nolet {color: #3da526; font-weight: bold;}
 .cm-ornement {color: #7c7c7c;}
 .cm-note {color: #0b4a91;}
 .cm-annotation {color: black;}	
-.cm-commentaire {color: #249115;}
-.cm-scoreSep {color:#f98b16;}
-.cm-pagebreak  {color:#f98b16;}
+.cm-commentaire {color: #9b9b9b;}
+.cm-scoreSep {color:#a88600;}
+.cm-pagebreak  {color:#3da526; font-weight: bold;}
 span[role=presentation] {color: red;}
 
 /* Roboto font fix, switching to Poppins font */
