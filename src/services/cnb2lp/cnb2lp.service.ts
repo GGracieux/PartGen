@@ -415,13 +415,20 @@ export class Cnb2lpService {
 
 		// sets user variable
 		if (this.userVar.hasOwnProperty(key)) {
-			this.userVar[key] = val;
+			this.userVar[key] = this.escapeUserVar(val);
 		}
 
 		// sets title
         if (key == 'titre') {
             this.scoreName = this.slugify(val);
         }
+	}
+	
+	private escapeUserVar(value) {			
+		let result = value;
+		result = this.replaceAll("\\", "\\\\", result);
+		result = this.replaceAll("\"", "\\\"", result);		
+		return result;
 	}
 
 

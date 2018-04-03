@@ -1,6 +1,7 @@
 .modal {
     max-height: 95%;
     min-height: 300px;
+	font-size: 15px;
 }
 
 .modal-dialog {
@@ -17,4 +18,8 @@
 
 .modal-header {
     min-height: 69px;
+}
+
+.justif {
+	text-align: justify;
 }

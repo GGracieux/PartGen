@@ -150,10 +150,19 @@ export class CnbEditorSamples {
             "#tonalite = dodM\n" +
             "LA SI do re mi fa sol la si";
 
-		this.samples['exemple-multi'] = "#titre = Morceau 1\n" +
-            "LA SI do re mi fa sol la si LA SI do re mi fa sol\n" +
-            "% Le changement de morceau se matérialise par 4 \n" +
-            "% traits d'union successifs (ou plus)\n\n" +
+		this.samples['exemple-multi'] = "% Le changement de morceau se matérialise par 4\n" +
+			"% traits d'union successifs (ou plus)\n" +
+			"\n" +
+			"% Attention : Lorsque l'editeur contient plusieurs\n" +
+			"% morceau le rendu audio n'est pas disponible.\n" +
+			"\n" +
+			"% Le symbole de saut de ligne \"|\" permet lorsqu\'il\n" +
+			"% est doublé, de forcer un saut de page. Il est utilisé\n" +
+			"% ici entre le morceau 5 et 6\n" +
+			"\n" +
+			"#titre = Morceau 1\n" +
+            "LA SI do re mi fa sol la si LA SI do re mi fa sol\n" +			
+			"\n" +
             "----\n" +
             "#titre = Morceau 2\n" +
             "si la sol fa mi re do SI LA si la sol fa mi re do\n" +
@@ -168,12 +177,9 @@ export class CnbEditorSamples {
             "\n" +
             "----\n" +
             "#titre = Morceau 5\n" +
-            "si sol la mi fa do re LA SI si sol la mi fa do re\n" +
-            "\n" +
-            "% Le symbole de saut de ligne \"|\" permet lorsqu'il\n" +
-            "% est doublé, de forcer un saut de page\n" +
+            "si sol la mi fa do re LA SI si sol la mi fa do re\n" +            
             "||\n" +
-            "\n" +
+			"\n" +
             "----\n" +
             "#titre = Morceau 6\n" +
             "si sol la mi fa do re LA SI si sol la mi fa do re\n";
@@ -254,8 +260,8 @@ export class CnbEditorSamples {
 			"\t(LA,mi,LA) do2. |\n" +
 			"}";
 
-		this.samples['da-bourmen'] = "#titre = \"Da Bourmen\"\n" +
-            "#titre2 = \"Marche\"\n" +
+		this.samples['da-bourmen'] = "#titre = Da Bourmen\n" +
+            "#titre2 = Marche\n" +
             "#tempo = 90\n" +
             "#tonalite = sibM\n" +
             "\n" +
