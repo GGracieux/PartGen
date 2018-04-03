@@ -153,9 +153,12 @@ export class CnbEditorSamples {
 		this.samples['exemple-multi'] = "% Le changement de morceau se matérialise par 4\n" +
 			"% traits d'union successifs (ou plus)\n" +
 			"\n" +
-			"% Attention : Lorsque l'editeur contient plusieurs\n" +
-			"% morceau le rendu audio n'est pas disponible.\n" +
-			"\n" +
+			"% Attention : \n" + 
+			"% - Lorsque l'editeur contient plusieurs morceau,\n" +
+			"%   le rendu audio n'est pas disponible.\n" +
+			"% - Si les variables piedPage et orientation sont définies\n" +
+			"%   plusieurs fois, seul la dernière valeur est appliquée. \n" +
+			"\n" +			
 			"% Le symbole de saut de ligne \"|\" permet lorsqu\'il\n" +
 			"% est doublé, de forcer un saut de page. Il est utilisé\n" +
 			"% ici entre le morceau 5 et 6\n" +

@@ -170,8 +170,10 @@ export class Cnb2lpService {
                 // score separator : rendering current score
                 scores.push(this.renderCurrentScore(LPTokens));
                 let footer = this.userVar['piedPage'];
+				let orient = this.userVar['orientation'];
                 this.initUserVariables();
                 this.userVar['piedPage'] = footer;
+				this.userVar['orientation'] = orient;
                 LPTokens = [];
 
             } else {
@@ -190,6 +192,7 @@ export class Cnb2lpService {
 
         // Assemblage
         let result = "\\version \"2.14.2\"\n" +
+			this.composeOrientationHeader() + 
             "\n" + this.composePaperHeader() + "\n" +
             "\n" +
             "\\book {\n" +
