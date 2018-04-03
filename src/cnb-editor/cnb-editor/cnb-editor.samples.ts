@@ -188,7 +188,7 @@ export class CnbEditorSamples {
             "si sol la mi fa do re LA SI si sol la mi fa do re\n";
 
 		this.samples['highland-cathedral'] = "#titre = Highland Cathedral\n" +
-            "#piedPage = www.bagpipe-scores.com\n" +
+            "#piedPage = www.partitions-cornemuse.com\n" +
             "#tempo = 90\n" +
             "\n" +
             "[4/4] \n" +
@@ -215,7 +215,7 @@ export class CnbEditorSamples {
             "}";
 
 		this.samples['amazing-grace'] = "#titre = Amazing Grace\n" +
-			"#piedPage = www.bagpipe-scores.com\n" +
+			"#piedPage = www.partitions-cornemuse.com\n" +
 			"#tempo = 60\n" +
 			"\n" +
 			"[3/4] \n" +
@@ -240,7 +240,7 @@ export class CnbEditorSamples {
 			"(re) mi4 (la,mi,re) mi2 |";
 
 		this.samples['greenlands'] = "#titre = Greenlands\n" +
-			"#piedPage = www.bagpipe-scores.com\n" +
+			"#piedPage = www.partitions-cornemuse.com\n" +
 			"#tempo = 90\n" +
 			"\n" +
 			"@4 \n" +
@@ -265,6 +265,7 @@ export class CnbEditorSamples {
 
 		this.samples['da-bourmen'] = "#titre = Da Bourmen\n" +
             "#titre2 = Marche\n" +
+            "#piedPage = www.partitions-cornemuse.com\n" +
             "#tempo = 90\n" +
             "#tonalite = sibM\n" +
             "\n" +
