@@ -1,16 +1,20 @@
 # Bagpipe Scores
 Bagpipe-scores is a textual score editor for bagpipe with PDF and MP3 generation.
-It consists of a containerized website wich uses [lilypond-api](https://github.com/GGracieux/lilypond-api) and [midi2mp3-api](https://github.com/GGracieux/midi2mp3-api).
-
-Bagpipe-scores website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
+Website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
 
 ## Project structure
 Project is composed of 5 repositories :
-- [bagpipe-scores](https://github.com/GGracieux/bagpipe-scores) : This repo. It contains the website frontend, it converts simplified score notation to Lilypond format. 
+- [bagpipe-scores](https://github.com/GGracieux/bagpipe-scores) : This repo. Bagpipe scores frontend, it converts simplified score notation to Lilypond format. 
 - [codemirror-bps](https://github.com/GGracieux/codemirror-bps) : Code mirror mode for simplified score notation syntaxic coloration. 
 - [lilypond-api](https://github.com/GGracieux/lilypond-api) : A REST API used to convert Lilypond format to PDF and MIDI.
 - [midi2mp3-api](https://github.com/GGracieux/midi2mp3-api) : A REST API used to convert MIDI files to MP3.
 - [bps-orchestration](https://github.com/GGracieux/bps-orchestration) : Project orchestration & deployment files.
+
+## Container infrastructure
+Project is composed of 3 containers, docker images are available at dockerhub.com :
+- [bagpipe-scores image](https://hub.docker.com/r/teuki/bagpipe-scores/) : nginx server delivering front and routing API calls. 
+- [lilypond-api image](https://hub.docker.com/r/teuki/lilypond-api/) : REST API.
+- [midi2mp3-api image](https://hub.docker.com/r/teuki/midi2mp3-api/) : REST API.
 
 ## Tech & Tools
 
