@@ -1,6 +1,8 @@
 # Bagpipe Scores
-[bagpipe-scores](http://www.partitions-cornemuse.com) is a textual score editor for bagpipe with PDF and MP3 generation.
+bagpipe-scores is a textual score editor for bagpipe with PDF and MP3 generation.
 Containerized application (Docker, Nginx, Angular5 + Material + AceEditor + PDFjs) using [lilypond](https://github.com/GGracieux/lilypond-api) and [midi2mp3](https://github.com/GGracieux/midi2mp3-api) APIs
+
+Bagpipe-scores website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
 
 ## Prerequisite
 - Install [nodejs](https://nodejs.org/en/) 
