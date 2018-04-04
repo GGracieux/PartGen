@@ -115,7 +115,7 @@ export class Cnb2lpService {
         try
         {
             let conv = this.convertData(content);
-            result = this.getConvertResponse(true, '', conv.data, conv.multiple,  'Convertion OK');
+            result = this.getConvertResponse(true, '', conv.data, conv.multiple,  'Convertion terminée');
         }
         catch (e)
         {
