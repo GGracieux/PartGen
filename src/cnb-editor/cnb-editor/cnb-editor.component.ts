@@ -66,7 +66,7 @@ export class CnbEditorComponent implements OnInit {
 
     public ngOnInit() {
         this.sampleLoader = new CnbEditorSamples();
-    	this.loadSample('exemple-scale');
+    	this.loadSample('intro');
     }
 
     public loadSample(name: string)

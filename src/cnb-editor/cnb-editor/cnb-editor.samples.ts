@@ -5,6 +5,9 @@ export class CnbEditorSamples {
 
 	constructor() {
 
+        this.samples['intro'] = "% Gamme complète de la cornemuse du LA grave au si aigu \n" +
+            "LA SI do re mi fa sol la si";
+
 		this.samples['exemple-scale'] = "% Gamme complète de la cornemuse du LA grave au si aigu \n" +
             "LA SI do re mi fa sol la si";
 
