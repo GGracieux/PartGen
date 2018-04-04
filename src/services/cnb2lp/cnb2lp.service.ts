@@ -480,7 +480,9 @@ export class Cnb2lpService {
 		let ragged = "";	
 		if (this.userVar.etirerDerniere == "non") {
 			ragged = "  ragged-last = ##t\n";
-		}		
+		} else {
+			ragged = "  ragged-last = ##f\n";
+		}	
 		
 		// Assembling
 		let layout = "\n";
