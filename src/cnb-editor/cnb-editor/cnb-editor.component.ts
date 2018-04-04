@@ -200,7 +200,7 @@ export class CnbEditorComponent implements OnInit {
             zip.file(this.scoreName + '.pdf', this.dataBase64Pdf, {base64: true});
             zip.file(this.scoreName + '.midi', this.dataBase64Midi, {base64: true});
         }
-        if (this.wfState >= WorkFlowState.MIDI2MP3_OK) {
+        if ((this.wfState >= WorkFlowState.MIDI2MP3_OK) && (this.dataBase64Mp3 != '')) {
             zip.file(this.scoreName + '.mp3', this.dataBase64Mp3, {base64: true});
         }
 
