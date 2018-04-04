@@ -33,6 +33,10 @@
 	filter: drop-shadow(1px 1px #1a257a);
 }
 
+.github {
+	font-size: 13px
+}
+
 
 @media (max-width: 420px) {
 	.logo {
