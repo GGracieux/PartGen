@@ -4,8 +4,23 @@ It consists of a containerized website wich uses [lilypond-api](https://github.c
 
 Bagpipe-scores website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
 
-## Project technos
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech.png)
+## Techn & Tools
+
+#### Frontend
+![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-front.png)
+
+#### Backend
+![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-back.png)
+
+#### Deployment
+![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-infra.png)
+
+#### Tools
+![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-tools.png)
+
+#### Third party
+![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-thirdparty.png)
+
 
 ## Prerequisite
 - Install [nodejs](https://nodejs.org/en/) 
