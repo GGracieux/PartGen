@@ -4,7 +4,15 @@ It consists of a containerized website wich uses [lilypond-api](https://github.c
 
 Bagpipe-scores website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
 
-## Techn & Tools
+## Project structure
+Project is composed of 5 repositories :
+- [bagpipe-scores](https://github.com/GGracieux/bagpipe-scores) : This repo. It contains the website frontend, it converts simplified score notation to Lilypond format. 
+- [codemirror-bps](https://github.com/GGracieux/codemirror-bps) : Code mirror mode for simplified score notation syntaxic coloration. 
+- [lilypond-api](https://github.com/GGracieux/lilypond-api) : A REST API used to convert Lilypond format to PDF and MIDI.
+- [midi2mp3-api](https://github.com/GGracieux/midi2mp3-api) : A REST API used to convert MIDI files to MP3.
+- [bps-orchestration](https://github.com/GGracieux/bps-orchestration) : Project orchestration & deployment files.
+
+## Tech & Tools
 
 #### Frontend
 ![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-front.png)
