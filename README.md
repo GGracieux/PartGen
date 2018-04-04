@@ -1,6 +1,7 @@
 # Bagpipe Scores
-Bagpipe-scores is a textual score editor for bagpipe with PDF and MP3 generation.
-Website is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).
+Bagpipe-scores is a textual score editor for bagpipe with PDF and MP3 generation.  
+Live demo is accessible at [www.partitions-cornemuse.com](http://www.partitions-cornemuse.com).  
+![screenshot](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/screenshot.jpg)
 
 ## Project structure
 Project is composed of 5 repositories :
@@ -19,19 +20,19 @@ Project is composed of 3 containers, docker images are available at dockerhub.co
 ## Tech & Tools
 
 #### Frontend
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-front.png)
+![frontend](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-front.png)
 
 #### Backend
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-back.png)
+![backend](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-back.png)
 
 #### Deployment
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-infra.png)
+![deployment](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-infra.png)
 
 #### Tools
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-tools.png)
+![tools](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-tools.png)
 
 #### Third party
-![alt text](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-thirdparty.png)
+![third party](https://raw.githubusercontent.com/GGracieux/bagpipe-scores/master/src/assets/tech-thirdparty.png)
 
 
 ## Prerequisite
