@@ -5,8 +5,16 @@ export class CnbEditorSamples {
 
 	constructor() {
 
-        this.samples['intro'] = "% Gamme complète de la cornemuse du LA grave au si aigu \n" +
-            "LA SI do re mi fa sol la si";
+        this.samples['intro'] = "% Ce site permet de composer des partitions pour Cornemuse,\n" +
+			"% il produit un fichier PDF et le MP3 correspondant.\n" +
+			"\n" +
+			"% Pour commencer :\n" +
+			"% - cliquez sur le menu \"Exemples\"\n" +
+			"% - sélectionnez un des exemples proposés\n" +
+			"% - cliquez sur le menu \"Générer\"\n" +
+			"\n" +
+			"% Pour télécharger le résultat produit, cliquez sur le\n" +
+			"% bouton \"Télécharger\" situé à droite de la barre d'outils.";
 
 		this.samples['exemple-scale'] = "% Gamme complète de la cornemuse du LA grave au si aigu \n" +
             "LA SI do re mi fa sol la si";
