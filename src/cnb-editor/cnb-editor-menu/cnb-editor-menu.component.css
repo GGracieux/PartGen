@@ -23,3 +23,23 @@
 .justif {
 	text-align: justify;
 }
+
+.logo {
+	color: #ffcf86;
+	font-weight: bold;
+}
+
+.logimg {
+	filter: drop-shadow(1px 1px #1a257a);
+}
+
+
+@media (max-width: 420px) {
+	.logo {
+		font-size: 17px;
+	}
+	
+	.logoimg {
+		height: 25px;
+	}
+}
