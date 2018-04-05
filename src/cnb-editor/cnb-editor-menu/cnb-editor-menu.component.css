@@ -29,8 +29,14 @@
 	font-weight: bold;
 }
 
-.logimg {
+.logo.navbar-brand {
+	color: #ffcf86;
+	cursor: default;
+}
+
+.logoimg {
 	filter: drop-shadow(1px 1px #1a257a);
+	cursor: default;
 }
 
 .github {
