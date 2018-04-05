@@ -150,7 +150,9 @@ export class Cnb2lpService {
 
         // Returns appropriate convertion
         if (multiScore) {
-            return { "data" : this.convertDataMultiple(content), "multiple"  : true } ;
+            let conv = this.convertDataMultiple(content);
+            this.scoreName = 'Livre';
+            return { "data" : conv, "multiple"  : true } ;
         } else {
             return { "data" : this.convertDataSimple(content), "multiple"  : false } ;
         }
