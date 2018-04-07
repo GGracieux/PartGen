@@ -25,17 +25,20 @@
 }
 
 .logo {
-	color: #ffcf86;
+	color: #ffbd7c;
 	font-weight: bold;
 }
 
 .logo.navbar-brand {
-	color: #ffcf86;
+	color: #ffbd7c;
 	cursor: default;
+	text-shadow: 1px 1px #000;
+	font-family: Ubuntu;
+	font-size: 24px;
 }
 
 .logoimg {
-	filter: drop-shadow(1px 1px #1a257a);
+	filter: drop-shadow(1px 2px #382f74);
 	cursor: default;
 }
 
