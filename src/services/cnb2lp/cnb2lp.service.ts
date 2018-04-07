@@ -445,6 +445,8 @@ export class Cnb2lpService {
         let paper = "\\paper {\n";
         paper += "  top-margin = 1.5 \\cm\n";
         paper += "  bottom-margin = 1.5 \\cm\n";
+        paper += "  ragged-bottom = ##t\n";
+        paper += "  ragged-last-bottom = ##t\n";
         paper += "}\n";
         return paper;
     }
