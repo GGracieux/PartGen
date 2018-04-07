@@ -2,7 +2,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 // Imports code mirror mode
-import 'codemirror-bps/mode/bps-breizh/bps-breizh.js';
+import 'codemirror-bps/mode/bps-fr/bps-fr.js';
 
 @Component({
     selector: 'cnb-editor-input',
