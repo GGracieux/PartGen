@@ -4,25 +4,33 @@ html, body {
 	margin:0px;
 }
 
+$color-notes: #0b4a91;
+$color-grace: #7c7c7c;
+$color-keywd: #3da526;
+$color-usrvr: #dda400;  
+$color-comnt: #9b9b9b;
+$color-error: red;
+$weight-keywd: bold;
+
 /* Code mirror css */
-.cm-uservar {color: #dda400;}
-.cm-tempo {color: #3da526; font-weight: bold;}
-.cm-linebreak {color: #3da526; font-weight: bold;}
-.cm-repeatBlock {color: #3da526; font-weight: bold;}
-.cm-beginBlock {color: #3da526; font-weight: bold;}
-.cm-endBlock {color: #3da526; font-weight: bold;}
-.cm-altBlock {color: #3da526; font-weight: bold;}
-.cm-liaison {color: #3da526; font-weight: bold;}
-.cm-anacrouse {color: #3da526; font-weight: bold;}
-.cm-silence {color: #3da526; font-weight: bold;}
-.cm-nolet {color: #3da526; font-weight: bold;}
-.cm-ornement {color: #7c7c7c;}
-.cm-note {color: #0b4a91;}
+.cm-uservar {color: $color-usrvr;}
+.cm-tempo {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-linebreak {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-repeatBlock {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-beginBlock {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-endBlock {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-altBlock {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-liaison {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-anacrouse {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-silence {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-nolet {color: $color-keywd; font-weight: $weight-keywd;}
+.cm-ornement {color: $color-grace;}
+.cm-note {color: $color-notes;}
 .cm-annotation {color: black;}	
-.cm-commentaire {color: #9b9b9b;}
-.cm-scoreSep {color: #dda400;}
-.cm-pagebreak  {color:#3da526; font-weight: bold;}
-span[role=presentation] {color: red;}
+.cm-commentaire {color: $color-comnt;}
+.cm-scoreSep {color: $color-usrvr;}
+.cm-pagebreak  {color: $color-keywd; font-weight: $weight-keywd;}
+span[role=presentation] {color: $color-error;}
 
 /* Roboto font fix, switching to Poppins font */
 @import url('https://fonts.googleapis.com/css?family=Poppins');
