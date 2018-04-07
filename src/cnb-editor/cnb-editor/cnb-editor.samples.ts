@@ -110,7 +110,10 @@ export class CnbEditorSamples {
             "\n" +
             "% Cinquième mesure avec un triolet noté N3/2 (3 notes pour une durée de 2)\n" +
             "sol2\t\t\t\t\n" +
-            "N3/2{ do4 re4 mi4 }";
+            "N3/2{ do4 re4 mi4 }\n" +
+            "\n" +
+            "% Silence de la durée d'une blanche suivie d'un do\n" +
+            "=2 do4" ;
 
 		this.samples['exemple-repeat'] = "% --- Mesures 1 et 2 : Répétition (x3)\n" +
             "R3{ \n" +
